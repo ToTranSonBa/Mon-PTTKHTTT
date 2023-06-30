@@ -1,0 +1,204 @@
+﻿<Window x:Class="GUI.View.AddService_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GUI.View"
+        mc:Ignorable="d"
+        Title="AddService_Window" Height="450" Width="800"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseMove="Window_MouseMove">
+    <Window.Clip>
+        <RectangleGeometry Rect="0,0,950,500" RadiusX="10" RadiusY="10">
+        </RectangleGeometry>
+    </Window.Clip>
+    <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition Height="6*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--title-->
+            <Grid Grid.Row="0" Margin="0,5,0,5">
+                <TextBlock Text="DANH SÁCH DỊCH VỤ" FontSize="30" Foreground="#00A3FF" FontWeight="Bold" 
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <!--Main service-->
+            <Grid Grid.Row="1" Margin="0,5,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                        <RowDefinition Height="2*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0" HorizontalAlignment="Center"
+                                    Style="{StaticResource MaterialDesignOutlinedComboBox}" Background="White" BorderThickness="0.5"
+                                    materialDesign:HintAssist.Hint="Tìm loại dịch vụ"
+                                    Height="30" Padding="5" Width="150">
+
+                        </ComboBox>
+                        <materialDesign:ColorZone Grid.Column="1" Mode="Standard" Padding="8 0 8 0"
+                        CornerRadius="5" Width="250" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0" Style="{DynamicResource MaterialDesignToolButton}">
+                                    <materialDesign:PackIcon Kind="Search" Opacity=".56" />
+                                </Button>
+                                <TextBox Grid.Column="1" x:Name="txbTimKiem"
+                                Margin="8 0 0 0"
+                                materialDesign:HintAssist.Hint="Tìm dịch vụ"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                BorderThickness="0"
+                                MinWidth="200" 
+                                TextChanged="txbTimKiem_TextChanged"   
+                                VerticalAlignment="Center" />
+                            </Grid>
+                        </materialDesign:ColorZone>
+                    </Grid>
+                    <!--Danh sách dịch vụ-->
+                    <Grid Grid.Row="1" Background="White" VerticalAlignment="Top">
+                        <Grid.Clip>
+                            <RectangleGeometry Rect="0,0 ,500,400" RadiusX="10" RadiusY="10"/>
+                        </Grid.Clip>
+                        <ListView x:Name="lvDanhSachDV" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,10,0" Height="147" VerticalAlignment="Center" SelectionChanged="lvDanhSachDV_SelectionChanged">
+                            <!--<ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>-->
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    <GridViewColumn  Header="Loại DV"  Width="100" DisplayMemberBinding="{Binding LoaiDV}" />
+                                    <GridViewColumn Header="Dịch vụ" Width="200" DisplayMemberBinding="{Binding TenDV}"  />
+                                    <GridViewColumn Header="Giá" Width="100"  DisplayMemberBinding="{Binding Gia , StringFormat={}{0:N0}}" />
+                                    <GridViewColumn Width="50" Header="Thêm">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Them"  >
+                                                    <materialDesign:PackIcon Kind="PlusBox" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                    <!--Choosen Service-->
+                    <Grid Grid.Row="2" Background="White" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="10,5,0,5">
+                            <TextBlock Text="DANH SÁCH DỊCH VỤ ĐÃ CHỌN" FontSize="10" Foreground="Black" FontWeight="Bold"
+                           HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </Grid>
+                        <Grid Grid.Row="1" Background="White" VerticalAlignment="Top" >
+                            <Grid.Clip>
+                                <RectangleGeometry Rect="0,0 ,500,400" RadiusX="10" RadiusY="10"/>
+                            </Grid.Clip>
+                            <ListView x:Name="lvDanhSachDVChon" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,10,0" Height="131" VerticalAlignment="Top" SelectionChanged="lvDanhSachDV_SelectionChanged">
+                                <!--<ListView.Resources>
+                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
+                            </ListView.Resources>-->
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.ColumnHeaderContainerStyle>
+                                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                                <Setter Property="Background" Value="#C4C4C4" />
+                                                <Setter Property="Foreground" Value="Black" />
+                                                <Setter Property="FontWeight" Value="Bold" />
+                                            </Style>
+                                        </GridView.ColumnHeaderContainerStyle>
+                                        <GridViewColumn  Header="Loại DV"  Width="100" DisplayMemberBinding="{Binding LoaiDV}" />
+                                        <GridViewColumn Header="Dịch vụ" Width="200" DisplayMemberBinding="{Binding TenDV}"  />
+                                        <GridViewColumn Header="Giá" Width="110"  DisplayMemberBinding="{Binding Gia , StringFormat={}{0:N0}}" />
+                                        <GridViewColumn Width="50" Header="Xóa">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Xoa"  >
+                                                        <materialDesign:PackIcon Kind="DeleteCircle" />
+                                                    </Button>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Grid>
+                    <!--Service details-->
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--Service details-->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="8*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="THÔNG TIN DỊCH VỤ" FontSize="18" Foreground="#00A3FF" FontWeight="Bold" 
+                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1">
+                        <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <!--List button <bottom window>-->
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
+                    <Button Width="130" Height="37" Background="ForestGreen" Content="Thêm dịch vụ"
+                        HorizontalAlignment="Center" RenderTransformOrigin="-1.146,0.435" Margin="0 0 30 0">
+                        <Button.Clip>
+                            <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
+                        </Button.Clip>
+                    </Button>
+                    <Button Width="130" Height="37" Background="IndianRed" Content="Thoát" Click="click_BtnExit"
+                        HorizontalAlignment="Center" Margin="0 0 30 0">
+                        <Button.Clip>
+                            <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
+                        </Button.Clip>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

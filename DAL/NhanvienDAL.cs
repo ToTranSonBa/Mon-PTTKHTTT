@@ -7,55 +7,40 @@ using DTO.Models;
 
 namespace DAL
 {
-    public class DatphongDAL
+    public class NhanvienDAL
     {
-        public List<PttkDatphong> GetAll()
+        public List<PttkNhanvien> GetAll()
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.ToList();
+                return _context.PttkNhanviens.ToList();
             }
             catch
             {
-                return new List<PttkDatphong>();
+                return new List<PttkNhanvien>();
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkNhanvien? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkNhanviens.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {
-                return new PttkDatphong();
+                return new PttkNhanvien();
             }
         }
 
-        public bool Add(PttkDatphong datphong)
+        public bool Add(PttkNhanvien nhanVien)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkNhanviens.Add(nhanVien);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +50,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkNhanvien nhanVien)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkNhanviens.Remove(nhanVien);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkNhanvien nhanVien)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkNhanvien>(nhanVien);
                 _context.SaveChanges();
                 return true;
             }

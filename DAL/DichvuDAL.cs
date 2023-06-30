@@ -7,55 +7,40 @@ using DTO.Models;
 
 namespace DAL
 {
-    public class DatphongDAL
+    public class DichvuDAL
     {
-        public List<PttkDatphong> GetAll()
+        public List<PttkDichvu> GetAll()
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.ToList();
+                return _context.PttkDichvus.ToList();
             }
             catch
             {
-                return new List<PttkDatphong>();
+                return new List<PttkDichvu>();
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkDichvu? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkDichvus.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {
-                return new PttkDatphong();
+                return new PttkDichvu();
             }
         }
 
-        public bool Add(PttkDatphong datphong)
+        public bool Add(PttkDichvu dichVu)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkDichvus.Add(dichVu);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +50,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkDichvu dichVu)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkDichvus.Remove(dichVu);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkDichvu dichVu)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkDichvu>(dichVu);
                 _context.SaveChanges();
                 return true;
             }

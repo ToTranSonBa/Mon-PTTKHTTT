@@ -7,55 +7,40 @@ using DTO.Models;
 
 namespace DAL
 {
-    public class DatphongDAL
+    public class PhongDatphongDAL
     {
-        public List<PttkDatphong> GetAll()
+        public List<PttkPhongDatphong> GetAll()
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.ToList();
+                return _context.PttkPhongDatphongs.ToList();
             }
             catch
             {
-                return new List<PttkDatphong>();
+                return new List<PttkPhongDatphong>();
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkPhongDatphong? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkPhongDatphongs.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {
-                return new PttkDatphong();
+                return new PttkPhongDatphong();
             }
         }
 
-        public bool Add(PttkDatphong datphong)
+        public bool Add(PttkPhongDatphong phongDatPhong)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkPhongDatphongs.Add(phongDatPhong);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +50,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkPhongDatphong phongDatPhong)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkPhongDatphongs.Remove(phongDatPhong);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkPhongDatphong phongDatPhong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkPhongDatphong>(phongDatPhong);
                 _context.SaveChanges();
                 return true;
             }

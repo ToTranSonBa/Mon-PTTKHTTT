@@ -22,10 +22,10 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class CustomerManagementView : UserControl
     {
-        private readonly CustomerBLL _customers;
+        private KhachhangBUS _customers;
         public CustomerManagementView()
         {
-            _customers = new CustomerBLL();
+            _customers = new KhachhangBUS();
             InitializeComponent();
             customerListView.ItemsSource = _customers.GetAll();
         }

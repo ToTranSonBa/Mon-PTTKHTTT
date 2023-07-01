@@ -105,10 +105,11 @@ namespace GUI.View
                         contentDisplayMain.Content = new ReservationView();
                         break;
                     case 3:
-                        contentDisplayMain.Content = new PaymentBillView();
+                        // hoadon
+                        contentDisplayMain.Content = new EmployeeManagementView();
                         break;
                     case 4:
-                        contentDisplayMain.Content = new PaymentBillView();
+                        contentDisplayMain.Content = new EmployeeManagementView();
                         break;
                     case 5:
                         contentDisplayMain.Content = new CustomerManagementView();

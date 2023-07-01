@@ -24,7 +24,7 @@ namespace BUS
             }
         }
 
-        public PttkKhachhang? GetByID(decimal ID)
+        public PttkKhachhang? GetByID(decimal? ID)
         {
             KhachhangDAL khachhangDAL = new KhachhangDAL();
             try

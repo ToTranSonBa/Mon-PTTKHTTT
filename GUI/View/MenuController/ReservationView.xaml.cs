@@ -29,11 +29,21 @@ namespace GUI.View.MenuController
         {
             InitializeComponent();
             reservations = new List<PttkDatphong>();
-            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+            DatphongBUS loaiphongBUS = new DatphongBUS();
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            KhachhangBUS khachhangBUS = new KhachhangBUS();
             #region Add Data
             #endregion
+            //PttkDatphong pttkDatphong = new PttkDatphong();
+            //pttkDatphong.Employee.Name
+            reservations = loaiphongBUS.GetAll();
 
-            orderistView.ItemsSource = loaiphongBUS.GetAll();
+            foreach(var item in reservations)
+            {
+                item.Employee = nhanvienBUS.GetByID(item.EmployeeId);
+                item.Customer = khachhangBUS.GetByID(item.CustomerId);
+            }
+            orderistView.ItemsSource = reservations;
         }
 
         #region Button Event

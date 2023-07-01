@@ -25,7 +25,7 @@ namespace BUS
             }
         }
 
-        public PttkNhanvien? GetByID(decimal ID)
+        public PttkNhanvien? GetByID(decimal? ID)
         {
             try
             {

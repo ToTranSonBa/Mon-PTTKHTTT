@@ -49,9 +49,9 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="Số phiếu"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding NameOrderer}" Header="Tên Khách Hàng" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding OrderDate}" Header="Ngày Đặt Phòng" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding EmployeeName}" Header="Tên Nhân Viên" />
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding Customer.Name}" Header="Tên Khách Hàng" />
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding CreatedDay}" Header="Ngày Đặt Phòng" />
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding Employee.Name}" Header="Tên Nhân Viên" />
                         <GridViewColumn Width="120" Header="Chi tiết">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

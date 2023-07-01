@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BUS;
+using DAL;
 using DTO;
 using DTO.Models;
 
@@ -24,12 +25,12 @@ namespace GUI.View.MenuController
     public partial class EquipmentManagementView : UserControl
     {
         private List<PttkThietbiPhong> _equipment { get; set; }
-        private readonly ThietbiPhongBUS _room_EquipmentBLL;
+        private readonly ThietbiPhongBUS _ThietbiPhongBUS;
         public EquipmentManagementView()
         {
             InitializeComponent();
-            _room_EquipmentBLL = new ThietbiPhongBUS();
-            _equipment = _room_EquipmentBLL.GetAll();
+            _ThietbiPhongBUS = new ThietbiPhongBUS();
+            _equipment = _ThietbiPhongBUS.GetAll();
             equipmentListView.ItemsSource = _equipment;
         }
         #region Button Event

@@ -24,6 +24,7 @@ namespace GUI.View.MenuController
     public partial class EquipmentManagerKindView : UserControl
     {
         private List<PttkLoaiphong> _equipmentKinds { get; set; }
+        private List<PttkThietbiPhong> _equipmentKinds { get; set; }
         public EquipmentManagerKindView()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace GUI.View.MenuController
 
 
 
+            _equipmentKinds = new List<PttkThietbiPhong>();
             equipmentKindListView.ItemsSource = _equipmentKinds;
         }
         #region Button Event

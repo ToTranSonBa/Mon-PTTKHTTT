@@ -19,5 +19,17 @@ namespace BUS
             PhongDAL phongDAL = new PhongDAL();
             return phongDAL.GetAll();
         }
+        public PttkPhong? GetByID(decimal? ID)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkPhongs.SingleOrDefault(dp => dp.Id == ID);
+            }
+            catch
+            {
+                return new PttkPhong();
+            }
+        }
     }
 }

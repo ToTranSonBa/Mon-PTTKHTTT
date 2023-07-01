@@ -23,7 +23,7 @@ namespace DAL
             }
         }
 
-        public PttkThietbi? GetByID(decimal ID)
+        public PttkThietbi? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

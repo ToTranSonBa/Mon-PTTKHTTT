@@ -41,9 +41,24 @@ namespace GUI.View
                 PttkNhanvienDTO Emp = _login.LoginHandler(username, PasswordBox.Password);
                 if (Emp != null)
                 {
+<<<<<<< Updated upstream
                     var mainWindow = new Home(Emp);
                     mainWindow.Show();
                     this.Close();
+=======
+                    NhanvienBUS nhanvienBUS = new NhanvienBUS();
+                    var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
+                    if (Emp.Id != 0)
+                    {
+                        var mainWindow = new Home(Emp);
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nhân viên không tồn tại!");
+                    }
+>>>>>>> Stashed changes
                 }
                 else
                 {

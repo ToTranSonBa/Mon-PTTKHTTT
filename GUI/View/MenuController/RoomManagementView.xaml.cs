@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BUS;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View.MenuController
 {
@@ -22,12 +23,26 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class RoomManagementView : UserControl
     {
+<<<<<<< Updated upstream
         private readonly RoomBLL _rooms;
         public RoomManagementView()
         {
             _rooms = new RoomBLL();
+=======
+        private readonly PhongBUS _rooms;
+        private List<PttkPhong> pttkPhongs = new List<PttkPhong>();
+        public RoomManagementView()
+        {
+            _rooms = new PhongBUS();
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+>>>>>>> Stashed changes
             InitializeComponent();
-            roomListView.ItemsSource = _rooms.GetAll();
+            pttkPhongs = _rooms.GetAll();
+            foreach(var  p in pttkPhongs)
+            {
+                p.KindNavigation = loaiphongBUS.GetByID(p.Kind);
+            }
+            roomListView.ItemsSource = pttkPhongs;
         }
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)

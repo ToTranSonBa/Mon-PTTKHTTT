@@ -39,7 +39,7 @@ namespace GUI.View
             {
                 TaikhoanBUS acc = new TaikhoanBUS();
                 var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
-                if (Acc != null || Acc.EmployeeId != 0 )
+                if (Acc != null && Acc.EmployeeId != 0 )
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
                     var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);

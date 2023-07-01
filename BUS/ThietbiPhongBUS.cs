@@ -76,5 +76,41 @@ namespace BUS
                 return false;
             }
         }
+
+        public decimal? GetAmountofEquipment(decimal? ID)
+        {
+            try
+            {
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                List<PttkThietbiPhong> thietbiphong_list=new List<PttkThietbiPhong>();
+                thietbiphong_list = thietbiphong_dal.GetAll();
+                List<PttkThietbiPhong> t = new List<PttkThietbiPhong>();
+
+                foreach(var tb in thietbiphong_list)
+                {
+                    if (tb != null)
+                    {
+                        if(tb.EquipmentId == ID)
+                        {
+                            t.Add(tb);
+                        }
+                    }
+                }
+
+                decimal? count = 0;
+                foreach (var tb in t)
+                {
+                    if (tb != null)
+                    {
+                        count += tb.Amount;
+                    }
+                }
+                return count;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }

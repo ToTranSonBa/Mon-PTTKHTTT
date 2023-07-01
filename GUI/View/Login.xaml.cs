@@ -77,7 +77,7 @@ namespace GUI.View
                 var Acc = acc.GetByUsernamePassword(username, passwordBox.Password);
                 if (Acc != null)
                 var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
-                if (Acc != null || Acc.EmployeeId != 0 )
+                if (Acc != null && Acc.EmployeeId != 0 )
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
                     var Emp = nhanvienBUS.GetByID(Acc.Id);

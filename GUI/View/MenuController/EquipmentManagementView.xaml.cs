@@ -23,35 +23,48 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class EquipmentManagementView : UserControl
     {
-        private List<PttkThietbiPhong> _equipment { get; set; }
-        private readonly ThietbiPhongBUS _room_EquipmentBLL;
         public EquipmentManagementView()
         {
             InitializeComponent();
-            _room_EquipmentBLL = new ThietbiPhongBUS();
-            _equipment = _room_EquipmentBLL.GetAll();
-            equipmentListView.ItemsSource = _equipment;
+            LoadEquipmentManagement();
+        }
+        public void LoadEquipmentManagement()
+        {
+            ThietbiPhongBUS _room_EquipmentBLL = new ThietbiPhongBUS();
+
+            ThietbiBUS equiment = new ThietbiBUS();
+            PhongBUS room = new PhongBUS();
+
+            List<PttkThietbiPhong> room_equipment = new List<PttkThietbiPhong>();
+            room_equipment = _room_EquipmentBLL.GetAll();
+
+            foreach (var equip in room_equipment)
+            {
+                equip.Equipment = equiment.GetByID(equip.EquipmentId);
+                equip.Room = room.GetByID(equip.RoomId);
+            }
+            equipmentListView.ItemsSource = room_equipment;
         }
         #region Button Event
-        private void click_Detail(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void click_Delete(object sender, RoutedEventArgs e)
-        {
-
-        }
-        #endregion
-
-        #region Search Event
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            var textSearch = SearchTextBox.Text;
-            equipmentListView.ItemsSource = _equipment;
-            if (textSearch != null)
-            {
-            }
+            //
+        }
+
+        private void btn_Delete(object sender, RoutedEventArgs e)
+        {
+            PttkThietbiPhong equip_room_object = new PttkThietbiPhong();
+            equip_room_object = (PttkThietbiPhong)equipmentListView.SelectedItem;
+
+            ThietbiPhongBUS room_equipment_bus = new ThietbiPhongBUS();
+            room_equipment_bus.Remove(equip_room_object);
+            LoadEquipmentManagement();
+        }
+        private void btn_Add(object sender, RoutedEventArgs e)
+        {
+            Add_ThietBi_Phong_Window add_tb_ph_window=new  Add_ThietBi_Phong_Window();
+            add_tb_ph_window.ShowDialog();
+            LoadEquipmentManagement();
         }
         #endregion
     }

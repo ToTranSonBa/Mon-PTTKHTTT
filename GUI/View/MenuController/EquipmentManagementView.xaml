@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}" Click="btn_Add"
                     Width="200"
                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                     _Thêm thiết bị
@@ -73,14 +73,14 @@
                 HeadersVisibility="All">
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Width="200" Binding="{Binding EquipmentName}" Header="Tên Thiết bị" />
-                    <DataGridTextColumn Width="200" Header="Tên Phòng" Binding="{Binding RoomName}"/>
+                    <DataGridTextColumn Width="200" Binding="{Binding Equipment.Name}" Header="Tên Thiết bị" />
+                    <DataGridTextColumn Width="200" Header="Tên Phòng" Binding="{Binding Room.RoomNumber}"/>
                     <DataGridTextColumn Width="200" Header="Số lượng" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Width="200" Header="Trạng thái" Binding="{Binding Tinhtrang}"/>
                     <DataGridTemplateColumn  Header="Xoá">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button>
+                                <Button Click="btn_Delete">
                                     <materialDesign:PackIcon Kind="Delete" />
                                 </Button>
                             </DataTemplate>

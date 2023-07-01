@@ -39,7 +39,8 @@ namespace BUS
         {
             try
             {
-                ThietbiPhongDAL _context = new ThietbiPhongDAL();
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                thietbiphong_dal.Add(thietBiPhong);
                 return true;
             }
             catch
@@ -52,9 +53,8 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.PttkThietbiPhongs.Remove(thietBiPhong);
-                _context.SaveChanges();
+                ThietbiPhongDAL thietbiphong_dal=new ThietbiPhongDAL();
+                thietbiphong_dal.Remove(thietBiPhong);
                 return true;
             }
             catch
@@ -67,9 +67,8 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkThietbiPhong>(thietBiPhong);
-                _context.SaveChanges();
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                thietbiphong_dal.Update(thietBiPhong);
                 return true;
             }
             catch

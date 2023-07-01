@@ -23,7 +23,7 @@ namespace BUS
             }
         }
 
-        public PttkThietbi? GetByID(decimal ID)
+        public PttkThietbi? GetByID(decimal? ID)
         {
             ThietbiDAL _context = new ThietbiDAL();
             try

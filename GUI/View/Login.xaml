@@ -6,32 +6,78 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:GUI.View"
         mc:Ignorable="d"
-        Title="Login" Height="720" Width="1080">
-    <Grid Background="BlueViolet">
-        <Border Height="500" Width="600" Background="White" CornerRadius="30">
-            <StackPanel Margin="50">
-                <Label Foreground="BlueViolet" Margin="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="50">Đăng nhập</Label>
-                <StackPanel Margin="20">
-                    <StackPanel Margin="20">
-                        <TextBox x:Name="NameTextBox" materialDesign:HintAssist.HelperText="" materialDesign:HintAssist.Hint="Name">
-                            <TextBox.Text>
-                                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        
-                                        <!--<domain:NotEmptyValidationRule ValidatesOnTargetUpdated="True" xmlns:domain="" />-->
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                    </StackPanel>
-                    <StackPanel Margin="20">
-                        <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.HelperText="At least 8 characters" materialDesign:HintAssist.Hint="Password" materialDesign:TextFieldAssist.HasClearButton="True" />
-                    </StackPanel>
+        Title="Login" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+         Height="500" 
+        Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.5*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/View/close.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose}"/>
+
+        <Border CornerRadius="10 0 0 10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#3AA9AD" Offset="0" />
+                    <GradientStop Color="#3AADA1" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Canvas>
+                    <Polygon Points="0,20 230,140 0,270" Fill="#4EB1B6" />
+                    <Polygon Points="100,400 200,370 180,470" Fill="#4EB1B6" />
+                    <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="#4EB1B6" />
+                    <Ellipse Margin="50 400 0 0" Width="20" Height="20" Fill="#4EB1B6" />
+                </Canvas>
+
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="HCMUS" Style="{StaticResource TitleText}" />
+                    <TextBlock FontWeight="SemiBold" Text="MÔN: PHÂN TÍCH THIẾT KẾ HỆ THỐNG THÔNG TIN" Opacity="0.8" Margin="20 30 20 30" Style="{StaticResource NormalText}" />
+                    <Button Content="LOVE" Style="{StaticResource button}" />
                 </StackPanel>
-                <StackPanel>
-                    <Button Click="Login_Click" Margin="30" Width="auto" Content="_Đăng nhập" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"  ToolTip="Resource name: MaterialDesignRaisedButton" />
-                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Background="#FFFFFF" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Sign in to App" Foreground="#3AB19B" Style="{StaticResource TitleText}" />
+                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/View/Email.png" Height="20" />
+                        <TextBlock x:Name="textEmail" MouseDown="textEmail_MouseDown" Text="Username" Style="{StaticResource textHint}" />
+                        <TextBox Name="txtEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                    </Grid>
+                </Border>
+
+                <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="70 7" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/View/Lock.png" Height="20" />
+                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
+                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" Style="{StaticResource textBox}" />
+                    </Grid>
+                </Border>
+
+                <Button Content="Sign In" Click="Button_Click" Style="{StaticResource mainButton}" />
             </StackPanel>
         </Border>
+
     </Grid>
+    
 </Window>

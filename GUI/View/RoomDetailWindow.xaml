@@ -103,13 +103,13 @@
                                 <GridView>
                                     <GridView.ColumnHeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <!--<Setter Property="Background" Value="#C4C4C4" />-->
                                             <Setter Property="Foreground" Value="Black" />
                                             <Setter Property="FontWeight" Value="Bold" />
                                         </Style>
                                     </GridView.ColumnHeaderContainerStyle>
-                                  <GridViewColumn  Header="Dịch vụ"  Width="350" DisplayMemberBinding="{Binding Service.Name}" />
-                                    <GridViewColumn Header="Số lượng" Width="150" DisplayMemberBinding="{Binding Quantity}"  />
+                                    <GridViewColumn Header="Dịch vụ"  Width="350" DisplayMemberBinding="{Binding Service.Name}" />
+                                    <GridViewColumn Header="Số lượng" Width="170" DisplayMemberBinding="{Binding Quantity}"  />
                                     <GridViewColumn Header="Thành tiền" Width="250" DisplayMemberBinding="{Binding TotalPrice , StringFormat={}{0:N0}}"/>
                                 </GridView>
                             </ListView.View>

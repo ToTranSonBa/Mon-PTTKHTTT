@@ -34,6 +34,8 @@ namespace GUI.View
         PttkDatphong _datPhong { get; set; }
         List<PttkDatphongDichvu> _datPhongDichvu { get; set; }
         PttkDichvu dichVu { get; set; }
+
+
         public RoomDetailWindow(PttkPhong room)
         {
             InitializeComponent();
@@ -46,13 +48,6 @@ namespace GUI.View
                 {
                     _khachHang = khachHang.GetByID(_datPhong.CustomerId);
                 }
-                //PttkDatphongDichvu getID = new PttkDatphongDichvu();
-                //getID = datphongDichvu.GetOnebyID(_datPhong.Id);
-                //if (getID != null)
-                //{
-
-                //}
-
                 _datPhongDichvu = new List<PttkDatphongDichvu>();
                 _datPhongDichvu = datphongDichvu.GetAllbyOrderID(_datPhong.Id);
 
@@ -75,7 +70,7 @@ namespace GUI.View
 
         private void click_ThemDV(object sender, RoutedEventArgs e)
         {
-            var addServiceWindow = new AddService_Window();
+            var addServiceWindow = new AddService_Window(_datPhong);
             addServiceWindow.ShowDialog();
         }
         

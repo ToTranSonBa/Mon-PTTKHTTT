@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:GUI.View"
         mc:Ignorable="d"
-        Title="AddService_Window" Height="450" Width="800"
+        Title="AddService_Window" Height="500" Width="900"
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
@@ -21,7 +21,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.7*"></RowDefinition>
                 <RowDefinition Height="6*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="0.7*"></RowDefinition>
             </Grid.RowDefinitions>
             <!--title-->
             <Grid Grid.Row="0" Margin="0,5,0,5">
@@ -76,37 +76,41 @@
                     </Grid>
                     <!--Danh sách dịch vụ-->
                     <Grid Grid.Row="1" Background="White" VerticalAlignment="Top">
-                        <Grid.Clip>
+                        <!--<Grid.Clip>
                             <RectangleGeometry Rect="0,0 ,500,400" RadiusX="10" RadiusY="10"/>
-                        </Grid.Clip>
-                        <ListView x:Name="lvDanhSachDV" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,10,0" Height="147" VerticalAlignment="Center" SelectionChanged="lvDanhSachDV_SelectionChanged">
+                        </Grid.Clip>-->
+                        <DataGrid x:Name="lvDanhSachDV" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                  Margin="10,0,10,0" Height="auto" VerticalAlignment="Center" 
+                                  SelectionChanged="lvDanhSachDV_SelectionChanged"
+                                  AutoGenerateColumns="False">
                             <!--<ListView.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                             </ListView.Resources>-->
-                            <ListView.View>
-                                <GridView>
-                                    <GridView.ColumnHeaderContainerStyle>
-                                        <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="Background" Value="#C4C4C4" />
-                                            <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="FontWeight" Value="Bold" />
-                                        </Style>
-                                    </GridView.ColumnHeaderContainerStyle>
-                                    <GridViewColumn  Header="Loại DV"  Width="100" DisplayMemberBinding="{Binding LoaiDV}" />
-                                    <GridViewColumn Header="Dịch vụ" Width="200" DisplayMemberBinding="{Binding TenDV}"  />
-                                    <GridViewColumn Header="Giá" Width="100"  DisplayMemberBinding="{Binding Gia , StringFormat={}{0:N0}}" />
-                                    <GridViewColumn Width="50" Header="Thêm">
-                                        <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Them"  >
-                                                    <materialDesign:PackIcon Kind="PlusBox" />
-                                                </Button>
-                                            </DataTemplate>
-                                        </GridViewColumn.CellTemplate>
-                                    </GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                            <DataGrid.Columns>
+                                <!--<DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="#C4C4C4" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>-->
+
+                                <DataGridTextColumn Header="Loại DV"  Width="100" Binding="{Binding Decsription}" />
+                                <DataGridTextColumn Header="Dịch vụ" Width="200" Binding="{Binding Name}"  />
+                                <DataGridTextColumn Header="Giá" Width="100"  Binding="{Binding Price , StringFormat={}{0:N0}}" />
+                                <DataGridTemplateColumn Header="Thêm" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Them"  >
+                                                <materialDesign:PackIcon Kind="PlusBox" />
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                     <!--Choosen Service-->
                     <Grid Grid.Row="2" Background="White" VerticalAlignment="Top">
@@ -119,37 +123,40 @@
                            HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Grid>
                         <Grid Grid.Row="1" Background="White" VerticalAlignment="Top" >
-                            <Grid.Clip>
+                            <!--<Grid.Clip>
                                 <RectangleGeometry Rect="0,0 ,500,400" RadiusX="10" RadiusY="10"/>
-                            </Grid.Clip>
-                            <ListView x:Name="lvDanhSachDVChon" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="10,0,10,0" Height="131" VerticalAlignment="Top" SelectionChanged="lvDanhSachDV_SelectionChanged">
+                            </Grid.Clip>-->
+                            <DataGrid x:Name="lvDanhSachDVChon" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      Margin="10,0,10,0" Height="auto" VerticalAlignment="Center" 
+                                      SelectionChanged="lvDanhSachDV_SelectionChanged"
+                                      AutoGenerateColumns="False">
                                 <!--<ListView.Resources>
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                             </ListView.Resources>-->
-                                <ListView.View>
-                                    <GridView>
-                                        <GridView.ColumnHeaderContainerStyle>
-                                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                                <Setter Property="Background" Value="#C4C4C4" />
-                                                <Setter Property="Foreground" Value="Black" />
-                                                <Setter Property="FontWeight" Value="Bold" />
-                                            </Style>
-                                        </GridView.ColumnHeaderContainerStyle>
-                                        <GridViewColumn  Header="Loại DV"  Width="100" DisplayMemberBinding="{Binding LoaiDV}" />
-                                        <GridViewColumn Header="Dịch vụ" Width="200" DisplayMemberBinding="{Binding TenDV}"  />
-                                        <GridViewColumn Header="Giá" Width="110"  DisplayMemberBinding="{Binding Gia , StringFormat={}{0:N0}}" />
-                                        <GridViewColumn Width="50" Header="Xóa">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Xoa"  >
-                                                        <materialDesign:PackIcon Kind="DeleteCircle" />
-                                                    </Button>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                                <DataGrid.Columns>
+                                    <!--<DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="#C4C4C4" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>-->
+
+                                    <DataGridTextColumn Header="Loại DV"  Width="100" Binding="{Binding Decsription}" />
+                                    <DataGridTextColumn Header="Dịch vụ" Width="200" Binding="{Binding Name}"  />
+                                    <DataGridTextColumn Header="Giá" Width="100"  Binding="{Binding Price , StringFormat={}{0:N0}}" />
+                                    <DataGridTemplateColumn Header="Xóa" Width="80">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button Width="25" Height="25" BorderThickness="0" Padding="0" Click="click_Xoa"  >
+                                                    <materialDesign:PackIcon Kind="DeleteCircle" />
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
                         </Grid>
                     </Grid>
                     <!--Service details-->
@@ -175,18 +182,27 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="THÔNG TIN DỊCH VỤ" FontSize="18" Foreground="#00A3FF" FontWeight="Bold" 
                            HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Grid Grid.Row="1">
-                        <Border BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+                    <!--<Grid Grid.Row="1">-->
+                     <Border Grid.Row="1" BorderThickness="1" BorderBrush="#FF807D7D" CornerRadius="10">
+                        <ListView Margin="5" ItemsSource="{Binding Promotions}" ScrollViewer.CanContentScroll="True">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
+                                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
 
-                        </Border>
-                    </Grid>
+
+                    </Border>
+                    <!--</Grid>-->
                 </Grid>
             </Grid>
             <!--List button <bottom window>-->
             <Grid Grid.Row="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 5">
                     <Button Width="130" Height="37" Background="ForestGreen" Content="Thêm dịch vụ"
-                        HorizontalAlignment="Center" RenderTransformOrigin="-1.146,0.435" Margin="0 0 30 0">
+                        HorizontalAlignment="Center" RenderTransformOrigin="-1.146,0.435" Margin="0 0 30 0" Click="click_BtnThemDichVu">
                         <Button.Clip>
                             <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
                         </Button.Clip>

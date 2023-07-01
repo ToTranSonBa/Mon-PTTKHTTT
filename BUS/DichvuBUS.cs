@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DTO.Models;
 using DAL;
 
@@ -42,6 +41,7 @@ namespace BUS
             try
             {
                 DichvuDAL _context = new DichvuDAL();
+
                 _context.Add(dichVu);
                 return true;
             }
@@ -56,6 +56,7 @@ namespace BUS
             try
             {
                 DichvuDAL _context = new DichvuDAL();
+
                 _context.Remove(dichVu);
                 return true;
             }
@@ -70,6 +71,7 @@ namespace BUS
             try
             {
                 DichvuDAL _context = new DichvuDAL();
+
                 _context.Update(dichVu);
                 return true;
             }

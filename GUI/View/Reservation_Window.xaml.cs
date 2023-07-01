@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BUS;
 using DTO;
 
 namespace GUI.View
@@ -20,9 +21,11 @@ namespace GUI.View
     /// </summary>
     public partial class Reservation_Window : Window
     {
+        public DoanBUS doanBUS = new DoanBUS();
         public Reservation_Window()
         {
             InitializeComponent();
+            OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(d => d.Name);
         }
         private void click_BtnExit(object sender, RoutedEventArgs e)
         {
@@ -59,6 +62,35 @@ namespace GUI.View
                 roomDivision_wd.Owner = this;
                 roomDivision_wd.ShowDialog();
             }
+        }
+
+        private void OutlinedComboBoxEnabledCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            addDoan.Visibility = Visibility.Hidden;
+        }
+
+        private void OutlinedComboBoxEnabledCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            addDoan.Visibility = Visibility.Visible;
+        }
+
+        private void FilledComboBoxEnabledCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            ChooseDoan.Visibility = Visibility.Hidden; 
+        }
+
+        private void FilledComboBoxEnabledCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ChooseDoan.Visibility = Visibility.Visible;
+        }
+
+        private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tendoan = OutlinedComboBox.SelectedValue as string;
+            var doan = doanBUS.GetByName(tendoan);
+            var khachhangBUS = new KhachhangBUS();
+            var doantruong = khachhangBUS.GetByID(doan.Leader);
+            DoanTruongTextBox.Text = doantruong.Name;
         }
     }
 }

@@ -49,7 +49,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="Số phiếu"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding Customer.Name}" Header="Tên Khách Hàng" />
+                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Customer.Name}" Header="Tên Khách Hàng" />
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding CreatedDay}" Header="Ngày Đặt Phòng" />
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding Employee.Name}" Header="Tên Nhân Viên" />
                         <GridViewColumn Width="120" Header="Chi tiết">
@@ -61,7 +61,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Xoá">
+                        <!--<GridViewColumn Header="Xoá">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
@@ -69,7 +69,7 @@
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                        </GridViewColumn>-->
                     </GridView>
                 </ListView.View>
             </ListView>

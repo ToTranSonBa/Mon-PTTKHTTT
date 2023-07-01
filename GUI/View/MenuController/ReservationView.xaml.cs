@@ -32,8 +32,7 @@ namespace GUI.View.MenuController
             DatphongBUS loaiphongBUS = new DatphongBUS();
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
             KhachhangBUS khachhangBUS = new KhachhangBUS();
-            #region Add Data
-            #endregion
+          
             //PttkDatphong pttkDatphong = new PttkDatphong();
             //pttkDatphong.Employee.Name
             reservations = loaiphongBUS.GetAll();

@@ -1,9 +1,9 @@
-
+﻿using DTO.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DTO.Models;
 
 namespace DAL
@@ -19,16 +19,16 @@ namespace DAL
             }
             catch
             {
-                return new List<PttkNhanvien> { };
+                return new List<PttkNhanvien>();
             }
         }
 
         public PttkNhanvien? GetByID(decimal? ID)
         {
+            ModelContext _context = new ModelContext();
             try
             {
-                ModelContext _context = new ModelContext();
-                return _context.PttkNhanviens.SingleOrDefault((nv => nv.Id == ID));
+                return _context.PttkNhanviens.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {

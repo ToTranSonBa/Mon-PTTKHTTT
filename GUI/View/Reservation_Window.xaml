@@ -95,23 +95,26 @@
                         <RowDefinition Height="0.5*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!--Đi theo đoàn hay không?-->
-                    <StackPanel Grid.Row="0" Orientation="Vertical">
-                        <CheckBox x:Name="OutlinedComboBoxEnabledCheckBox" Margin="0,10,18,0" Content="Bạn có tham gia đoàn nào không?" IsChecked="False"/>
+                    <StackPanel Grid.Row="0" Orientation="Vertical" x:Name="ChooseDoan">
+                        <CheckBox x:Name="OutlinedComboBoxEnabledCheckBox" Margin="0,10,18,0" Content="Bạn có tham gia đoàn nào không?" IsChecked="False"
+                                  Checked ="OutlinedComboBoxEnabledCheckBox_Checked" Unchecked="OutlinedComboBoxEnabledCheckBox_Unchecked"/>
                         <ComboBox x:Name="OutlinedComboBox" Width="350" Margin="0 20 0 0" materialDesign:HintAssist.Hint="Tên đoàn tham gia" IsEnabled="{Binding Path=IsChecked, ElementName=OutlinedComboBoxEnabledCheckBox}"
-                                        ItemsSource="{Binding ShortStringList}" Style="{StaticResource MaterialDesignOutlinedComboBox}" />
+                                        ItemsSource="{Binding ShortStringList}" Style="{StaticResource MaterialDesignOutlinedComboBox}" SelectionChanged="OutlinedComboBox_SelectionChanged"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Đoàn Trưởng: "/>
+                            <TextBlock x:Name="DoanTruongTextBox" Text="hello"/>
+                        </StackPanel>
                     </StackPanel>
-                    <!--Là trường đoàn không?-->
-                    <StackPanel Grid.Row="1">
-                        <CheckBox x:Name="FilledComboBoxEnabledCheckBox" Margin="0,0,0,8" Content="Bạn có phải trường đoàn kho" IsChecked="False" />
+                    <!--Thêm đoàn mới-->
+                    <StackPanel Grid.Row="1" Name="addDoan" >
+                        <CheckBox x:Name="FilledComboBoxEnabledCheckBox" Margin="0,0,0,8" Content="Thêm đoàn mới" IsChecked="False" 
+                                  Checked="FilledComboBoxEnabledCheckBox_Checked" Unchecked="FilledComboBoxEnabledCheckBox_Unchecked"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBox VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tên trưởng đoàn" materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
+                            <TextBox VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tên đoàn" materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
                                      MaxLength="40" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="WrapWithOverflow" 
                                      IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
                                      Margin="0 20 20 0"/>
-                            <ComboBox materialDesign:HintAssist.Hint="Số lượng thành viên"  ItemsSource="{Binding LongIntegerList}" 
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="0 20 20 0"
-                                      IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
-                                      Width="130" HorizontalAlignment="Right"/>
+                            <TextBox x:Name="SoluongThanhVien" materialDesign:HintAssist.Hint="Sô lượng" Margin="0 20 0 0" Height="30" Width="130" HorizontalAlignment="Right"/>
                         </StackPanel>
                     </StackPanel>
                     <Button Grid.Row="2" Width="130" Height="37" Background="#00A3FF" Content="Phân phòng"

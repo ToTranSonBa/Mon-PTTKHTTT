@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using BUS;
 using DTO;
 using DTO.Models;
+using MaterialDesignThemes.Wpf;
 
 namespace GUI.View
 {
@@ -26,18 +27,26 @@ namespace GUI.View
         public ReservationSlipDetail_Window(PttkDatphong reservationModel)
         {
             InitializeComponent();
+            KhachhangBUS khachhangBUS = new KhachhangBUS();
             _reservationModel = reservationModel;
             titleSlip.Text = _reservationModel.Id.ToString();
             if(_reservationModel.Customer == null)
             {
-                KhachhangBUS khachhangBUS = new KhachhangBUS();
+                
                 _reservationModel.Customer = khachhangBUS.GetByID(_reservationModel.CustomerId);
             }
-            if(_reservationModel.Customer.PttkDoanId.HasValue)
+            KhachhangDoanBUS khachhangDoanBUS = new KhachhangDoanBUS();
+            var khachhangdoan = khachhangDoanBUS.GetByIDCustomer(_reservationModel.CustomerId);
+            if(khachhangdoan != null)
             {
                 OutlinedComboBoxEnabledCheckBox.IsChecked = true;
-                //OutlinedComboBox.Text = _reservationModel.Customer.PttkDoans.
+
+                DoanBUS doanBUS = new DoanBUS();
+                var doan = doanBUS.GetByID(khachhangdoan.DoanId);
+                OutlinedComboBox.Text = doan.Name;
+                DoanTruongTextBox.Text = doanBUS.GetLeaderByID(doan.Id).Name;
             }
+            
             txbHoTen.Text = _reservationModel.Customer.Name;
             txbCCCD.Text = _reservationModel.Customer.IdentifiedCard;
             txbSDT.Text = _reservationModel.Customer.NumberPhone;
@@ -98,17 +107,17 @@ namespace GUI.View
 
         private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tendoan = OutlinedComboBox.SelectedValue as string;
-            var doanBUS = new DoanBUS();
-            var doan = doanBUS.GetByName(tendoan);
-            var khachhangBUS = new KhachhangBUS();
-            var doantruong = khachhangBUS.GetByID(doan.Leader);
-            DoanTruongTextBox.Text = doantruong.Name;
+            //var tendoan = OutlinedComboBox.SelectedValue as string;
+            //var doanBUS = new DoanBUS();
+            //var doan = doanBUS.GetByName(tendoan);
+            //var khachhangBUS = new KhachhangBUS();
+            //var doantruong = khachhangBUS.GetByID(doan.Leader);
+            //DoanTruongTextBox.Text = doantruong.Name;
         }
 
         private void click_BtnExit(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

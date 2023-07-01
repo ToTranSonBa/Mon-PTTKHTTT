@@ -21,7 +21,7 @@ namespace DAL
             }
         }
 
-        public PttkDoan? GetByID(decimal ID)
+        public PttkDoan? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

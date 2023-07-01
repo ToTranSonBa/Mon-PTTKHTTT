@@ -22,7 +22,7 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class CustomerManagementView : UserControl
     {
-        private readonly KhachhangBUS _customers;
+        private KhachhangBUS _customers;
         public CustomerManagementView()
         {
             _customers = new KhachhangBUS();

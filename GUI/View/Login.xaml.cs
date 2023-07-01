@@ -39,17 +39,20 @@ namespace GUI.View
             {
                 TaikhoanBUS acc = new TaikhoanBUS();
                 var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
-                if (Acc != null)
+                if (Acc != null || Acc.EmployeeId != 0 )
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
-                    var Emp = nhanvienBUS.GetByID(Acc.Id);
-                    if (Emp != null)
+                    var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
+                    if (Emp.Id != 0)
                     {
                         var mainWindow = new Home(Emp);
                         mainWindow.Show();
                         this.Close();
                     }
-                    MessageBox.Show("Nhân viên không tồn tại!");
+                    else
+                    {
+                        MessageBox.Show("Nhân viên không tồn tại!");
+                    }
                 }
                 else
                 {

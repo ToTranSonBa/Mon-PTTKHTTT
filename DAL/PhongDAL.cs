@@ -1,61 +1,49 @@
+
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Models;
 
+
 namespace DAL
 {
-    public class DatphongDAL
+    public class PhongDAL
     {
-        public List<PttkDatphong> GetAll()
-        {
-            ModelContext _context = new ModelContext();
-            try
-            {
-                return _context.PttkDatphongs.ToList();
-            }
-            catch
-            {
-                return new List<PttkDatphong>();
-            }
-        }
-
-        public PttkDatphong? GetByID(decimal ID)
-        {
-            ModelContext _context = new ModelContext();
-            try
-            {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
-            }
-            catch
-            {
-                return new PttkDatphong();
-            }
-        }
-
-        public bool Add(PttkDatphong datphong)
+        public List<PttkPhong> GetAll()
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
+                return _context.PttkPhongs.ToList();
+            }
             catch
             {
-                return false;
+                return new List<PttkPhong>();
             }
         }
 
-        public bool Remove(PttkDatphong datphong)
+        public PttkPhong? GetByID(decimal ID)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkPhongs.SingleOrDefault(dp => dp.Id == ID);
+            }
+            catch
+            {
+                return new PttkPhong();
+            }
+        }
+
+        public bool Add(PttkPhong phong)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkPhongs.Add(phong);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +53,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkPhong phong)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkPhongs.Remove(phong);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkPhong phong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkPhong>(phong);
                 _context.SaveChanges();
                 return true;
             }

@@ -23,10 +23,10 @@ namespace GUI.View.MenuController
     public partial class KindRoomManagementView : UserControl
     {
         private List<KindRoomManagementView> kindRoomManagements { get; set; }
-        private readonly KindRoomBLL _kindRoomBLL;
+        private readonly LoaiphongBUS _kindRoomBLL;
         public KindRoomManagementView()
         {
-            _kindRoomBLL = new KindRoomBLL();
+            _kindRoomBLL = new LoaiphongBUS();
             InitializeComponent();
             equipmentKindListView.ItemsSource = _kindRoomBLL.GetAll();
         }

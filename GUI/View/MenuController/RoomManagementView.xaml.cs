@@ -22,10 +22,10 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class RoomManagementView : UserControl
     {
-        private readonly RoomBLL _rooms;
+        private readonly PhongBUS _rooms;
         public RoomManagementView()
         {
-            _rooms = new RoomBLL();
+            _rooms = new PhongBUS();
             InitializeComponent();
             roomListView.ItemsSource = _rooms.GetAll();
         }

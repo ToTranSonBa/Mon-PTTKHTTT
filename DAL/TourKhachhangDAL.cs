@@ -3,59 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using DTO.Models;
 
 namespace DAL
 {
-    public class DatphongDAL
+    public class TourKhachhangDAL
     {
-        public List<PttkDatphong> GetAll()
+        public List<PttkTourKhachhang> GetAll()
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.ToList();
+                return _context.PttkTourKhachhangs.ToList();
             }
             catch
             {
-                return new List<PttkDatphong>();
+                return new List<PttkTourKhachhang>();
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkTourKhachhang? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkTourKhachhangs.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {
-                return new PttkDatphong();
+                return new PttkTourKhachhang();
             }
         }
 
-        public bool Add(PttkDatphong datphong)
+        public bool Add(PttkTourKhachhang tourKhachHang)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkTourKhachhangs.Add(tourKhachHang);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +51,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkTourKhachhang tourKhachHang)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkTourKhachhangs.Remove(tourKhachHang);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkTourKhachhang tourKhachHang)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkTourKhachhang>(tourKhachHang);
                 _context.SaveChanges();
                 return true;
             }

@@ -3,59 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+
 using DTO.Models;
+
 
 namespace DAL
 {
-    public class DatphongDAL
+    public class TourDAL
     {
-        public List<PttkDatphong> GetAll()
+        public List<PttkTour> GetAll()
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.ToList();
+                return _context.PttkTours.ToList();
             }
             catch
             {
-                return new List<PttkDatphong>();
+                return new List<PttkTour>();
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkTour? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkTours.SingleOrDefault(dp => dp.Id == ID);
             }
             catch
             {
-                return new PttkDatphong();
+                return new PttkTour();
             }
         }
 
-        public bool Add(PttkDatphong datphong)
+        public bool Add(PttkTour tour)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Add(datphong);
-                _context.SaveChanges();
-                return true;
-            } 
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
+                _context.PttkTours.Add(tour);
                 _context.SaveChanges();
                 return true;
             }
@@ -65,12 +53,27 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkDatphong datphong)
+        public bool Remove(PttkTour tour)
         {
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.Update<PttkDatphong>(datphong);
+                _context.PttkTours.Remove(tour);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Update(PttkTour tour)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.Update<PttkTour>(tour);
                 _context.SaveChanges();
                 return true;
             }

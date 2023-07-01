@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,15 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class EquipmentManagerKindView : UserControl
     {
-        private List<PttkThietbiPhong> _equipmentKinds { get; set; }
+        private List<PttkLoaiphong> _equipmentKinds { get; set; }
         public EquipmentManagerKindView()
         {
             InitializeComponent();
-            _equipmentKinds = new List<PttkThietbiPhong>();
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+            _equipmentKinds = loaiphongBUS.GetAll();
+
+
+
             equipmentKindListView.ItemsSource = _equipmentKinds;
         }
         #region Button Event

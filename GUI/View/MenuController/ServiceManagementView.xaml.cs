@@ -22,10 +22,10 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class ServiceManagementView : UserControl
     {
-        private readonly ServiceBLL _services;
+        private readonly DichvuBUS _services;
         public ServiceManagementView()
         {
-            _services = new ServiceBLL();
+            _services = new DichvuBUS();
             InitializeComponent();
             serviceListView.ItemsSource = _services.GetAll();
         }

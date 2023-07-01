@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,14 @@ namespace GUI.View.MenuController
     /// <summary>
     /// Interaction logic for PaymentBillView.xaml
     /// </summary>
-    public partial class PaymentBillView : UserControl
+    public partial class EmployeeManagementView : UserControl
     {
-        public PaymentBillView()
+        public EmployeeManagementView()
         {
             InitializeComponent();
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            employeeListView.ItemsSource = nhanvienBUS.GetAll();
+
         }
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)

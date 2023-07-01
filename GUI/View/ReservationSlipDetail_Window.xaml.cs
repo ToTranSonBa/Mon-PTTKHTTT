@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View
 {
@@ -20,8 +21,8 @@ namespace GUI.View
     /// </summary>
     public partial class ReservationSlipDetail_Window : Window
     {
-        private ReservationDTO _reservationModel { get; set; }
-        public ReservationSlipDetail_Window(ReservationDTO reservationModel)
+        private PttkDatphong _reservationModel { get; set; }
+        public ReservationSlipDetail_Window(PttkDatphong reservationModel)
         {
             InitializeComponent();
             _reservationModel = reservationModel;

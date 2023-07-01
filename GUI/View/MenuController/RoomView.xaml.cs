@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DTO.Models;
-using DAL.Models;
+using BUS;
 
 namespace GUI.View.MenuController
 {
@@ -19,13 +19,12 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class RoomView : UserControl
     {
-        private List<PttkPhong> listRoom = new List<PttkPhong>();
+        private PhongBUS PhongBUS;
         public RoomView()
         {
             InitializeComponent();
             listRoomSingle.PreviewMouseLeftButtonUp += Card_MouseDoubleClick;
-           
-            listRoomSingle.ItemsSource = listRoom;
+            listRoomSingle.ItemsSource = PhongBUS.GetAll();
 
         }
         private void PresetTimePicker_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
@@ -41,7 +40,7 @@ namespace GUI.View.MenuController
             PttkPhong roomDetail = (PttkPhong)listRoomSingle.SelectedItem;
             if (roomDetail != null)
             {
-                var roomDetailsWindow = new RoomDetailWindow();
+                var roomDetailsWindow = new RoomDetailWindow(roomDetail);
                 roomDetailsWindow.Show();
             }
         }

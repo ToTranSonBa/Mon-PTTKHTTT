@@ -15,6 +15,7 @@ using DTO;
 using BUS;
 using static System.Net.Mime.MediaTypeNames;
 using DTO.Models;
+using DAL;
 
 namespace GUI.View
 {
@@ -23,10 +24,8 @@ namespace GUI.View
     /// </summary>
     public partial class Login : Window
     {
-        private readonly LoginBLL _login;
         public Login()
         {
-            _login = new LoginBLL();
             InitializeComponent();
         }
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -38,12 +37,19 @@ namespace GUI.View
             }
             else
             {
-                PttkNhanvienDTO Emp = _login.LoginHandler(username, PasswordBox.Password);
-                if (Emp != null)
+                TaikhoanBUS acc = new TaikhoanBUS();
+                var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
+                if (Acc != null)
                 {
-                    var mainWindow = new Home(Emp);
-                    mainWindow.Show();
-                    this.Close();
+                    NhanvienBUS nhanvienBUS = new NhanvienBUS();
+                    var Emp = nhanvienBUS.GetByID(Acc.Id);
+                    if (Emp != null)
+                    {
+                        var mainWindow = new Home(Emp);
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    MessageBox.Show("Nhân viên không tồn tại!");
                 }
                 else
                 {

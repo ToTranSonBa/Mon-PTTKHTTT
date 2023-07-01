@@ -1,4 +1,5 @@
 ﻿using DTO;
+using DTO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,8 @@ namespace GUI.View
     /// </summary>
     public partial class RoomDetailWindow : Window
     {
-        private RoomDTO _roomModel { get; set; }
-        public RoomDetailWindow(RoomDTO roomModel)
+        private PttkPhong _roomModel { get; set; }
+        public RoomDetailWindow(PttkPhong roomModel)
         {
             InitializeComponent();
             _roomModel = roomModel;
@@ -33,12 +34,7 @@ namespace GUI.View
             //    RoomRentStatus = RoomRentStatus.Renting,
             //    RoomCleanStatus = "Chưa dọn"
             //};
-            titleRoom.Text = _roomModel.ID.ToString();
-        }
-
-        public RoomDetailWindow()
-        {
-
+            titleRoom.Text = _roomModel.RoomNumber;
         }
 
         private void click_ThemDV(object sender, RoutedEventArgs e)

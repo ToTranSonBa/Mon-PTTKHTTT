@@ -18,6 +18,7 @@ using GUI.View.MenuController;
 using DTO;
 using System.Xml;
 using DTO.Models;
+using BUS;
 
 namespace GUI.View
 {
@@ -29,10 +30,10 @@ namespace GUI.View
         #region Define variable
         public List<ItemMenuMainWindow> listMenu { get; set; }
         public readonly int CapDoQuyen = 1;
-        public readonly PttkNhanvienDTO _employee;
+        public readonly PttkNhanvien _employee;
         #endregion
         #region Init Function
-        public Home(PttkNhanvienDTO emp)
+        public Home(PttkNhanvien emp)
         {
             _employee = emp;
             InitializeComponent();
@@ -85,6 +86,7 @@ namespace GUI.View
         }
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
         }
 
         private void ControlMainDisplayContentHandler(object sender, MouseButtonEventArgs e)

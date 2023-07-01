@@ -29,7 +29,7 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel>
-                    <Button Click="Login_Click" Margin="30" Width="auto" Content="_Đăng nhập" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton" />
+                    <Button Click="Login_Click" Margin="30" Width="auto" Content="_Đăng nhập" IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"  ToolTip="Resource name: MaterialDesignRaisedButton" />
                 </StackPanel>
             </StackPanel>
         </Border>

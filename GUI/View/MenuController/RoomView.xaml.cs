@@ -19,7 +19,7 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class RoomView : UserControl
     {
-        private PhongBUS PhongBUS;
+        private PhongBUS PhongBUS { get; set; } = new PhongBUS();
         public RoomView()
         {
             InitializeComponent();

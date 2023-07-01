@@ -23,12 +23,12 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class EquipmentManagementView : UserControl
     {
-        private List<PttkThietbiPhongDTO> _equipment { get; set; }
-        private readonly Room_EquipmentBLL _room_EquipmentBLL;
+        private List<PttkThietbiPhong> _equipment { get; set; }
+        private readonly ThietbiPhongBUS _room_EquipmentBLL;
         public EquipmentManagementView()
         {
             InitializeComponent();
-            _room_EquipmentBLL = new Room_EquipmentBLL();
+            _room_EquipmentBLL = new ThietbiPhongBUS();
             _equipment = _room_EquipmentBLL.GetAll();
             equipmentListView.ItemsSource = _equipment;
         }

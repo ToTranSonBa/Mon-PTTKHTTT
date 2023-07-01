@@ -1,4 +1,6 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
+using DTO.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,51 +23,15 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class EquipmentManagerKindView : UserControl
     {
-        private List<EquipmentKindDTO> _equipmentKinds { get; set; }
+        private List<PttkLoaiphong> _equipmentKinds { get; set; }
         public EquipmentManagerKindView()
         {
             InitializeComponent();
-            _equipmentKinds = new List<EquipmentKindDTO>();
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+            _equipmentKinds = loaiphongBUS.GetAll();
 
-            EquipmentKindDTO equipment1 = new EquipmentKindDTO
-            {
-                Id = 1,
-                Name = "TV",
-                Amount = "2"
-            };
 
-            EquipmentKindDTO equipment2 = new EquipmentKindDTO
-            {
-                Id = 2,
-                Name = "Air conditioner",
-                Amount = "3"
-            };
 
-            EquipmentKindDTO equipment3 = new EquipmentKindDTO
-            {
-                Id = 3,
-                Name = "Mini fridge",
-                Amount = "1"
-            };
-
-            EquipmentKindDTO equipment4 = new EquipmentKindDTO
-            {
-                Id = 4,
-                Name = "Coffee maker",
-                Amount = "2"
-            };
-
-            EquipmentKindDTO equipment5 = new EquipmentKindDTO
-            {
-                Id = 5,
-                Name = "Safe",
-                Amount = "1"
-            };
-            _equipmentKinds.Add(equipment1);
-            _equipmentKinds.Add(equipment2);
-            _equipmentKinds.Add(equipment3);
-            _equipmentKinds.Add(equipment4);
-            _equipmentKinds.Add(equipment5);
             equipmentKindListView.ItemsSource = _equipmentKinds;
         }
         #region Button Event

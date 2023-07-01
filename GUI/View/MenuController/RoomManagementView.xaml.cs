@@ -27,8 +27,9 @@ namespace GUI.View.MenuController
         public RoomManagementView()
         {
             _rooms = new PhongBUS();
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
             InitializeComponent();
-            pttkPhongs = _rooms.GetAll();
+            var  pttkPhongs = _rooms.GetAll();
             foreach(var  p in pttkPhongs)
             {
                 p.KindNavigation = loaiphongBUS.GetByID(p.Kind);

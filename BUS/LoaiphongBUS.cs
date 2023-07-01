@@ -10,5 +10,30 @@ namespace BUS
 {
     public class LoaiphongBUS
     {
+        public List<PttkLoaiphong> GetAll()
+        {
+            LoaiphongDAL _context = new LoaiphongDAL();
+            try
+            {
+                return _context.GetAll();
+            }
+            catch
+            {
+                return new List<PttkLoaiphong>();
+            }
+        }
+
+        public PttkLoaiphong? GetByID(decimal? ID)
+        {
+            LoaiphongDAL _context = new LoaiphongDAL();
+            try
+            {
+                return _context.GetByID(ID);
+            }
+            catch
+            {
+                return new PttkLoaiphong();
+            }
+        }
     }
 }

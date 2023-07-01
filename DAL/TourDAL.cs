@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 
-namespace DAL
-{
-    internal class TourDAL
-    {
-=======
+
 using DTO.Models;
 
 
@@ -87,6 +82,5 @@ namespace DAL
                 return false;
             }
         }
->>>>>>> HoangCau
     }
 }

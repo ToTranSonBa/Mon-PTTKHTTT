@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-﻿using DTO.Models;
-using System;
-=======
+
 ﻿using System;
->>>>>>> HoangCau
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-=======
 using DTO.Models;
->>>>>>> HoangCau
+
 
 namespace DAL
 {
@@ -19,22 +14,13 @@ namespace DAL
     {
         public List<PttkPhong> GetAll()
         {
-<<<<<<< HEAD
             try
             {
                 ModelContext _context = new ModelContext();
-=======
-            ModelContext _context = new ModelContext();
-            try
-            {
->>>>>>> HoangCau
                 return _context.PttkPhongs.ToList();
             }
             catch
             {
-<<<<<<< HEAD
-                return new List<PttkPhong> ();
-=======
                 return new List<PttkPhong>();
             }
         }
@@ -94,7 +80,6 @@ namespace DAL
             catch
             {
                 return false;
->>>>>>> HoangCau
             }
         }
     }

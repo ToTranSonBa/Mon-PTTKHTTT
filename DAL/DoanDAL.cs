@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 
-namespace DAL
-{
-    internal class DoanDAL
-    {
-=======
 using DTO.Models;
 namespace DAL
 {
@@ -85,6 +79,5 @@ namespace DAL
                 return false;
             }
         }
->>>>>>> HoangCau
     }
 }

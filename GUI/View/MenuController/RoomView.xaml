@@ -99,24 +99,30 @@
                                 </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <materialDesign:Card   Width="220">
+                                        <materialDesign:Card  Width="220">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition  Height="140" />
                                                     <RowDefinition    Height="*" />
                                                     <RowDefinition   Height="Auto" />
-                                                    <RowDefinition     Height="Auto" />
-                                                    <RowDefinition     Height="Auto" />
-                                                    <RowDefinition   Height="Auto" />
                                                 </Grid.RowDefinitions>
-
-                                                <StackPanel  Grid.Row="1"  Margin="8,24,8,4">
-                                                    <TextBlock  Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding ID}" />
+                                                <Image Grid.Row="0" Source="../../Res/Phongdon.jpg" ></Image>
+                                                <StackPanel Grid.Row="1"  Margin="8,24,8,4">
+                                                    <TextBlock  Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding RoomNumber}" />
                                                     <Viewbox  Height="16" Margin="0,4,0,8"  HorizontalAlignment="Left">
                                                         <materialDesign:RatingBar  Margin="0"     Foreground="Gold"  Orientation="Horizontal" Value="3" />
                                                     </Viewbox>
-                                                    <TextBlock   VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
-                                                                 Text="{Binding RoomRate}"  TextWrapping="Wrap" />
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0"  VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                                 Text="{Binding RentStatus}"  TextWrapping="Wrap" />
+                                                        <TextBlock Grid.Column="1"  VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                                 Text="{Binding HygieneStatus}"  TextWrapping="NoWrap" />
+                                                    </Grid>
+
                                                 </StackPanel>
                                                 <Separator  Grid.Row="2" Margin="8,0,8,0"  Style="{StaticResource MaterialDesignDarkSeparator}" />
                                             </Grid>

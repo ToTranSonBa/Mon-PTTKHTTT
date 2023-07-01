@@ -23,7 +23,7 @@ namespace BUS
             }
         }
 
-        public PttkDichvu? GetByID(decimal ID)
+        public PttkDichvu? GetByID(decimal? ID)
         {
             DichvuDAL _context = new DichvuDAL();
             try

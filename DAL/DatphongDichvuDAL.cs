@@ -22,7 +22,20 @@ namespace DAL
             }
         }
 
-        public PttkDatphongDichvu? GetByID(decimal ID)
+        public List<PttkDatphongDichvu> GetAllByOrderID(decimal? ID)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkDatphongDichvus.Where(dp => dp.OrderId == ID).ToList();
+            }
+            catch
+            {
+                return new List<PttkDatphongDichvu>();
+            }
+        }
+
+        public PttkDatphongDichvu? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

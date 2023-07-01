@@ -41,7 +41,7 @@ namespace GUI.View.MenuController
             if (roomDetail != null)
             {
                 var roomDetailsWindow = new RoomDetailWindow(roomDetail);
-                roomDetailsWindow.Show();
+                roomDetailsWindow.ShowDialog();
             }
         }
     }

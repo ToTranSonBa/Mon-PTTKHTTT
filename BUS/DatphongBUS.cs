@@ -15,5 +15,16 @@ namespace BUS
             DatphongDAL dp = new DatphongDAL();
             return dp.GetAll();
         }
+
+        public PttkDatphong? getOneByID(decimal? ID)
+        {
+            if (ID != null)
+            {
+                DatphongDAL datPhong = new DatphongDAL();
+                return datPhong.GetByID(ID);
+            }
+            return new PttkDatphong();
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BUS;
+using DTO;
 using DTO.Models;
 using System;
 using System.Collections.Generic;
@@ -21,26 +22,61 @@ namespace GUI.View
     /// </summary>
     public partial class RoomDetailWindow : Window
     {
-        private PttkPhong _roomModel { get; set; }
-        public RoomDetailWindow(PttkPhong roomModel)
+        PhongDatphongBUS phongDatPhong = new PhongDatphongBUS();
+        KhachhangBUS khachHang = new KhachhangBUS();
+        DatphongBUS datPhong = new DatphongBUS();
+        DatphongDichvuBUS datphongDichvu = new DatphongDichvuBUS();
+        DichvuBUS dichvu = new DichvuBUS();
+
+        private PttkPhong _room { get; set; }
+        PttkPhongDatphong _phongDatphong { get; set; }
+        PttkKhachhang _khachHang { get; set; }
+        PttkDatphong _datPhong { get; set; }
+        List<PttkDatphongDichvu> _datPhongDichvu { get; set; }
+        PttkDichvu dichVu { get; set; }
+        public RoomDetailWindow(PttkPhong room)
         {
             InitializeComponent();
-            _roomModel = roomModel;
-            //_roomModel = new RoomModel
-            //{
-            //    ID = "P102",
-            //    RoomKind = "Phòng đơn",
-            //    RoomRate = "100000",
-            //    RoomRentStatus = RoomRentStatus.Renting,
-            //    RoomCleanStatus = "Chưa dọn"
-            //};
-            titleRoom.Text = _roomModel.RoomNumber;
+            _room = room;
+            _phongDatphong = phongDatPhong.getOneByRoomID(_room.Id);
+            if (_phongDatphong != null)
+            {
+                _datPhong = datPhong.getOneByID(_phongDatphong.OrderId);
+                if (_datPhong != null)
+                {
+                    _khachHang = khachHang.GetByID(_datPhong.CustomerId);
+                }
+                //PttkDatphongDichvu getID = new PttkDatphongDichvu();
+                //getID = datphongDichvu.GetOnebyID(_datPhong.Id);
+                //if (getID != null)
+                //{
+
+                //}
+
+                _datPhongDichvu = new List<PttkDatphongDichvu>();
+                _datPhongDichvu = datphongDichvu.GetAllbyOrderID(_datPhong.Id);
+
+                foreach (var item in _datPhongDichvu)
+                {
+                    item.Service = dichvu.GetByID(item.ServiceId);
+                    item.TotalPrice = item.Quantity * item.Service.Price;
+                }
+
+                ViewSuDungDV.ItemsSource = _datPhongDichvu;
+                txbNguoithue.Text = _khachHang.Name;
+                txbNgaythue.Text = _phongDatphong.ArrivalDay.ToString();
+                txbNgayroi.Text = _phongDatphong.LeavingDay.ToString();
+            }
+            titleRoom.Text = _room.RoomNumber;
+            txbTinhTrangPhong.Text = _room.RentStatus;
+            txbTinhTrangDonDep.Text = _room.HygieneStatus;
         }
+    
 
         private void click_ThemDV(object sender, RoutedEventArgs e)
         {
             var addServiceWindow = new AddService_Window();
-            addServiceWindow.Show();
+            addServiceWindow.ShowDialog();
         }
         
         private void cbDonDep_SelectionChanged(object sender, SelectionChangedEventArgs e)

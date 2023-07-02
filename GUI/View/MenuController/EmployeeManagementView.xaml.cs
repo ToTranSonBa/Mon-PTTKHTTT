@@ -1,8 +1,11 @@
 ﻿using BUS;
 using DTO;
+using DTO.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,7 +29,7 @@ namespace GUI.View.MenuController
         {
             InitializeComponent();
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
-            employeeListView.ItemsSource = nhanvienBUS.GetAll();
+            employeeListView.ItemsSource = nhanvienBUS.GetAll().Where(t => t != null);
 
 
         }
@@ -37,13 +40,45 @@ namespace GUI.View.MenuController
         }
         private void click_Delete(object sender, RoutedEventArgs e)
         {
+            PttkNhanvien n_emp = new();
+            n_emp.Name = employeeListView.SelectedItem.ToString();
+            if (n_emp != null)
+            {
+                NhanvienBUS nhanvienBUS = new NhanvienBUS();
+                bool flag = nhanvienBUS.Remove(n_emp);
+                if (flag)
+                {
+                    MessageBox.Show("Successful");
+                }
+                else
+                {
+                    MessageBox.Show("Fail!!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("empty!!!");
+            }
 
         }
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-            DateTime? fromTime = fromTimePicker.SelectedDate;
-            DateTime? toTime = toTimePicker.SelectedDate;
+         //DateTime? fromTime = fromTimePicker.SelectedDate;
+        // DateTime? toTime = toTimePicker.SelectedDate;
+            string? fromSearch = SearchTextBox.Text;
+            if(fromSearch==null)
+            {
+                //if(employeeListView.SelectedItems != null)
+                //{
 
+                //}    
+            }
+
+        }
+        private void click_Add(object sender, RoutedEventArgs e)
+        {
+            var addEmp_wc = new AddEmp_Window();
+            addEmp_wc.ShowDialog();
         }
         #endregion
     }

@@ -26,6 +26,9 @@ namespace GUI.View.MenuController
         public EquipmentManagementView()
         {
             InitializeComponent();
+            //_room_EquipmentBLL = new ThietbiPhongBUS();
+            //_equipment = _room_EquipmentBLL.GetAll();
+            //equipmentListView.ItemsSource = _equipment;
             LoadEquipmentManagement();
         }
         public void LoadEquipmentManagement()
@@ -41,7 +44,7 @@ namespace GUI.View.MenuController
             foreach (var equip in room_equipment)
             {
                 equip.Equipment = equiment.GetByID(equip.EquipmentId);
-                equip.Room = room.GetByID(equip.RoomId);
+                equip.Room = room.GetById(equip.RoomId);
             }
             equipmentListView.ItemsSource = room_equipment;
         }

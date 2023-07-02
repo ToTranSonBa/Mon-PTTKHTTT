@@ -19,7 +19,11 @@ namespace BUS
             PhongDAL phongDAL = new PhongDAL();
             return phongDAL.GetAll();
         }
-
+        public PttkPhong GetById(decimal? id)
+        {
+            PhongDAL phongDAL = new PhongDAL();
+            return phongDAL.GetByID(id);
+        }
         public bool Add(PttkPhong khachHang)
         {
             try

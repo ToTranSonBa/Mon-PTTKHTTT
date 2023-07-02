@@ -51,6 +51,16 @@ namespace GUI.View.MenuController
             //
         }
 
+        private void btn_Update(object sender, RoutedEventArgs e)
+        {
+            PttkThietbiPhong equip_room_object = new PttkThietbiPhong();
+            equip_room_object = (PttkThietbiPhong)equipmentListView.SelectedItem;
+
+            UpdateStatus_ThietBi_Phong_Window window=new UpdateStatus_ThietBi_Phong_Window(equip_room_object);
+            window.ShowDialog();
+            LoadEquipmentManagement();
+        }
+
         private void btn_Delete(object sender, RoutedEventArgs e)
         {
             PttkThietbiPhong equip_room_object = new PttkThietbiPhong();

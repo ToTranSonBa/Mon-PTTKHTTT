@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DTO.Models;
+using DAL;
 namespace BUS
 {
     public class TourKhachhangBUS

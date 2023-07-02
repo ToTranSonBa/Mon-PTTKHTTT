@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using DTO.Models;
 
 namespace DAL
@@ -22,7 +23,7 @@ namespace DAL
             }
         }
 
-        public PttkThietbi? GetByID(decimal ID)
+        public PttkThietbi? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

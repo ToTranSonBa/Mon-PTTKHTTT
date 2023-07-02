@@ -39,7 +39,8 @@ namespace BUS
         {
             try
             {
-                ThietbiPhongDAL _context = new ThietbiPhongDAL();
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                thietbiphong_dal.Add(thietBiPhong);
                 return true;
             }
             catch
@@ -52,9 +53,8 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.PttkThietbiPhongs.Remove(thietBiPhong);
-                _context.SaveChanges();
+                ThietbiPhongDAL thietbiphong_dal=new ThietbiPhongDAL();
+                thietbiphong_dal.Remove(thietBiPhong);
                 return true;
             }
             catch
@@ -67,14 +67,49 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkThietbiPhong>(thietBiPhong);
-                _context.SaveChanges();
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                thietbiphong_dal.Update(thietBiPhong);
                 return true;
             }
             catch
             {
                 return false;
+            }
+        }
+
+        public decimal? GetAmountofEquipment(decimal? ID)
+        {
+            try
+            {
+                ThietbiPhongDAL thietbiphong_dal = new ThietbiPhongDAL();
+                List<PttkThietbiPhong> thietbiphong_list=new List<PttkThietbiPhong>();
+                thietbiphong_list = thietbiphong_dal.GetAll();
+                List<PttkThietbiPhong> t = new List<PttkThietbiPhong>();
+
+                foreach(var tb in thietbiphong_list)
+                {
+                    if (tb != null)
+                    {
+                        if(tb.EquipmentId == ID)
+                        {
+                            t.Add(tb);
+                        }
+                    }
+                }
+
+                decimal? count = 0;
+                foreach (var tb in t)
+                {
+                    if (tb != null)
+                    {
+                        count += tb.Amount;
+                    }
+                }
+                return count;
+            }
+            catch
+            {
+                return 0;
             }
         }
     }

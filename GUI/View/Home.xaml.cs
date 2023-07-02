@@ -99,14 +99,14 @@ namespace GUI.View
                         contentDisplayMain.Content = new HomeView();
                         break;
                     case 1:
-                        contentDisplayMain.Content = new RoomView();
+                        contentDisplayMain.Content = new RoomView(_employee);
                         break;
                     case 2:
                         contentDisplayMain.Content = new ReservationView();
                         break;
                     case 3:
                         // hoadon
-                        contentDisplayMain.Content = new EmployeeManagementView();
+                        contentDisplayMain.Content = new PaymentBillView();
                         break;
                     case 4:
                         contentDisplayMain.Content = new EmployeeManagementView();

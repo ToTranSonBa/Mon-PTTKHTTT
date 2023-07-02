@@ -74,7 +74,7 @@ namespace GUI.View
             else
             {
                 TaikhoanBUS acc = new TaikhoanBUS();
-                var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
+                var Acc = acc.GetByUsernamePassword(username, passwordBox.Password);
                 if (Acc != null && Acc.EmployeeId != 0 )
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();

@@ -51,6 +51,20 @@ namespace BUS
                 return false;
             }
         }
+
+        public bool Update(PttkPhong khachHang)
+        {
+            try
+            {
+                PhongDAL _context = new PhongDAL();
+                _context.Update(khachHang);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
         public bool Update(PttkPhong phong)

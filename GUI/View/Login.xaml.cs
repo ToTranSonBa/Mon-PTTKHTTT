@@ -39,10 +39,10 @@ namespace GUI.View
             {
                 TaikhoanBUS acc = new TaikhoanBUS();
                 var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
-                if (Acc != null)
+                if (Acc != null && Acc.EmployeeId != 0)
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
-                    var Emp = nhanvienBUS.GetByID(Acc.Id);
+                    var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
                     if (Emp.Id != 0)
                     {
                         var mainWindow = new Home(Emp);
@@ -58,7 +58,8 @@ namespace GUI.View
                 {
                     MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
                 }
-            } 
+            }
+
         }
     }
 }

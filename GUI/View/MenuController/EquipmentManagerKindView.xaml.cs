@@ -32,7 +32,7 @@ namespace GUI.View.MenuController
             public decimal? Amount { get; set; }
         }
         private List<PttkLoaiphong> _equipmentKinds { get; set; }
-        private List<PttkThietbiPhong> _equipmentKinds { get; set; }
+        private List<PttkThietbiPhong> _equipmentKind { get; set; }
         public EquipmentManagerKindView()
         {
             InitializeComponent();

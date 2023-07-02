@@ -15,7 +15,7 @@ using BUS;
 using DTO;
 using DTO.Models;
 
-namespace PTTKHTTT.View
+namespace GUI.View
 {
     /// <summary>
     /// Interaction logic for BillDetail_Window.xaml

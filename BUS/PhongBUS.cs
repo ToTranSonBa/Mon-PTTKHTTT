@@ -15,5 +15,33 @@ namespace BUS
             PhongDAL phongDAL = new PhongDAL();
             return phongDAL.GetAll();
         }
+
+        public bool Add(PttkPhong khachHang)
+        {
+            try
+            {
+                PhongDAL _context = new PhongDAL();
+                _context.Add(khachHang);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Remove(PttkPhong khachHang)
+        {
+            try
+            {
+                PhongDAL _context = new PhongDAL();
+                _context.Remove(khachHang);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

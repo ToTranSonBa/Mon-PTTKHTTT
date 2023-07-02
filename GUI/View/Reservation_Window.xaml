@@ -113,7 +113,7 @@
                             <TextBox VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tên đoàn" materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
                                      MaxLength="40" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="WrapWithOverflow" 
                                      IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
-                                     Margin="0 20 20 0"/>
+                                     Margin="0 20 20 0" Name="TenDoanMoi"/>
                             <TextBox x:Name="SoluongThanhVien" materialDesign:HintAssist.Hint="Sô lượng" Margin="0 20 0 0" Height="30" Width="130" HorizontalAlignment="Right"/>
                         </StackPanel>
                     </StackPanel>
@@ -129,7 +129,7 @@
             <Grid Grid.Row="2" Grid.RowSpan="2">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="234,0,0,5">
                     <Button Width="130" Height="37" Background="ForestGreen" Content="Lưu"
-                        HorizontalAlignment="Center" Margin="0 0 30 0">
+                        HorizontalAlignment="Center" Margin="0 0 30 0" Click="Luu_Click">
                         <Button.Clip>
                             <RectangleGeometry Rect="0,0,130,37" RadiusX="10" RadiusY="10"/>
                         </Button.Clip>

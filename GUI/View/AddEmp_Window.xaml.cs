@@ -55,7 +55,7 @@ namespace GUI.View
             n_emp.NumberPhone = empPhone.Text;
             n_emp.IdentifiedCard = empCCCD.Text;
             n_emp.Kind = empRole.Text;
-            if(n_emp.Name == null ||((n_emp.Sex != "Nam") && (n_emp.Sex!="Nữ")) || n_emp.Birthday == null|| n_emp.Address == "" || n_emp.NumberPhone == null||n_emp.IdentifiedCard == null|| ((n_emp.Kind != "Bellman") && (n_emp.Sex != "Nhân viên")))
+            if(n_emp.Name == null ||((n_emp.Sex != "Nam") && (n_emp.Sex!="Nữ")) || n_emp.Birthday == null|| n_emp.Address == null || n_emp.NumberPhone == null||n_emp.IdentifiedCard == null|| ((n_emp.Kind != "Bellman") && (n_emp.Sex != "Nhân viên")))
             {
                 MessageBox.Show("Còn dữ liệu chưa điền!");
             }

@@ -1,6 +1,7 @@
 ﻿using BUS;
 using DTO;
 using DTO.Models;
+using PTTKHTTT.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,13 @@ namespace GUI.View
         PttkDatphong _datPhong { get; set; }
         List<PttkDatphongDichvu> _datPhongDichvu { get; set; }
         PttkDichvu dichVu { get; set; }
+        PttkNhanvien _nhanvien { get; set; }
 
-
-        public RoomDetailWindow(PttkPhong room)
+        public RoomDetailWindow(PttkPhong room, PttkNhanvien nhanvien)
         {
+
             InitializeComponent();
+            _nhanvien = nhanvien;
             _room = room;
             _phongDatphong = phongDatPhong.getOneByRoomID(_room.Id);
             if (_phongDatphong != null)
@@ -100,6 +103,12 @@ namespace GUI.View
             {
                 DragMove();
             }
+        }
+
+        private void Click_BtnTraphong(object sender, RoutedEventArgs e)
+        {
+            BillDetail_Window billDetail_wd = new BillDetail_Window(_nhanvien, _khachHang, _datPhong, _datPhongDichvu);
+            billDetail_wd.Show();
         }
     }
 }

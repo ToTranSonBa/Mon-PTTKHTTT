@@ -20,8 +20,10 @@ namespace GUI.View.MenuController
     public partial class RoomView : UserControl
     {
         private PhongBUS PhongBUS { get; set; } = new PhongBUS();
-        public RoomView()
+        private PttkNhanvien _nhanvien { get; set; }
+        public RoomView(PttkNhanvien nhanvien)
         {
+            _nhanvien = nhanvien;
             InitializeComponent();
             listRoomSingle.PreviewMouseLeftButtonUp += Card_MouseDoubleClick;
             listRoomSingle.ItemsSource = PhongBUS.GetAll();
@@ -40,7 +42,7 @@ namespace GUI.View.MenuController
             PttkPhong roomDetail = (PttkPhong)listRoomSingle.SelectedItem;
             if (roomDetail != null)
             {
-                var roomDetailsWindow = new RoomDetailWindow(roomDetail);
+                var roomDetailsWindow = new RoomDetailWindow(roomDetail, _nhanvien);
                 roomDetailsWindow.ShowDialog();
             }
         }

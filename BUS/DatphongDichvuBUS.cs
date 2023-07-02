@@ -56,22 +56,65 @@ namespace BUS
         {
             try
             {
-                DatphongDichvuDAL datphongDichvu;
-                foreach(var item in dichvus)
+                List<PttkDatphongDichvu> _listcheckDpDv = new List<PttkDatphongDichvu>();
+                DatphongDichvuBUS datphongDichvuBUS = new DatphongDichvuBUS();
+
+                _listcheckDpDv = datphongDichvuBUS.GetAllbyOrderID(ID);
+
+                foreach(var dichvu in dichvus)
                 {
-                    try
+                    foreach(var datphongdichvu in _listcheckDpDv)
                     {
-                        PttkDatphongDichvu insertDpDv = new PttkDatphongDichvu();
-                        insertDpDv.OrderId = ID;
-                        insertDpDv.ServiceId = item.Id;
-                        datphongDichvu = new DatphongDichvuDAL();
-                        datphongDichvu.Add(insertDpDv);
-                    }
-                    catch
-                    {
-                        return false;
-                    }
+                        if(dichvu.Id == datphongdichvu.ServiceId)
+                        {
+                            if (datphongdichvu.Quantity == null)
+                            {
+                                datphongdichvu.Quantity = 1;
+                            }
+                            else
+                            {
+                                datphongdichvu.Quantity += 1;
+                            }
+                            datphongdichvu.TotalPrice = datphongdichvu.Quantity * dichvu.Price;
+                            datphongDichvuBUS.Update(datphongdichvu);
+                        }
+                        else
+                        {
+                            datphongdichvu.Quantity = 1;
+                            datphongDichvuBUS.Add(datphongdichvu);
+                        }    
+                    }    
                 }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // add one
+        public bool Add(PttkDatphongDichvu pttkDatphongDichvu)
+        {
+            DatphongDichvuDAL datphongDichvu = new DatphongDichvuDAL();
+            try
+            {
+                datphongDichvu.Add(pttkDatphongDichvu);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // add one
+        public bool Update(PttkDatphongDichvu pttkDatphongDichvu)
+        {
+            DatphongDichvuDAL datphongDichvu = new DatphongDichvuDAL();
+            try
+            {
+                datphongDichvu.Update(pttkDatphongDichvu);
                 return true;
             }
             catch

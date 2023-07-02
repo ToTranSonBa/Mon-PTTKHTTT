@@ -79,7 +79,7 @@ namespace GUI.View
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
                     var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
-                    if (Emp.Id != 0)
+                    if (Emp != null)
                     {
                         var mainWindow = new Home(Emp);
                         mainWindow.Show();

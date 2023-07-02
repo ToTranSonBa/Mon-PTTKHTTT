@@ -95,5 +95,18 @@ namespace DAL
                 return false;
             }
         }
+
+        public List<PttkPhongDatphong> GetByOrderID(decimal? ID)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                return _context.PttkPhongDatphongs.Where(item => item.OrderId == ID).ToList();
+            }
+            catch
+            {
+                return new List<PttkPhongDatphong>();
+            }
+        }
     }
 }

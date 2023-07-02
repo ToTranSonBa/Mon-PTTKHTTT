@@ -21,5 +21,10 @@ namespace BUS
             PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
             return phongDatphong.getOneByRoomID(ID);
         }
+        public List<PttkPhongDatphong> GetByOrderID(decimal? ID)
+        {
+            PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
+            return phongDatphong.GetByOrderID(ID);
+        }
     }
 }

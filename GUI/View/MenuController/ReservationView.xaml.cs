@@ -77,7 +77,8 @@ namespace GUI.View.MenuController
 
         private void DbClick_BtnDatPhong(object sender, RoutedEventArgs e)
         {
-            var reservation_wd = new Reservation_Window();
+            var datphong = orderistView.SelectedItem as PttkDatphong;
+            var reservation_wd = new Reservation_Window(datphong);
             reservation_wd.Show();
         }
     }

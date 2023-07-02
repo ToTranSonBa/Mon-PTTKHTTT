@@ -24,8 +24,10 @@ namespace GUI.View
     {
         public DoanBUS doanBUS = new DoanBUS();
         public PttkNhanvien _PttkNhanvienl;
-        public Reservation_Window()
+        public PttkDatphong _PttkDatphong;
+        public Reservation_Window(PttkDatphong pttkDatphong)
         {
+            _PttkDatphong = pttkDatphong;
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
             _PttkNhanvienl = nhanvienBUS.GetByID(1);
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace GUI.View
 
         private void click_BtnPhanphong(object sender, RoutedEventArgs e)
         {
-            var roomDivision_wd = new RoomDivision_Window();
+            var roomDivision_wd = new RoomDivision_Window(_PttkDatphong);
             if (roomDivision_wd !=  null)
             {
                 roomDivision_wd.Owner = this;

@@ -27,16 +27,28 @@ namespace GUI.View
         private PhongBUS PhongBUS = new PhongBUS();
         private LoaiphongBUS LoaiphongBUS = new LoaiphongBUS();
 
-        public RoomDivision_Window()
+        private DatphongBUS DatphongBUS = new DatphongBUS();
+        private PhongDatphongBUS PhongDatphongBUS = new PhongDatphongBUS();
+        private readonly PttkDatphong _pttkDatphong;
+        public RoomDivision_Window(PttkDatphong pttkDatphong)
         {
+            _pttkDatphong = pttkDatphong;
             ChoosePhongs = new List<PttkPhong>();
             InitializeComponent();
-            phongs = PhongBUS.GetAll();
-            foreach(var item in  phongs)
+            var dsphong = PhongBUS.GetAll();
+            foreach(var item in dsphong)
             {
                 item.KindNavigation = LoaiphongBUS.GetByID(item.Kind);
             }
-            lvDanhSachPhong.ItemsSource = phongs;
+            
+            var danhsachphongdadat = PhongDatphongBUS.GetByOrderID(_pttkDatphong.Id);
+
+            ChoosePhongs = (from phongdatphong in danhsachphongdadat
+                           join phong in dsphong on phongdatphong.RoomId equals phong.Id
+                           select phong).ToList();
+            phongs = dsphong.Except(ChoosePhongs).ToList();
+            lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
+            lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);
         }
 
         // nút thoát

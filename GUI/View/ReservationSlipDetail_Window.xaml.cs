@@ -77,7 +77,7 @@ namespace GUI.View
 
         private void click_BtnPhanphong(object sender, RoutedEventArgs e)
         {
-            var roomDivision_wd = new RoomDivision_Window();
+            var roomDivision_wd = new RoomDivision_Window(_reservationModel);
             if (roomDivision_wd != null)
             {
                 roomDivision_wd.Owner = this;

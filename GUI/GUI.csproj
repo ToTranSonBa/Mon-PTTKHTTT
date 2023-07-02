@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\close.png" />
+    <None Remove="View\Email.png" />
+    <None Remove="View\Lock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.3.0" />
@@ -16,6 +22,12 @@
   <ItemGroup>
     <ProjectReference Include="..\BUS\BUS.csproj" />
     <ProjectReference Include="..\DTO\DTO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\close.png" />
+    <Resource Include="View\Email.png" />
+    <Resource Include="View\Lock.png" />
   </ItemGroup>
 
 </Project>

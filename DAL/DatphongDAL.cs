@@ -22,7 +22,7 @@ namespace DAL
             }
         }
 
-        public PttkDatphong? GetByID(decimal ID)
+        public PttkDatphong? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

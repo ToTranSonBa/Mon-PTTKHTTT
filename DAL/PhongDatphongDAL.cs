@@ -22,6 +22,21 @@ namespace DAL
             }
         }
 
+        public PttkPhongDatphong? getOneByRoomID(decimal? ID)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                //DateTime dateTime = DateTime.Now;
+                DateTime dateTime = new DateTime(2022, 6, 21);
+                return _context.PttkPhongDatphongs.SingleOrDefault(t => t.RoomId == ID && t.ArrivalDay <= dateTime && t.LeavingDay >= dateTime);
+            }
+            catch
+            {
+                return new PttkPhongDatphong();
+            }
+        }
+
         public PttkPhongDatphong? GetByID(decimal ID)
         {
             ModelContext _context = new ModelContext();

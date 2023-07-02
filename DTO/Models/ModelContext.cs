@@ -99,12 +99,12 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.OrderId)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("ORDER_ID");
-            entity.Property(e => e.ServiceId)
-                .HasColumnType("NUMBER(38)")
-                .HasColumnName("SERVICE_ID");
             entity.Property(e => e.Quantity)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("QUANTITY");
+            entity.Property(e => e.ServiceId)
+                .HasColumnType("NUMBER(38)")
+                .HasColumnName("SERVICE_ID");
             entity.Property(e => e.TotalPrice)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("TOTAL_PRICE");

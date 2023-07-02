@@ -26,6 +26,7 @@ namespace GUI.View
         private List<PttkPhong> ChoosePhongs { get; set; }
         private PhongBUS PhongBUS = new PhongBUS();
         private LoaiphongBUS LoaiphongBUS = new LoaiphongBUS();
+
         public RoomDivision_Window()
         {
             ChoosePhongs = new List<PttkPhong>();

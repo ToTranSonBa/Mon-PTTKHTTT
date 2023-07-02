@@ -47,21 +47,21 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="AccountBox" Width="25" Height="25"/>
-                        <TextBlock Text="Hoàng Văn Cầu"  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                        <TextBlock x:Name="txbNguoithue" Text=""  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="CalendarRange" Width="25" Height="25"/>
-                        <TextBlock Text="24/05/2023"  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                        <TextBlock x:Name="txbNgaythue" Text=""  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
                     </StackPanel>
                     <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="78,0,0,0">
-                        <materialDesign:PackIcon x:Name="icDayorHour" Width="25" Height="25"/>
-                        <TextBlock Text="5"  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                        <materialDesign:PackIcon x:Name="CalendarRange" Width="25" Height="25"/>
+                        <TextBlock x:Name="txbNgayroi" Text="0"  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
                     </StackPanel>
-                    <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <!--<StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <materialDesign:PackIcon Kind="AccountMultiplePlus" Width="25" Height="25"/>
                         <TextBlock Text="1"  FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
                         <TextBlock Text="người" FontSize="15" VerticalAlignment="Center" Margin="15 0 0 0"></TextBlock>
-                    </StackPanel>
+                    </StackPanel>-->
                 </Grid>
                 <Grid Grid.Row="1" Background="White">
                     <Grid.ColumnDefinitions>
@@ -69,26 +69,22 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Cập nhật tình trạng phòng"
+                        <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Tình trạng phòng"
                                                HorizontalAlignment="Left" Margin="19 7 0 0" />
                         <Border Margin="0,43,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"
                                             Height="38"  Width="300"  BorderBrush="Black" BorderThickness="1" CornerRadius="4">
-                            <TextBlock Height="19" x:Name="cbTinhTrang" Margin="10 0 0 0" ></TextBlock>
+                            <TextBlock Height="19" x:Name="txbTinhTrangPhong" Margin="10 0 0 0" ></TextBlock>
                         </Border>
                     </Grid>
 
-                    <Grid Grid.Column="1">
-                        <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Cập nhật tình trạng dọn dẹp"
+                    <Grid Grid.Column="1" >
+                        <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Tình trạng dọn dẹp"
                                                HorizontalAlignment="Left" Margin="19 7 0 0" />
-                        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="40,0,0,18"
-                                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                        Text="" x:Name="cbDonDep"
-                                        Height="38" Padding="7" SelectionChanged="cbDonDep_SelectionChanged"
-                                        Width="300" >
-                            <ComboBoxItem Content="Đã dọn dẹp" />
-                            <ComboBoxItem Content="Chưa dọn dẹp" />
-                            <ComboBoxItem  Content="Sửa chữa" />
-                        </ComboBox>
+                        <Border Margin="0,43,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                            Height="38"  Width="300"  BorderBrush="Black" BorderThickness="1" CornerRadius="4">
+                            <TextBlock Height="19" x:Name="txbTinhTrangDonDep" Margin="10 0 0 0" ></TextBlock>
+                        </Border>
+                        
                     </Grid>
                 </Grid>
             </Grid>
@@ -102,19 +98,19 @@
                         <Grid.Clip>
                             <RectangleGeometry Rect="0,0,800,188" RadiusX="10" RadiusY="10"/>
                         </Grid.Clip>
-                        <ListView x:Name="lvSuDungDV" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="770" Margin="10,0,0,0">
+                        <ListView x:Name ="ViewSuDungDV" ScrollViewer.HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="770" Margin="10,0,0,0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.ColumnHeaderContainerStyle>
                                         <Style TargetType="{x:Type GridViewColumnHeader}">
-                                            <Setter Property="Background" Value="#C4C4C4" />
+                                            <!--<Setter Property="Background" Value="#C4C4C4" />-->
                                             <Setter Property="Foreground" Value="Black" />
                                             <Setter Property="FontWeight" Value="Bold" />
                                         </Style>
                                     </GridView.ColumnHeaderContainerStyle>
-                                    <GridViewColumn  Header="Dịch vụ"  Width="350" DisplayMemberBinding="{Binding TenDV}" />
-                                    <GridViewColumn Header="SL" Width="150" DisplayMemberBinding="{Binding SoLuong}"  />
-                                    <GridViewColumn Header="Thành tiền" Width="250" DisplayMemberBinding="{Binding ThanhTien , StringFormat={}{0:N0}}"  />
+                                    <GridViewColumn Header="Dịch vụ"  Width="350" DisplayMemberBinding="{Binding Service.Name}" />
+                                    <GridViewColumn Header="Số lượng" Width="170" DisplayMemberBinding="{Binding Quantity}"  />
+                                    <GridViewColumn Header="Thành tiền" Width="250" DisplayMemberBinding="{Binding TotalPrice , StringFormat={}{0:N0}}"/>
                                 </GridView>
                             </ListView.View>
                         </ListView>

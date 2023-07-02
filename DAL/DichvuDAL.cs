@@ -23,7 +23,7 @@ namespace DAL
             }
         }
 
-        public PttkDichvu? GetByID(decimal ID)
+        public PttkDichvu? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

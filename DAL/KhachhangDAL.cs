@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Models;
+using System.Windows.Navigation;
 
 namespace DAL
 {
@@ -83,5 +84,18 @@ namespace DAL
                 return false;
             }
         }
+        public PttkKhachhang? GetByCCCD(string CCCD)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                return _context.PttkKhachhangs.SingleOrDefault(kh => kh.IdentifiedCard == CCCD);
+            }
+            catch
+            {
+                return new PttkKhachhang();
+            }
+        }
+
     }
 }

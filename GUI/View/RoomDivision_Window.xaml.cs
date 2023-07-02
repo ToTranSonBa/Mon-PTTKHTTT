@@ -100,7 +100,12 @@ namespace GUI.View
 
         private void Click_BtnPhanphong(object sender, RoutedEventArgs e)
         {
-
+            
+            var check = PhongDatphongBUS.AddPhanPhong(ChoosePhongs, _pttkDatphong);
+            if(check)
+            {
+                MessageBox.Show("Phân phòng thành công");
+            }
         }
     }
 }

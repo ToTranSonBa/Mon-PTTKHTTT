@@ -11,10 +11,6 @@ public partial class PttkPhongDatphong
 
     public decimal? OrderId { get; set; }
 
-    public DateTime? ArrivalDay { get; set; }
-
-    public DateTime? LeavingDay { get; set; }
-
     public virtual PttkDatphong? Order { get; set; }
 
     public virtual PttkPhong? Room { get; set; }

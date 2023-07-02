@@ -59,8 +59,8 @@ namespace GUI.View
 
                 ViewSuDungDV.ItemsSource = _datPhongDichvu;
                 txbNguoithue.Text = _khachHang.Name;
-                txbNgaythue.Text = _phongDatphong.ArrivalDay.ToString();
-                txbNgayroi.Text = _phongDatphong.LeavingDay.ToString();
+                //txbNgaythue.Text = _phongDatphong.ArrivalDay.ToString();
+                //txbNgayroi.Text = _phongDatphong.LeavingDay.ToString();
             }
             titleRoom.Text = _room.RoomNumber;
             txbTinhTrangPhong.Text = _room.RentStatus;

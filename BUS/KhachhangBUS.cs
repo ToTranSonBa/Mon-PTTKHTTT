@@ -69,15 +69,19 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkKhachhang>(khachHang);
-                _context.SaveChanges();
+                KhachhangDAL _context = new KhachhangDAL();
+                _context.Update(khachHang);
                 return true;
             }
             catch
             {
                 return false;
             }
+        }
+        public PttkKhachhang GetByCCCD(string CCCD)
+        {
+            KhachhangDAL _context = new KhachhangDAL();
+            return _context.GetByCCCD(CCCD);
         }
     }
 }

@@ -76,6 +76,12 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.EmployeeId)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("EMPLOYEE_ID");
+            entity.Property(e => e.LeavingDay)
+                .HasColumnType("DATE")
+                .HasColumnName("LEAVING_DAY");
+            entity.Property(e => e.ArrivalDay)
+                .HasColumnType("DATE")
+                .HasColumnName("ARRIVAL_DAY");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.PttkDatphongs)
                 .HasForeignKey(d => d.CustomerId)
@@ -322,12 +328,6 @@ public partial class ModelContext : DbContext
                 .ValueGeneratedOnAdd()
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("ID");
-            entity.Property(e => e.ArrivalDay)
-                .HasColumnType("DATE")
-                .HasColumnName("ARRIVAL_DAY");
-            entity.Property(e => e.LeavingDay)
-                .HasColumnType("DATE")
-                .HasColumnName("LEAVING_DAY");
             entity.Property(e => e.OrderId)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("ORDER_ID");

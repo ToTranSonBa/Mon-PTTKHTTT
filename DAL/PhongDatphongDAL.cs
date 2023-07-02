@@ -29,7 +29,7 @@ namespace DAL
             {
                 //DateTime dateTime = DateTime.Now;
                 DateTime dateTime = new DateTime(2022, 6, 21);
-                return _context.PttkPhongDatphongs.SingleOrDefault(t => t.RoomId == ID && t.ArrivalDay <= dateTime && t.LeavingDay >= dateTime);
+                return _context.PttkPhongDatphongs.SingleOrDefault(t => t.RoomId == ID);
             }
             catch
             {
@@ -105,6 +105,19 @@ namespace DAL
             catch
             {
                 return new List<PttkPhongDatphong>();
+            }
+        }
+
+        public PttkPhongDatphong? GetByPhongIDAndDatphongID(decimal? phong, decimal? datphong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                return _context.PttkPhongDatphongs.SingleOrDefault(a => a.RoomId == phong && a.OrderId == datphong);
+            }
+            catch
+            {
+                return null;
             }
         }
     }

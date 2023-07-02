@@ -80,7 +80,7 @@ namespace GUI.View
                 if (Acc != null && Acc.EmployeeId != 0 )
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
-                    var Emp = nhanvienBUS.GetByID(Acc.Id);
+                    var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
                     if (Emp.Id != 0)
                     var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
                     if (Emp.Id != 0)

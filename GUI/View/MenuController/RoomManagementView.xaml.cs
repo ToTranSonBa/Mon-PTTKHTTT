@@ -26,26 +26,56 @@ namespace GUI.View.MenuController
         private readonly PhongBUS _rooms;
         public RoomManagementView()
         {
+
             _rooms = new PhongBUS();
-            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
             InitializeComponent();
-            var  pttkPhongs = _rooms.GetAll();
-            foreach(var  p in pttkPhongs)
+            loadRoomManagementView();
+
+
+        }
+        public void loadRoomManagementView()
+        {
+
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+            var pttkPhongs = _rooms.GetAll();
+            foreach (var p in pttkPhongs)
             {
                 p.KindNavigation = loaiphongBUS.GetByID(p.Kind);
             }
             roomListView.ItemsSource = pttkPhongs;
         }
         #region Button Event
+
+
         private void click_Detail(object sender, RoutedEventArgs e)
         {
 
+
+            PttkPhong detailroom = new PttkPhong();
+            detailroom = (PttkPhong)roomListView.SelectedItem;
+            DetailRoomForLeTan detailRoomForLeTan = new DetailRoomForLeTan(detailroom);
+            detailRoomForLeTan.ShowDialog();
         }
 
         private void click_Delete(object sender, RoutedEventArgs e)
         {
 
+            PhongBUS phongbus = new PhongBUS();
+            PttkPhong deleteroom = new PttkPhong();
+            deleteroom = (PttkPhong)roomListView.SelectedItem;
+            MessageBox.Show(deleteroom.Id.ToString());
+
+            phongbus.Remove(deleteroom);
+            if (phongbus.Remove(deleteroom))
+            {
+                MessageBox.Show("xóa thành công");
+                loadRoomManagementView();
+
+            }
+
+
         }
+
         #endregion
 
         #region Search Event
@@ -54,4 +84,8 @@ namespace GUI.View.MenuController
         }
         #endregion
     }
+
+
+
 }
+

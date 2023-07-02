@@ -45,34 +45,40 @@
 
         <!--DataGrid-->
         <Border Grid.Row="1" Width="950" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-            <ListView x:Name="roomListView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding RoomNumber}" Header="Mã phòng"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding HygieneStatus}" Header="Trạng thái vệ sinh" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding RentStatus}" Header="Tình trạng thuê" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding KindNavigation.Name}" Header="Loại phòng" />
-                        <GridViewColumn Width="120" Header="Chi tiết">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="More" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Xoá">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <DataGrid AutoGenerateColumns="False" 
+                CanUserAddRows="False" x:Name="roomListView"
+                HeadersVisibility="All">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="150" IsReadOnly="True" Binding="{Binding RoomNumber}" Header="Mã phòng"/>
+                    <DataGridTextColumn Width="200" IsReadOnly="True" Binding="{Binding HygieneStatus}" Header="Trạng thái vệ sinh" />
+                    <DataGridTextColumn Width="200" IsReadOnly="True" Binding="{Binding RentStatus}" Header="Tình trạng thuê" />
+                    <DataGridTextColumn Width="200" IsReadOnly="True" Binding="{Binding KindNavigation.Name}" Header="Loại phòng" />
+                    <DataGridTemplateColumn  Header="Chi tiết">
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
+                                    <materialDesign:PackIcon Kind="More" Foreground="Black"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Chi tiết">
+
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
+                                    <materialDesign:PackIcon Kind="Delete" Foreground="Black" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
         </Border>
     </Grid>
 </UserControl>

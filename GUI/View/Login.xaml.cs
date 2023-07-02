@@ -74,8 +74,8 @@ namespace GUI.View
             else
             {
                 TaikhoanBUS acc = new TaikhoanBUS();
-                var Acc = acc.GetByUsernamePassword(username, passwordBox.Password);
-                if (Acc != null && Acc.EmployeeId != 0 )
+                var Acc = acc.GetByUsernamePassword(username, PasswordBox.Password);
+                if (Acc != null && Acc.EmployeeId != 0)
                 {
                     NhanvienBUS nhanvienBUS = new NhanvienBUS();
                     var Emp = nhanvienBUS.GetByID(Acc.EmployeeId);
@@ -94,7 +94,8 @@ namespace GUI.View
                 {
                     MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
                 }
-            } 
+            }
+
         }
     }
 }

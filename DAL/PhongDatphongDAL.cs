@@ -29,7 +29,8 @@ namespace DAL
             {
                 //DateTime dateTime = DateTime.Now;
                 DateTime dateTime = new DateTime(2022, 6, 21);
-                return _context.PttkPhongDatphongs.SingleOrDefault(t => t.RoomId == ID && t.ArrivalDay <= dateTime && t.LeavingDay >= dateTime);
+
+                return _context.PttkPhongDatphongs.Where(t => t.RoomId == ID ).ToList().OrderByDescending(t => t.Id).FirstOrDefault();
             }
             catch
             {

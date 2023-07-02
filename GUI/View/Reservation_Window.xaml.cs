@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BUS;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View
 {
@@ -22,8 +23,11 @@ namespace GUI.View
     public partial class Reservation_Window : Window
     {
         public DoanBUS doanBUS = new DoanBUS();
+        public PttkNhanvien _PttkNhanvienl;
         public Reservation_Window()
         {
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            _PttkNhanvienl = nhanvienBUS.GetByID(1);
             InitializeComponent();
             OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(d => d.Name);
         }
@@ -91,6 +95,34 @@ namespace GUI.View
             var khachhangBUS = new KhachhangBUS();
             var doantruong = khachhangBUS.GetByID(doan.Leader);
             DoanTruongTextBox.Text = doantruong.Name;
+        }
+
+        private void Luu_Click(object sender, RoutedEventArgs e)
+        {
+            PttkDoan pttkDoan = new PttkDoan();
+            if (OutlinedComboBoxEnabledCheckBox.IsChecked == true)
+            {
+                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Name);
+            } 
+            else if (FilledComboBoxEnabledCheckBox.IsChecked == true) { }
+            {
+                pttkDoan = new PttkDoan
+                {
+                    Name = TenDoanMoi.Text,
+                    Amount = Convert.ToDecimal(SoluongThanhVien.Text)
+                };
+            }
+            PttkKhachhang pttkKhachhang = new PttkKhachhang
+            {
+                IdentifiedCard = txbCCCD.Text,
+                Name = txbHoTen.Text,
+                NumberPhone = txbSDT.Text,
+                Address = txbDiaChi.Text,
+                Birthday = dtpNgayKT.DisplayDate,
+                Sex = cbGioiTinh.Text
+            };
+            DatphongBUS datphongBUS = new DatphongBUS();
+      
         }
     }
 }

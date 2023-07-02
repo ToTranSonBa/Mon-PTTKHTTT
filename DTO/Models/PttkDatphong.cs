@@ -17,6 +17,10 @@ public partial class PttkDatphong
 
     public virtual PttkNhanvien? Employee { get; set; }
 
+    public DateTime? LeavingDay { get; set; }
+
+    public DateTime? ArrivalDay { get; set; }
+
     public virtual ICollection<PttkDatphongDichvu> PttkDatphongDichvus { get; set; } = new List<PttkDatphongDichvu>();
 
     public virtual ICollection<PttkPhongDatphong> PttkPhongDatphongs { get; set; } = new List<PttkPhongDatphong>();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO.Models;
 using DAL;
+using BUS;
 
 namespace BUS
 {
@@ -77,5 +78,25 @@ namespace BUS
                 return false;
             }
         }
+        public decimal? GetMaxId()
+        {
+            try
+            {
+                NhanvienDAL _context = new NhanvienDAL();
+                List<PttkNhanvien> _list = _context.GetAll();
+                decimal max = -1;
+                foreach (var temp in _list)
+                {
+                    if (temp.Id > max)
+                        max = temp.Id;
+                }
+                return max;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
     }
 }
+

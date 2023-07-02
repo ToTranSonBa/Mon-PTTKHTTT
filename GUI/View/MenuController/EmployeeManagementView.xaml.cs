@@ -28,58 +28,57 @@ namespace GUI.View.MenuController
         public EmployeeManagementView()
         {
             InitializeComponent();
-            NhanvienBUS nhanvienBUS = new NhanvienBUS();
-            employeeListView.ItemsSource = nhanvienBUS.GetAll().Where(t => t != null);
+            load_cr();
 
 
         }
         #region Button Event
-        private void click_Detail(object sender, RoutedEventArgs e)
+        private void click_Update(object sender, RoutedEventArgs e)
         {
-
+            PttkNhanvien n_emp = new();
+            n_emp = (PttkNhanvien)employeeListView.SelectedItem;
+            n_emp.FireDay = DateTime.Now;
+            Update_Emp_Window wd = new Update_Emp_Window(n_emp.Id);
+            wd.ShowDialog();
+            load_cr();
+        }
+        public void load_cr()
+        {
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            employeeListView.ItemsSource = nhanvienBUS.GetAll().Where(t => t.FireDay == null);
         }
         private void click_Delete(object sender, RoutedEventArgs e)
         {
             PttkNhanvien n_emp = new();
-            n_emp.Name = employeeListView.SelectedItem.ToString();
-            if (n_emp != null)
+            n_emp = (PttkNhanvien)employeeListView.SelectedItem;
+            n_emp.FireDay = DateTime.Now;
+            TaikhoanBUS taikhoanBUS= new TaikhoanBUS();
+            PttkTaikhoan pttkTaikhoan = new();
+            pttkTaikhoan = taikhoanBUS.GetByIDemploy(n_emp.Id);
+ 
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            bool flag = nhanvienBUS.Update(n_emp);
+            taikhoanBUS.Remove(pttkTaikhoan);
+            if (flag)
             {
-                NhanvienBUS nhanvienBUS = new NhanvienBUS();
-                bool flag = nhanvienBUS.Remove(n_emp);
-                if (flag)
-                {
-                    MessageBox.Show("Successful");
-                }
-                else
-                {
-                    MessageBox.Show("Fail!!!");
-                }
+                load_cr();
             }
             else
             {
-                MessageBox.Show("empty!!!");
+                MessageBox.Show("Fail!!!");
             }
-
         }
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-         //DateTime? fromTime = fromTimePicker.SelectedDate;
-        // DateTime? toTime = toTimePicker.SelectedDate;
-            string? fromSearch = SearchTextBox.Text;
-            if(fromSearch==null)
-            {
-                //if(employeeListView.SelectedItems != null)
-                //{
-
-                //}    
-            }
-
+                       
         }
         private void click_Add(object sender, RoutedEventArgs e)
         {
             var addEmp_wc = new AddEmp_Window();
             addEmp_wc.ShowDialog();
+            load_cr();
         }
+
         #endregion
     }
 }

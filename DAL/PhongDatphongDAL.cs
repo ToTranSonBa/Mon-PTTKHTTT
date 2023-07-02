@@ -108,5 +108,18 @@ namespace DAL
                 return new List<PttkPhongDatphong>();
             }
         }
+
+        public PttkPhongDatphong? GetByPhongIDAndDatphongID(decimal? phong, decimal? datphong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                return _context.PttkPhongDatphongs.SingleOrDefault(a => a.RoomId == phong && a.OrderId == datphong);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

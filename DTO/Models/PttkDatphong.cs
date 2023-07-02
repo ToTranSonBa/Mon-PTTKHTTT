@@ -12,7 +12,8 @@ public partial class PttkDatphong
     public decimal? EmployeeId { get; set; }
 
     public decimal? CustomerId { get; set; }
-
+    public DateOnly? LeavingDay { get; set; }
+    public DateOnly? ArrivalDay { get; set; }
     public virtual PttkKhachhang? Customer { get; set; }
 
     public virtual PttkNhanvien? Employee { get; set; }

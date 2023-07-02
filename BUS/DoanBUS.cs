@@ -23,7 +23,7 @@ namespace BUS
             }
         }
 
-        public PttkDoan? GetByID(decimal ID)
+        public PttkDoan? GetByID(decimal? ID)
         {
             DoanDAL _context = new DoanDAL();
             try
@@ -65,9 +65,8 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.PttkDoans.Remove(doan);
-                _context.SaveChanges();
+                DoanDAL _context = new DoanDAL();
+                _context.Remove(doan);
                 return true;
             }
             catch
@@ -80,14 +79,27 @@ namespace BUS
         {
             try
             {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkDoan>(doan);
-                _context.SaveChanges();
+                DoanDAL _context = new DoanDAL();
+                _context.Update(doan);
                 return true;
             }
             catch
             {
                 return false;
+            }
+        }
+        public PttkKhachhang? GetLeaderByID(decimal? id)
+        {
+            try
+            {
+                DoanBUS doanBUS = new DoanBUS();
+                PttkDoan pttkDoan = doanBUS.GetByID(id);
+                KhachhangBUS khachhangBUS = new KhachhangBUS();
+                return khachhangBUS.GetByID(pttkDoan.Leader);
+            }
+            catch
+            {
+                return new PttkKhachhang();
             }
         }
     }

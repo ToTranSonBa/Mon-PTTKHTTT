@@ -42,13 +42,13 @@ namespace GUI.View.MenuController
                 item.Employee = nhanvienBUS.GetByID(item.EmployeeId);
                 item.Customer = khachhangBUS.GetByID(item.CustomerId);
             }
-            orderistView.ItemsSource = reservations;
+            orderistView.ItemsSource = reservations.Where(DP => DP != null);
         }
 
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)
         {
-            PttkDatphong reservationSlipDetail = (PttkDatphong)orderistView.SelectedItem;
+            PttkDatphong reservationSlipDetail = orderistView.SelectedItem as PttkDatphong;
             if (reservationSlipDetail != null)
             {
                 var reservationSlipDetailsWindow = new ReservationSlipDetail_Window(reservationSlipDetail);

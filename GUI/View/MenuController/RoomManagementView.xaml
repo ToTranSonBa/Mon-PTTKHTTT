@@ -51,7 +51,7 @@
                         <GridViewColumn Width="150" DisplayMemberBinding="{Binding RoomNumber}" Header="Mã phòng"/>
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding HygieneStatus}" Header="Trạng thái vệ sinh" />
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding RentStatus}" Header="Tình trạng thuê" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding KindName}" Header="Loại phòng" />
+                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding KindNavigation.Name}" Header="Loại phòng" />
                         <GridViewColumn Width="120" Header="Chi tiết">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

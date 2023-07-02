@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DTO.Models;
 namespace DAL
 {
@@ -22,12 +21,25 @@ namespace DAL
             }
         }
 
-        public PttkDoan? GetByID(decimal ID)
+        public PttkDoan? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
                 return _context.PttkDoans.SingleOrDefault(dp => dp.Id == ID);
+            }
+            catch
+            {
+                return new PttkDoan();
+            }
+        }
+
+        public PttkDoan? GetByName(string name)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkDoans.SingleOrDefault(dp => dp.Name == name);
             }
             catch
             {
@@ -79,5 +91,6 @@ namespace DAL
                 return false;
             }
         }
+        
     }
 }

@@ -44,20 +44,29 @@
         </Grid>
 
         <!--DataGrid-->
-        <Border Grid.Row="1" Width="950" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+        <Border Grid.Row="1" Width="1000" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
             <ListView x:Name="customerListView">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="100" DisplayMemberBinding="{Binding Id}" Header="STT"/>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Name}" Header="Tên khách hàng"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding IdentifiedCard}" Header="CCCD" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding Birthday}" Header="Ngày sinh" />
+                        <GridViewColumn Width="90" DisplayMemberBinding="{Binding Id}" Header="STT"/>
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding Name}" Header="Tên khách hàng"/>
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding IdentifiedCard}" Header="CCCD" />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding Birthday}" Header="Ngày sinh" />
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding Address}" Header="Địa chỉ" />
-                        <GridViewColumn Header="Xoá">
+                        <GridViewColumn Width="100" Header="Xoá">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
                                         <materialDesign:PackIcon Kind="Delete" Foreground="Black"/>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="120" Header="Chi tiết">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
+                                        <materialDesign:PackIcon Kind="Edit" Foreground="Black"/>
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

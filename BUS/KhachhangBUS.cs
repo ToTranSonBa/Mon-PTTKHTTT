@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DTO.Models;
 using DAL;
 
@@ -15,8 +14,8 @@ namespace BUS
         {
             try
             {
-                KhachhangDAL khachhangDAL = new KhachhangDAL();
-                return khachhangDAL.GetAll();
+                KhachhangDAL _context = new KhachhangDAL();
+                return _context.GetAll();
             }
             catch
             {
@@ -24,12 +23,12 @@ namespace BUS
             }
         }
 
-        public PttkKhachhang? GetByID(decimal ID)
+        public PttkKhachhang? GetByID(decimal? ID)
         {
-            KhachhangDAL khachhangDAL = new KhachhangDAL();
+            KhachhangDAL _context = new KhachhangDAL();
             try
             {
-                return khachhangDAL.GetByID(ID);
+                return _context.GetByID(ID);
             }
             catch
             {
@@ -41,8 +40,8 @@ namespace BUS
         {
             try
             {
-                KhachhangDAL khachhangDAL = new KhachhangDAL();
-                khachhangDAL.Add(khachHang);
+                KhachhangDAL _context = new KhachhangDAL();
+                _context.Add(khachHang);
                 return true;
             }
             catch
@@ -55,8 +54,8 @@ namespace BUS
         {
             try
             {
-                KhachhangDAL khachhangDAL = new KhachhangDAL();
-                khachhangDAL.Remove(khachHang);
+                KhachhangDAL _context = new KhachhangDAL();
+                _context.Remove(khachHang);
                 return true;
             }
             catch

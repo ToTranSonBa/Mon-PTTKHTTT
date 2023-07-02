@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using DTO.Models;
 using DAL;
 
@@ -24,6 +23,17 @@ namespace BUS
             }
         }
 
-
+        public PttkLoaiphong? GetByID(decimal? ID)
+        {
+            LoaiphongDAL _context = new LoaiphongDAL();
+            try
+            {
+                return _context.GetByID(ID);
+            }
+            catch
+            {
+                return new PttkLoaiphong();
+            }
+        }
     }
 }

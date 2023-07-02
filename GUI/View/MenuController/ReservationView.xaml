@@ -45,23 +45,22 @@
 
         <!--DataGrid-->
         <Border Grid.Row="1" Width="950" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-            <ListView x:Name="orderistView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="Số phiếu"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding NameOrderer}" Header="Tên Khách Hàng" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding OrderDate}" Header="Ngày Đặt Phòng" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding EmployeeName}" Header="Tên Nhân Viên" />
-                        <GridViewColumn Width="120" Header="Chi tiết">
-                            <GridViewColumn.CellTemplate>
+            <DataGrid x:Name="orderistView" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="150" Binding="{Binding Id}" Header="Số phiếu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="250" Binding="{Binding Customer.Name}" Header="Tên Khách Hàng" />
+                    <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding CreatedDay}" Header="Ngày Đặt Phòng" />
+                    <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding Employee.Name}" Header="Tên Nhân Viên" />
+                    <DataGridTemplateColumn Width="120" Header="Chi tiết">
+                        <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
                                         <materialDesign:PackIcon Kind="More" Foreground="Black"/>
                                     </Button>
                                 </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Xoá">
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <!--<GridViewColumn Header="Xoá">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
@@ -69,10 +68,9 @@
                                     </Button>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                        </GridViewColumn>-->
+                </DataGrid.Columns>
+            </DataGrid>
         </Border>
     </Grid>
     

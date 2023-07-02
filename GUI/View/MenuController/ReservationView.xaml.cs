@@ -29,17 +29,26 @@ namespace GUI.View.MenuController
         {
             InitializeComponent();
             reservations = new List<PttkDatphong>();
-            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
-            #region Add Data
-            #endregion
+            DatphongBUS loaiphongBUS = new DatphongBUS();
+            NhanvienBUS nhanvienBUS = new NhanvienBUS();
+            KhachhangBUS khachhangBUS = new KhachhangBUS();
+          
+            //PttkDatphong pttkDatphong = new PttkDatphong();
+            //pttkDatphong.Employee.Name
+            reservations = loaiphongBUS.GetAll();
 
-            orderistView.ItemsSource = loaiphongBUS.GetAll();
+            foreach(var item in reservations)
+            {
+                item.Employee = nhanvienBUS.GetByID(item.EmployeeId);
+                item.Customer = khachhangBUS.GetByID(item.CustomerId);
+            }
+            orderistView.ItemsSource = reservations.Where(DP => DP != null);
         }
 
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)
         {
-            PttkDatphong reservationSlipDetail = (PttkDatphong)orderistView.SelectedItem;
+            PttkDatphong reservationSlipDetail = orderistView.SelectedItem as PttkDatphong;
             if (reservationSlipDetail != null)
             {
                 var reservationSlipDetailsWindow = new ReservationSlipDetail_Window(reservationSlipDetail);

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BUS;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View.MenuController
 {
@@ -26,8 +27,14 @@ namespace GUI.View.MenuController
         public RoomManagementView()
         {
             _rooms = new PhongBUS();
+            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
             InitializeComponent();
-            roomListView.ItemsSource = _rooms.GetAll();
+            var  pttkPhongs = _rooms.GetAll();
+            foreach(var  p in pttkPhongs)
+            {
+                p.KindNavigation = loaiphongBUS.GetByID(p.Kind);
+            }
+            roomListView.ItemsSource = pttkPhongs;
         }
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)

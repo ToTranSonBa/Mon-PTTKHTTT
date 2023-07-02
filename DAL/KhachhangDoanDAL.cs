@@ -21,12 +21,12 @@ namespace DAL
             }
         }
 
-        public PttkKhachhangDoan? GetByID(decimal ID)
+        public PttkKhachhangDoan? GetByIDCustomer(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkKhachhangDoans.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkKhachhangDoans.SingleOrDefault(dp => dp.CustomerId == ID);
             }
             catch
             {

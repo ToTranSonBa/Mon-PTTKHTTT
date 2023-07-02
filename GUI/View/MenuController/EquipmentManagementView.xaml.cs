@@ -23,14 +23,13 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class EquipmentManagementView : UserControl
     {
-        private List<PttkThietbiPhong> _equipment { get; set; }
-        private readonly ThietbiPhongBUS _room_EquipmentBLL;
         public EquipmentManagementView()
         {
             InitializeComponent();
-            _room_EquipmentBLL = new ThietbiPhongBUS();
-            _equipment = _room_EquipmentBLL.GetAll();
-            equipmentListView.ItemsSource = _equipment;
+            //_room_EquipmentBLL = new ThietbiPhongBUS();
+            //_equipment = _room_EquipmentBLL.GetAll();
+            //equipmentListView.ItemsSource = _equipment;
+            LoadEquipmentManagement();
         }
         public void LoadEquipmentManagement()
         {
@@ -45,7 +44,7 @@ namespace GUI.View.MenuController
             foreach (var equip in room_equipment)
             {
                 equip.Equipment = equiment.GetByID(equip.EquipmentId);
-                equip.Room = room.GetByID(equip.RoomId);
+                equip.Room = room.GetById(equip.RoomId);
             }
             equipmentListView.ItemsSource = room_equipment;
         }

@@ -42,8 +42,8 @@ namespace GUI.View.MenuController
         {
             List<PttkThietbi> _equipmentKinds = new List<PttkThietbi>();
             ThietbiBUS thietbi = new ThietbiBUS();
-            LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
-            _equipmentKinds = loaiphongBUS.GetAll();
+            //LoaiphongBUS loaiphongBUS = new LoaiphongBUS();
+            //_equipmentKinds = loaiphongBUS.GetAll();
 
             _equipmentKinds = thietbi.GetAll();
             ThietbiPhongBUS thietbiphong = new ThietbiPhongBUS();

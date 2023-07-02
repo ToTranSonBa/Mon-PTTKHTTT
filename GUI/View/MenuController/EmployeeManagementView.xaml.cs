@@ -28,6 +28,7 @@ namespace GUI.View.MenuController
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
             employeeListView.ItemsSource = nhanvienBUS.GetAll();
 
+
         }
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)

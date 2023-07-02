@@ -122,7 +122,6 @@ namespace GUI.View
                 Sex = cbGioiTinh.Text
             };
             DatphongBUS datphongBUS = new DatphongBUS();
-            datphongBUS
         }
     }
 }

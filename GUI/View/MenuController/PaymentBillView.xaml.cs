@@ -71,6 +71,8 @@ namespace GUI.View.MenuController
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            //DateTime? fromTime = fromTimePicker.SelectedDate;
+            //DateTime? toTime = toTimePicker.SelectedDate;
 
         }
     }

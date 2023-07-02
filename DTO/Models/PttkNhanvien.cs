@@ -22,7 +22,7 @@ public partial class PttkNhanvien
     public string? IdentifiedCard { get; set; }
 
     public string? Kind { get; set; }
-
+    public DateTime? FireDay { get; set; }
     public virtual ICollection<PttkDatphong> PttkDatphongs { get; set; } = new List<PttkDatphong>();
 
     public virtual ICollection<PttkTaikhoan> PttkTaikhoans { get; set; } = new List<PttkTaikhoan>();

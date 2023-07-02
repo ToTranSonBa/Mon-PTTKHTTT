@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO.Models;
 using DAL;
+using BUS;
 
 namespace BUS
 {
@@ -38,5 +39,64 @@ namespace BUS
                 return new PttkNhanvien();
             }
         }
+        public bool Add(PttkNhanvien nhanVien)
+        {
+            try
+            {
+                PttkNhanvien nhanVien2 = nhanVien;
+                nhanVien2.HireDay = DateTime.Now; 
+                NhanvienDAL _context = new NhanvienDAL();
+                return _context.Add(nhanVien2);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Remove(PttkNhanvien nhanVien)
+        {
+            try
+            {
+                NhanvienDAL _context = new NhanvienDAL();
+                return _context.Remove(nhanVien);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Update(PttkNhanvien nhanVien)
+        {
+            try
+            {
+                NhanvienDAL _context = new NhanvienDAL();
+                return _context.Update(nhanVien);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public decimal? GetMaxId()
+        {
+            try
+            {
+                NhanvienDAL _context = new NhanvienDAL();
+                List<PttkNhanvien> _list = _context.GetAll();
+                decimal max = -1;
+                foreach (var temp in _list)
+                {
+                    if (temp.Id > max)
+                        max = temp.Id;
+                }
+                return max;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
     }
 }
+

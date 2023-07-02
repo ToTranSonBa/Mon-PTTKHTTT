@@ -33,5 +33,45 @@ namespace DAL
                 return new PttkTaikhoan();
             }
         }
+        public bool Remove(PttkTaikhoan taikhoan)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.PttkTaikhoans.Remove(taikhoan);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public PttkTaikhoan? GetByID(decimal? ID)
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkTaikhoans.SingleOrDefault(dp => dp.EmployeeId == ID);
+            }
+            catch
+            {
+                return new ();
+            }
+        }
+        public bool Add(PttkTaikhoan taikhoan)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                _context.PttkTaikhoans.Add(taikhoan);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

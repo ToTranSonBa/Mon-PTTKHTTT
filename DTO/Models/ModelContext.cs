@@ -276,6 +276,9 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.Sex)
                 .HasMaxLength(5)
                 .HasColumnName("SEX");
+            entity.Property(e => e.FireDay)
+                .HasColumnType("DATE")
+                .HasColumnName("FIREDDAY");
         });
 
         modelBuilder.Entity<PttkPhong>(entity =>

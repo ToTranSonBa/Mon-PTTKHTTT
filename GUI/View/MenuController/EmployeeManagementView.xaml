@@ -46,15 +46,24 @@
         <Border Grid.Row="1" Width="1000" VerticalAlignment="Center" HorizontalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
             <DataGrid x:Name="employeeListView" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="80" Binding="{Binding Id}" Header="ID"/>
+                    <DataGridTextColumn IsReadOnly="true" Width="80" Binding="{Binding Id}" Header="ID"/>
                         
-                    <DataGridTextColumn Width="180" Binding="{Binding Name}" Header="Họ và tên" />
-                    <DataGridTextColumn Width="120" Binding="{Binding Sex}" Header="Giới tính" />
-                    <DataGridTextColumn Width="140" Binding="{Binding Birthday}" Header="Ngày sinh" />
-                    <DataGridTextColumn Width="180" Binding="{Binding Address}" Header="Địa chỉ" />
-                    <DataGridTextColumn Width="180" Binding="{Binding HireDay}" Header="Ngày bắt dầu làm" />
-                    <DataGridTextColumn Width="150" Binding="{Binding IdentifiedCard}" Header="CCCD" />
-                    <DataGridTextColumn Width="120" Binding="{Binding Kind}" Header="Chức vụ" />
+                    <DataGridTextColumn IsReadOnly="true" Width="180" Binding="{Binding Name}" Header="Họ và tên" />
+                    <DataGridTextColumn IsReadOnly="true" Width="120" Binding="{Binding Sex}" Header="Giới tính" />
+                    <DataGridTextColumn IsReadOnly="true" Width="140" Binding="{Binding Birthday}" Header="Ngày sinh" />
+                    <DataGridTextColumn IsReadOnly="true" Width="180" Binding="{Binding Address}" Header="Địa chỉ" />
+                    <DataGridTextColumn IsReadOnly="true" Width="180" Binding="{Binding HireDay}" Header="Ngày bắt dầu làm" />
+                    <DataGridTextColumn IsReadOnly="true" Width="150" Binding="{Binding IdentifiedCard}" Header="CCCD" />
+                    <DataGridTextColumn IsReadOnly="true" Width="120" Binding="{Binding Kind}" Header="Chức vụ" />
+                    <DataGridTemplateColumn >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" HorizontalAlignment="Center" BorderThickness="0" Click="click_Update" Padding="0" Background="Transparent" Style="{StaticResource MaterialDesignRaisedButton}" ToolTip="Resource name: MaterialDesignRaisedButton">
+                                    <materialDesign:PackIcon Kind="Update" Foreground="Black"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

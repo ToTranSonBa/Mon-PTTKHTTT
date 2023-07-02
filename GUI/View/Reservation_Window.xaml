@@ -96,11 +96,12 @@
                     </Grid.RowDefinitions>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="28*"></ColumnDefinition>
+                            <ColumnDefinition Width="161*"/>
+                            <ColumnDefinition Width="190*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DatePicker materialDesign:HintAssist.Hint="Ngày tới" Margin="10"></DatePicker>
-                        <DatePicker materialDesign:HintAssist.Hint="Ngày Đi" Margin="10" Grid.Column="1"></DatePicker>
+                        <DatePicker materialDesign:HintAssist.Hint="Ngày tới" Margin="10,0,10,0" Grid.ColumnSpan="2"></DatePicker>
+                        <DatePicker materialDesign:HintAssist.Hint="Ngày Đi" Margin="10,0,10,0" Grid.Column="2"></DatePicker>
                     </Grid>
                     <!--Đi theo đoàn hay không?-->
                     <StackPanel Grid.Row="1" Orientation="Vertical" x:Name="ChooseDoan">

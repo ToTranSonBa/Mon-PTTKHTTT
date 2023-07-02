@@ -38,37 +38,60 @@ namespace BUS
                 return false;
             }
         }
-        public bool AddPhanPhong(List<PttkPhong> pttkPhongs, PttkDatphong pttkDatphong)
+        public bool AddByPhongIDAndDatphongID(PttkPhong phong, decimal datphong)
         {
             try
             {
                 PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
-                foreach (var phong in pttkPhongs)
+                var check = phongDatphong.GetByPhongIDAndDatphongID(phong.Id, datphong);
+                if (check == null)
                 {
-                    if (phong != null)
+                    
+                    PhongDAL phongDAL = new PhongDAL();
+                    phong.RentStatus = "Occupied";
+                    if (phongDAL.Update(phong) && phongDatphong.Add(new PttkPhongDatphong { RoomId = phong.Id, OrderId = datphong }))
                     {
-                        if (CheckPhongDatphong(phong.Id, pttkDatphong.Id))
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            phongDatphong.Add(new PttkPhongDatphong { OrderId = pttkDatphong.Id, RoomId = phong.Id });
-                        }
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
-
-                var dsPhongdatphong = phongDatphong.GetByOrderID(pttkDatphong.Id);
-                var dsPhongId = pttkPhongs.Select(r => r.Id).ToList();
-                var deletePhongDatPhong = dsPhongdatphong.Where(i => dsPhongId.Any(a => a != i.RoomId));
-                foreach (var d in deletePhongDatPhong)
+                else
                 {
-                    if (d != null)
+                    return false;
+                } 
+            }
+            catch
+            {
+                return false;
+            }
+        } 
+        public bool RemoveByPhongIDAndDatphongID(PttkPhong phong, decimal datphong)
+        {
+            try
+            {
+                PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
+                var check = phongDatphong.GetByPhongIDAndDatphongID(phong.Id, datphong);
+                if (check != null)
+                {
+                    
+                    PhongDAL phongDAL   = new PhongDAL();
+                    phong.RentStatus = "Vacant";
+                    if (phongDAL.Update(phong) && phongDatphong.Remove(check))
                     {
-                        phongDatphong.Remove(d);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
-                return true;
+                else
+                {
+                    return false;
+                }
             }
             catch
             {
@@ -76,5 +99,20 @@ namespace BUS
             }
         }
 
+        public List<PttkPhong> GetAllByOrderID(decimal orderID)
+        {
+            try
+            {
+                PhongBUS phongBUS = new PhongBUS();
+                PhongDatphongBUS phongDatphongBUS = new PhongDatphongBUS();
+                var datphongphongByID = phongDatphongBUS.GetByOrderID(orderID).Select(t => t.RoomId);
+                var dsphong = phongBUS.GetAll().Where(t => datphongphongByID.Contains(t.Id)).ToList();
+                return dsphong;
+            }
+            catch
+            {
+                return new List<PttkPhong>();
+            }
+        }
     }
 }

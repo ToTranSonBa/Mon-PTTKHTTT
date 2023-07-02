@@ -32,21 +32,22 @@ namespace GUI.View
             titleSlip.Text = _reservationModel.Id.ToString();
             if(_reservationModel.Customer == null)
             {
-                
                 _reservationModel.Customer = khachhangBUS.GetByID(_reservationModel.CustomerId);
             }
             KhachhangDoanBUS khachhangDoanBUS = new KhachhangDoanBUS();
-            var khachhangdoan = khachhangDoanBUS.GetByIDCustomer(_reservationModel.CustomerId);
-            if(khachhangdoan != null)
+            DoanBUS doanBUS = new DoanBUS();
+            var khachhangdoan = doanBUS.GetByID(_reservationModel.DoanID);
+            if (khachhangdoan != null)
             {
                 OutlinedComboBoxEnabledCheckBox.IsChecked = true;
-
-                DoanBUS doanBUS = new DoanBUS();
-                var doan = doanBUS.GetByID(khachhangdoan.DoanId);
-                OutlinedComboBox.Text = doan.Name;
-                DoanTruongTextBox.Text = doanBUS.GetLeaderByID(doan.Id).Name;
+                
+                OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(i => i.Name);
+                OutlinedComboBox.Text = khachhangdoan.Name.ToString();
+                DoanTruongTextBox.Text = doanBUS.GetLeaderByID(khachhangdoan.Id).Name;
             }
-            
+            ngaytoiDP.Text = _reservationModel.ArrivalDay.ToString();
+            ngaydiDP.Text = _reservationModel.LeavingDay.ToString();
+
             txbHoTen.Text = _reservationModel.Customer.Name;
             txbCCCD.Text = _reservationModel.Customer.IdentifiedCard;
             txbSDT.Text = _reservationModel.Customer.NumberPhone;
@@ -107,17 +108,43 @@ namespace GUI.View
 
         private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var tendoan = OutlinedComboBox.SelectedValue as string;
-            //var doanBUS = new DoanBUS();
-            //var doan = doanBUS.GetByName(tendoan);
-            //var khachhangBUS = new KhachhangBUS();
-            //var doantruong = khachhangBUS.GetByID(doan.Leader);
-            //DoanTruongTextBox.Text = doantruong.Name;
+            var tendoan = OutlinedComboBox.SelectedValue as string;
+            var doanBUS = new DoanBUS();
+            var doan = doanBUS.GetByName(tendoan);
+            var khachhangBUS = new KhachhangBUS();
+            var doantruong = khachhangBUS.GetByID(doan.Leader);
+            DoanTruongTextBox.Text = doantruong.Name;
         }
 
         private void click_BtnExit(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void CapNhatPhieuDatPhong(object sender, RoutedEventArgs e)
+        {
+            DoanBUS doanBUS = new DoanBUS();
+
+            _reservationModel.ArrivalDay = Convert.ToDateTime(ngaytoiDP.Text);
+            _reservationModel.LeavingDay = Convert.ToDateTime(ngaydiDP.Text);
+
+            _reservationModel.Customer.Name = txbHoTen.Text;
+            _reservationModel.Customer.IdentifiedCard = txbCCCD.Text;
+            _reservationModel.Customer.NumberPhone = txbSDT.Text;
+            _reservationModel.Customer.Sex = cbGioiTinh.Text;
+            _reservationModel.Customer.Birthday = dtpNgayKT.DisplayDate;
+            _reservationModel.DoanID = doanBUS.GetByName(OutlinedComboBox.Text).Id;
+
+            DatphongBUS datphongBUS = new DatphongBUS();
+            if(datphongBUS.Update(_reservationModel))
+            {
+                MessageBox.Show("Cập nhật thành công.");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại.");
+            }
+
         }
     }
 }

@@ -12,6 +12,7 @@ public partial class PttkDatphong
     public decimal? EmployeeId { get; set; }
 
     public decimal? CustomerId { get; set; }
+    public decimal? DoanID { get; set; }
 
     public virtual PttkKhachhang? Customer { get; set; }
 

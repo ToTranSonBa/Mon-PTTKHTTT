@@ -65,5 +65,17 @@ namespace BUS
                 return false;
             }
         }
+        public List<PttkPhong> GetAllRoomVacant()
+        {
+            try
+            {
+                return GetAll().Where(p => p.RentStatus == "Vacant").ToList();
+            }
+            catch
+            {
+                return new List<PttkPhong>();
+            }
+            
+        }
     }
 }

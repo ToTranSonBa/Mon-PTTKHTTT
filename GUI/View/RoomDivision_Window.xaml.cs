@@ -33,28 +33,30 @@ namespace GUI.View
         public RoomDivision_Window(PttkDatphong pttkDatphong)
         {
             _pttkDatphong = pttkDatphong;
-            ChoosePhongs = new List<PttkPhong>();
-            InitializeComponent();
-            var dsphong = PhongBUS.GetAll();
-            foreach(var item in dsphong)
-            {
-                item.KindNavigation = LoaiphongBUS.GetByID(item.Kind);
-            }
-            
-            var danhsachphongdadat = PhongDatphongBUS.GetByOrderID(_pttkDatphong.Id);
 
-            ChoosePhongs = (from phongdatphong in danhsachphongdadat
-                           join phong in dsphong on phongdatphong.RoomId equals phong.Id
-                           select phong).ToList();
-            phongs = dsphong.Except(ChoosePhongs).ToList();
-            lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
-            lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);
+            ChoosePhongs = new List<PttkPhong>();
+
+            InitializeComponent();
+            LoadDsDatPhongVaDsDcChon();
         }
 
         // nút thoát
         private void click_BtnExit(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void LoadDsDatPhongVaDsDcChon()
+        {
+            var dsphong = PhongBUS.GetAllRoomVacant();
+            foreach (var item in dsphong)
+            {
+                item.KindNavigation = LoaiphongBUS.GetByID(item.Kind);
+            }
+            ChoosePhongs = PhongDatphongBUS.GetAllByOrderID(_pttkDatphong.Id);
+            phongs = dsphong.Except(ChoosePhongs).ToList();
+            lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
+            lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);
         }
 
         //để kéo thả window khi set window=none
@@ -76,10 +78,14 @@ namespace GUI.View
             var choosephong = lvDanhSachPhong.SelectedItem as PttkPhong;
             if (choosephong != null)
             {
-                ChoosePhongs.Add(choosephong);
-                phongs.Remove(choosephong);
-                lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
-                lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);
+                if (PhongDatphongBUS.AddByPhongIDAndDatphongID(choosephong, _pttkDatphong.Id))
+                {
+                    LoadDsDatPhongVaDsDcChon();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm phân phòng thất bại.");
+                }
             }
         }
         private void click_BtnXoa(object sender, RoutedEventArgs e)
@@ -87,10 +93,14 @@ namespace GUI.View
             var choosephong = lvDanhSachPhongDaChon.SelectedItem as PttkPhong;
             if (choosephong != null)
             {
-                phongs.Add(choosephong);
-                ChoosePhongs.Remove(choosephong);
-                lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
-                lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);
+                if (PhongDatphongBUS.RemoveByPhongIDAndDatphongID(choosephong, _pttkDatphong.Id))
+                {
+                    LoadDsDatPhongVaDsDcChon();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa phân phòng thất bại.");
+                }
             }
         }
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -101,11 +111,6 @@ namespace GUI.View
         private void Click_BtnPhanphong(object sender, RoutedEventArgs e)
         {
             
-            var check = PhongDatphongBUS.AddPhanPhong(ChoosePhongs, _pttkDatphong);
-            if(check)
-            {
-                MessageBox.Show("Phân phòng thành công");
-            }
         }
     }
 }

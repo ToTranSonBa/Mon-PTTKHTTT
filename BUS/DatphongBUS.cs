@@ -26,5 +26,23 @@ namespace BUS
             return new PttkDatphong();
 
         }
+
+        public bool Update(PttkDatphong pttkDatphong)
+        {
+            try
+            {
+                DatphongDAL datphongDAL = new DatphongDAL();
+                KhachhangBUS khachhangBUS = new KhachhangBUS();
+                if(khachhangBUS.Update(pttkDatphong.Customer) && datphongDAL.Update(pttkDatphong))
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

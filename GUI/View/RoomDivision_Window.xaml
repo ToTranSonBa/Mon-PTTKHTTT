@@ -82,9 +82,9 @@
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                             </ListView.Resources>-->
                         <DataGrid.Columns>
-                            <DataGridTextColumn IsReadOnly="True" Header="Loại phòng" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Loại phòng" Width="200" Binding="{Binding KindNavigation.Name}"/>
                             <DataGridTextColumn IsReadOnly="True" Header="phòng" Width="200" Binding="{Binding RoomNumber}"/>
-                            <DataGridTextColumn IsReadOnly="True" Header="Giá phòng" Width="200"/>
+                            <DataGridTextColumn IsReadOnly="True" Header="Giá phòng" Width="200" Binding="{Binding KindNavigation.Price}"/>
                             <DataGridTemplateColumn Header="Thêm" Width="200">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -116,9 +116,9 @@
                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">10</sys:Double>
                             </ListView.Resources>-->
                             <DataGrid.Columns>
-                                <DataGridTextColumn IsReadOnly="True" Header="Loại phòng" Width="200"/>
+                                <DataGridTextColumn IsReadOnly="True" Header="Loại phòng" Width="200" Binding="{Binding KindNavigation.Name}"/>
                                 <DataGridTextColumn IsReadOnly="True" Header="phòng" Width="200" Binding="{Binding RoomNumber}"/>
-                                <DataGridTextColumn IsReadOnly="True" Header="Giá phòng" Width="200"/>
+                                <DataGridTextColumn IsReadOnly="True" Header="Giá phòng" Width="200" Binding="{Binding KindNavigation.Price}"/>
                                 <DataGridTemplateColumn Header="Xóa" Width="200">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>

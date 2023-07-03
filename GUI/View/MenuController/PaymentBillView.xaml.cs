@@ -63,9 +63,12 @@ namespace GUI.View.MenuController
                     TotalPrice = price,
                     BillNum = sophieu,
                 };
-                modifiedList.Add(modifiedItem);
+                if (modifiedItem != null)
+                {
+                     modifiedList.Add(modifiedItem);
+                }    
             }
-            GridListBill.ItemsSource = modifiedList;
+            GridListBill.ItemsSource = modifiedList.Where(t => t != null);
         }
         #region Button Event
 

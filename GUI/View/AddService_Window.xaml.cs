@@ -38,9 +38,7 @@ namespace GUI.View
             _listDichvuChon = new List<PttkDichvu>();
             InitializeComponent();
             _listDichvu = dichvubus.GetAll();
-            lvDanhSachDV.ItemsSource = _listDichvu;
-
-
+            lvDanhSachDV.ItemsSource = _listDichvu.Where(t => t != null);
 
             // Thêm các chương trình khuyến mãi vào danh sách
             Promotions = new ObservableCollection<Promotion>();

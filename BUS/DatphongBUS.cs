@@ -26,5 +26,11 @@ namespace BUS
             return new PttkDatphong();
 
         }
+
+        public List<PttkDatphong> getAllPaidRoom()
+        {
+            DatphongDAL dp = new DatphongDAL();
+            return dp.getAllPaidRoom();
+        }
     }
 }

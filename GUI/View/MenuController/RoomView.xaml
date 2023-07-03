@@ -106,7 +106,11 @@
                                                     <RowDefinition    Height="*" />
                                                     <RowDefinition   Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Image Grid.Row="0" Source="../../Res/Phongdon.jpg" ></Image>
+                                                <Image Grid.Row="0" Height="100" Width="100">
+                                                    <Image.Source>
+                                                        <BitmapImage UriSource="{Binding imagesSource}" />
+                                                    </Image.Source>
+                                                </Image>
                                                 <StackPanel Grid.Row="1"  Margin="8,24,8,4">
                                                     <TextBlock  Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding RoomNumber}" />
                                                     <Viewbox  Height="16" Margin="0,4,0,8"  HorizontalAlignment="Left">

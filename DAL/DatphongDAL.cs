@@ -22,6 +22,19 @@ namespace DAL
             }
         }
 
+        public List<PttkDatphong> getAllPaidRoom()
+        {
+            ModelContext _context = new ModelContext();
+            try
+            {
+                return _context.PttkDatphongs.Where(dp => dp.NgayThanhToan == null).ToList();
+            }
+            catch
+            {
+                return new List<PttkDatphong>();
+            }
+        }
+
         public PttkDatphong? GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();

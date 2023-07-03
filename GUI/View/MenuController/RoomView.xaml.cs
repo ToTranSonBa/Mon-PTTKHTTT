@@ -11,6 +11,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DTO.Models;
 using BUS;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GUI.View.MenuController
 {
@@ -27,6 +28,13 @@ namespace GUI.View.MenuController
             InitializeComponent();
             listRoomSingle.PreviewMouseLeftButtonUp += Card_MouseDoubleClick;
             listRoomSingle.ItemsSource = PhongBUS.GetAll();
+
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string guiPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(baseDir))));
+
+            string finalImagePath = System.IO.Path.Combine(guiPath, "Res", "Phongdon.jpg");
+
+            ImageBrush enabledBackground = new ImageBrush(new BitmapImage(new Uri(finalImagePath)));
 
         }
         private void PresetTimePicker_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)

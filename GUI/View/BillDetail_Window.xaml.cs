@@ -29,7 +29,6 @@ namespace GUI.View
         private List<PttkDatphongDichvu> _litsDpDV { get; set; }
 
         DichvuBUS dichvuBUS = new DichvuBUS();
-        private object txbSTT;
 
         private int totalPrice { get; set; }
 
@@ -42,6 +41,7 @@ namespace GUI.View
             _khachhang = new PttkKhachhang();
             _datphong = new PttkDatphong();
             _litsDpDV = new List<PttkDatphongDichvu>();
+
             InitializeComponent();
             _nhanvien = nhanvien;
             _khachhang = khachhang;
@@ -102,6 +102,7 @@ namespace GUI.View
             {
                 GridTienhan.Visibility = Visibility.Hidden;
                 GridTienTra.Visibility = Visibility.Hidden;
+                BtnThanhtoan.IsEnabled = true;
             }    
         }
 

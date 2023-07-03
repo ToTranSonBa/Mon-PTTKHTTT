@@ -39,6 +39,8 @@ namespace GUI.View
             InitializeComponent();
             initListViewMenu();
             nameTitle.Content = _employee.Name;
+            contentDisplayMain.Content = new HomeView();
+            btnHidenMenuBar_Click(null, null);
         }
         private void initListViewMenu()
         {

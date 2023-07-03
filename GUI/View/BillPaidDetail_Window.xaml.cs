@@ -65,8 +65,6 @@ namespace GUI.View
             }
             lvDichVuDaSD.ItemsSource = modifiedList;
 
-            //lvDichVuDaSD.ItemsSource = _litsDpDV;
-
             txbSoPhong.Text = _datphong.Id.ToString();
             txbTenKH.Text = _khachhang.Name;
             txbNhanVien.Text = _nhanvien.Name;

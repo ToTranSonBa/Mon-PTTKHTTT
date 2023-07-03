@@ -14,7 +14,7 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="Gray">
+        <Grid Grid.Row="0" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="170"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Background="Gray">
+            <StackPanel Grid.Column="0" Background="LightGray">
                 <TextBlock Text="Trạng thái" Foreground="#00A3FF" FontSize="20"
                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 5 0 0"/>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" x:Name="spTrangThai"

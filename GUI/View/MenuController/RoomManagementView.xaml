@@ -20,7 +20,7 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     Width="200"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
+                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="AddRoom_Click">
                     _Thêm Phòng
                 </Button>
             </StackPanel>
@@ -65,7 +65,7 @@
 
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Chi tiết">
+                    <DataGridTemplateColumn Header="Xóa">
 
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BUS;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View.MenuController
 {
@@ -32,6 +33,11 @@ namespace GUI.View.MenuController
         #region Button Event
         private void click_Detail(object sender, RoutedEventArgs e)
         {
+            PttkDichvu updateDichVu = new PttkDichvu();
+            updateDichVu = (PttkDichvu)serviceListView.SelectedItem;
+            UpdateService_Window updateKindRoom_Window = new UpdateService_Window(updateDichVu);
+            updateKindRoom_Window.ShowDialog();
+            serviceListView.ItemsSource = _services.GetAll();
 
         }
 
@@ -46,5 +52,14 @@ namespace GUI.View.MenuController
         {
         }
         #endregion
+
+
+        private void addService_Click(object sender, RoutedEventArgs e)
+        {
+            Add_Service_Window addServiceWindow = new Add_Service_Window();
+            addServiceWindow.ShowDialog();
+            serviceListView.ItemsSource = _services.GetAll();
+
+        }
     }
 }

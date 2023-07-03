@@ -20,8 +20,8 @@
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     Width="200"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                    _Đặt Phòng
+                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" Click="addService_Click">
+                    Thêm dịch vụ
                 </Button>
             </StackPanel>
 
@@ -45,33 +45,33 @@
 
         <!--DataGrid-->
         <Border Grid.Row="1" Width="950" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-            <ListView x:Name="serviceListView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="150" DisplayMemberBinding="{Binding Id}" Header="STT"/>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Name}" Header="Tên dịch vu" />
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Price}" Header="Gia" />
-                        <GridViewColumn Width="150" Header="Chi tiết">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="More" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Xoá">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+
+            <DataGrid AutoGenerateColumns="False" 
+                CanUserAddRows="False" x:Name="serviceListView"
+                HeadersVisibility="All">
+                <DataGrid.Columns>
+
+
+                    <DataGridTextColumn Width="200" IsReadOnly="True" Binding="{Binding Id}" Header="STT"/>
+                    <DataGridTextColumn Width="250" IsReadOnly="True" Binding="{Binding Name}" Header="Tên dịch vu" />
+                    <DataGridTextColumn Width="250" IsReadOnly="True" Binding="{Binding Price}" Header="Gia" />
+                    <DataGridTemplateColumn Width="200" Header="Chi tiết">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
+                                    <materialDesign:PackIcon Kind="More" Foreground="Black"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+            
         </Border>
     </Grid>
 </UserControl>

@@ -43,7 +43,15 @@ namespace DAL
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkPhongs.Add(phong);
+                _context.PttkPhongs.Add(new PttkPhong
+                {
+                    HygieneStatus = phong.HygieneStatus,
+                    Kind = phong.Kind,
+                    RoomNumber = phong.RoomNumber,
+                    Price = phong.Price,
+                    RentStatus = phong.RentStatus,
+
+                });
                 _context.SaveChanges();
                 return true;
             }

@@ -17,13 +17,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="200"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                    _Thêm loại phòng
-                </Button>
-            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Border Margin="0 3 0 3"  BorderBrush="Black" BorderThickness="2" CornerRadius="10" Width="300">
@@ -45,24 +39,32 @@
 
         <!--DataGrid-->
         <Border Grid.Row="1" Width="950" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-            <ListView x:Name="equipmentKindListView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Id}" Header="Mã loại phòng"/>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Name}" Header="Tên loại phòng"/>
-                        <GridViewColumn Width="250" DisplayMemberBinding="{Binding Price}" Header="Loại loại phòng" />
-                        <GridViewColumn Header="Xoá">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+
+            <DataGrid AutoGenerateColumns="False" 
+                CanUserAddRows="False" x:Name="equipmentKindListView"
+                HeadersVisibility="All">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Width="250" IsReadOnly="True" Binding="{Binding Id}" Header="Mã loại phòng"/>
+                    <DataGridTextColumn Width="250" IsReadOnly="True" Binding="{Binding Name}" Header="Tên loại phòng"/>
+                    <DataGridTextColumn Width="250" IsReadOnly="True" Binding="{Binding Price}" Header="Giá " />
+                    <DataGridTemplateColumn Header="chi tiết">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" BorderThickness="0" Click="click_Update" Padding="0" Background="Transparent">
+                                    <materialDesign:PackIcon Kind="More" Foreground="Black"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+            
         </Border>
     </Grid>
 </UserControl>

@@ -41,7 +41,13 @@ namespace DAL
             try
             {
                 ModelContext _context = new ModelContext();
-                _context.PttkDichvus.Add(dichVu);
+                _context.PttkDichvus.Add(new PttkDichvu
+                {
+                    Decsription = dichVu.Decsription,
+                    Price = dichVu.Price,
+                    Name = dichVu.Name,
+
+                });
                 _context.SaveChanges();
                 return true;
             }

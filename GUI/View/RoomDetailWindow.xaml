@@ -27,7 +27,7 @@
 
             <!--title-->
             <Grid Grid.Row="0" Margin="0,0,0,6">
-                <TextBlock Text="TITLE" FontSize="30" Foreground="#00A3FF" FontWeight="Bold" 
+                <TextBlock Text="CẬP NHẬT TÌNH TRẠNG" FontSize="30" Foreground="#00A3FF" FontWeight="Bold" 
                            HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="titleRoom"/>
             </Grid>
 

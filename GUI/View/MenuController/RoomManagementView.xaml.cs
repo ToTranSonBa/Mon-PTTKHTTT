@@ -55,6 +55,7 @@ namespace GUI.View.MenuController
             detailroom = (PttkPhong)roomListView.SelectedItem;
             DetailRoomForLeTan detailRoomForLeTan = new DetailRoomForLeTan(detailroom);
             detailRoomForLeTan.ShowDialog();
+            loadRoomManagementView();
         }
 
         private void click_Delete(object sender, RoutedEventArgs e)
@@ -63,17 +64,44 @@ namespace GUI.View.MenuController
             PhongBUS phongbus = new PhongBUS();
             PttkPhong deleteroom = new PttkPhong();
             deleteroom = (PttkPhong)roomListView.SelectedItem;
-            MessageBox.Show(deleteroom.Id.ToString());
 
-            phongbus.Remove(deleteroom);
-            if (phongbus.Remove(deleteroom))
+            ThietbiPhongBUS tb_ph_bus = new ThietbiPhongBUS();
+
+            decimal? Id_room = deleteroom.Id;
+
+            List<PttkThietbiPhong> list_tb_ph = new List<PttkThietbiPhong>();
+            PttkThietbiPhong temp = new PttkThietbiPhong();
+
+
+            list_tb_ph = tb_ph_bus.GetAll().Where(tp => tp.RoomId == Id_room).ToList();
+            foreach (var tp_ph in list_tb_ph)
             {
+                if (tp_ph != null)
+                {
+                    tb_ph_bus.Remove(tp_ph);
+                }
+            }
+
+            try
+            {
+                phongbus.Remove(deleteroom);
                 MessageBox.Show("xóa thành công");
                 loadRoomManagementView();
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
 
+
+        }
+
+        private void AddRoom_Click(object sender, RoutedEventArgs e)
+        {
+            AddRoomWindow addRoomWindow = new AddRoomWindow();
+            addRoomWindow.ShowDialog();
+            loadRoomManagementView();
         }
 
         #endregion

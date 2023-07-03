@@ -37,13 +37,13 @@ namespace GUI.View
         private void btn_Update(object sender, RoutedEventArgs e)
         {
             ComboBoxItem cbtinhtrang = (ComboBoxItem)cbTinhTrang.SelectedItem;
-            
-            if (cbtinhtrang != null && equip_room_object!=null)
+            if (cbtinhtrang != null && equip_room_object!=null && textSoThietBi.Text != null)
             {
-
+                string soluong = textSoThietBi.Text.ToString();
                 string? tinhtrang = cbtinhtrang.Content.ToString();
                
                 equip_room_object.Tinhtrang = tinhtrang;
+                equip_room_object.Amount = decimal.Parse(soluong);
                 
 
                 ThietbiPhongBUS thietbi_ph_bus = new ThietbiPhongBUS();

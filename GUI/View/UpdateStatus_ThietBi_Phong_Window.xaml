@@ -27,7 +27,33 @@
             <!--Infomation-->
 
 
-            <Grid >
+            <Grid Margin="0,199,430,123" >
+                <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Số lượng thiết bị"
+                                               HorizontalAlignment="Left" Margin="19 7 0 0" />
+                <Border HorizontalAlignment="Left" VerticalAlignment="Center"
+                                            Height="38"  Width="261"  BorderBrush="Black" BorderThickness="1" CornerRadius="4" Margin="85,0,0,0">
+                    <TextBox x:Name="textSoThietBi" Text="{Binding Amount}" Margin="0,9,0,-1"  />
+                </Border>
+            </Grid>
+
+            <Grid Margin="368,199,-16,123">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="38,0,0,0">
+                    <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Cập nhật tình trạng" Height="113" />
+                    <ComboBox
+                                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                        Text="" x:Name="cbTinhTrang"
+                                        Height="38" Padding="10"
+                                        Width="260" Margin="-65,9,-1,9">
+                        <ComboBoxItem Content="{Binding Tinhtrang}" Visibility="Collapsed" IsSelected="True"/>
+                        <ComboBoxItem Content="Tốt" />
+                        <ComboBoxItem Content="Cần bảo trì" />
+                        <ComboBoxItem  Content="Hỏng" />
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+
+            <!--<Grid >
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="38,0,0,0">
                     <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Cập nhật tình trạng" Height="30" Width="165" />
                     <ComboBox
@@ -42,7 +68,7 @@
                         <ComboBoxItem  Content="Hỏng" />
                     </ComboBox>
                 </StackPanel>
-            </Grid>
+            </Grid>-->
 
 
 

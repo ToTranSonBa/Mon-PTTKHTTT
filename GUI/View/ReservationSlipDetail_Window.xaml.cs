@@ -37,11 +37,11 @@ namespace GUI.View
             KhachhangDoanBUS khachhangDoanBUS = new KhachhangDoanBUS();
             DoanBUS doanBUS = new DoanBUS();
             var khachhangdoan = doanBUS.GetByID(_reservationModel.DoanID);
+            OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(i => i.Name);
             if (khachhangdoan != null)
             {
                 OutlinedComboBoxEnabledCheckBox.IsChecked = true;
                 
-                OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(i => i.Name);
                 OutlinedComboBox.Text = khachhangdoan.Name.ToString();
                 DoanTruongTextBox.Text = doanBUS.GetLeaderByID(khachhangdoan.Id).Name;
             }
@@ -124,7 +124,7 @@ namespace GUI.View
         private void CapNhatPhieuDatPhong(object sender, RoutedEventArgs e)
         {
             DoanBUS doanBUS = new DoanBUS();
-
+            int checkdoan = 0;
             _reservationModel.ArrivalDay = Convert.ToDateTime(ngaytoiDP.Text);
             _reservationModel.LeavingDay = Convert.ToDateTime(ngaydiDP.Text);
 
@@ -132,11 +132,39 @@ namespace GUI.View
             _reservationModel.Customer.IdentifiedCard = txbCCCD.Text;
             _reservationModel.Customer.NumberPhone = txbSDT.Text;
             _reservationModel.Customer.Sex = cbGioiTinh.Text;
-            _reservationModel.Customer.Birthday = dtpNgayKT.DisplayDate;
-            _reservationModel.DoanID = doanBUS.GetByName(OutlinedComboBox.Text).Id;
+            _reservationModel.Customer.Address = txbDiaChi.Text;
+            _reservationModel.Customer.Birthday = Convert.ToDateTime( dtpNgayKT.Text);
+            PttkDoan pttkDoan = new PttkDoan();
+            if (OutlinedComboBoxEnabledCheckBox.IsChecked == true)
+            {
+                checkdoan = 2;
+                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Text);
+                if (pttkDoan == null)
+                {
+                    MessageBox.Show("Đoàn không tồn tại");
+                    return;
+                }
+            }
+            else if (FilledComboBoxEnabledCheckBox.IsChecked == true)
+            {
 
+                checkdoan = 1;
+                try
+                {
+                    pttkDoan = new PttkDoan
+                    {
+                        Name = TenDoanMoi.Text,
+                        Amount = Convert.ToDecimal(SoluongThanhVien.Text),
+                    };
+                }
+                catch
+                {
+                    MessageBox.Show("Thông tin sai hoặc không đầy đủ.");
+                    return;
+                }
+            }
             DatphongBUS datphongBUS = new DatphongBUS();
-            if(datphongBUS.Update(_reservationModel))
+            if(datphongBUS.Update(_reservationModel, pttkDoan, checkdoan))
             {
                 MessageBox.Show("Cập nhật thành công.");
             }

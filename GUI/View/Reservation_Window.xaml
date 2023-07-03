@@ -100,8 +100,8 @@
                             <ColumnDefinition Width="161*"/>
                             <ColumnDefinition Width="190*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <DatePicker materialDesign:HintAssist.Hint="Ngày tới" Margin="10,0,10,0" Grid.ColumnSpan="2"></DatePicker>
-                        <DatePicker materialDesign:HintAssist.Hint="Ngày Đi" Margin="10,0,10,0" Grid.Column="2"></DatePicker>
+                        <DatePicker Name="ngaytoiDP" materialDesign:HintAssist.Hint="Ngày tới" Margin="10,0,10,0" Grid.ColumnSpan="2"></DatePicker>
+                        <DatePicker Name="ngaydiDP"  materialDesign:HintAssist.Hint="Ngày Đi" Margin="10,0,10,0" Grid.Column="2"></DatePicker>
                     </Grid>
                     <!--Đi theo đoàn hay không?-->
                     <StackPanel Grid.Row="1" Orientation="Vertical" x:Name="ChooseDoan">

@@ -124,7 +124,7 @@
                         <CheckBox x:Name="FilledComboBoxEnabledCheckBox" Margin="0,0,0,8" Content="Thêm đoàn mới" IsChecked="False" 
                                   Checked="FilledComboBoxEnabledCheckBox_Checked" Unchecked="FilledComboBoxEnabledCheckBox_Unchecked"/>
                         <StackPanel Orientation="Vertical">
-                            <TextBox VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tên đoàn" materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
+                            <TextBox Name ="TenDoanMoi"  VerticalAlignment="Top" materialDesign:HintAssist.Hint="Tên đoàn" materialDesign:TextFieldAssist.CharacterCounterVisibility="Visible"
                                      MaxLength="40" Style="{StaticResource MaterialDesignFilledTextBox}" TextWrapping="WrapWithOverflow" 
                                      IsEnabled="{Binding Path=IsChecked, ElementName=FilledComboBoxEnabledCheckBox}"
                                      Margin="0 20 20 0"/>

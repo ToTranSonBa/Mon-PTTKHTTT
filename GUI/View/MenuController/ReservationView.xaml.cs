@@ -25,8 +25,10 @@ namespace GUI.View.MenuController
     public partial class ReservationView : UserControl
     {
         private List<PttkDatphong> reservations { get; set; }
-        public ReservationView()
+        private PttkNhanvien _PttkNhanvien;
+        public ReservationView(PttkNhanvien pttkNhanvien)
         {
+            _PttkNhanvien = pttkNhanvien;
             InitializeComponent();
             reservations = new List<PttkDatphong>();
             DatphongBUS loaiphongBUS = new DatphongBUS();
@@ -78,7 +80,7 @@ namespace GUI.View.MenuController
         private void DbClick_BtnDatPhong(object sender, RoutedEventArgs e)
         {
             var datphong = orderistView.SelectedItem as PttkDatphong;
-            var reservation_wd = new Reservation_Window(datphong);
+            var reservation_wd = new Reservation_Window(datphong, _PttkNhanvien);
             reservation_wd.Show();
         }
     }

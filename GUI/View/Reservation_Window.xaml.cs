@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,10 @@ namespace GUI.View
         public DoanBUS doanBUS = new DoanBUS();
         public PttkNhanvien _PttkNhanvienl;
         public PttkDatphong _PttkDatphong;
-        public Reservation_Window(PttkDatphong pttkDatphong)
+        private PttkNhanvien _PttkNhanvien;
+        public Reservation_Window(PttkDatphong pttkDatphong, PttkNhanvien emp)
         {
+            _PttkNhanvien = emp;
             _PttkDatphong = pttkDatphong;
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
             _PttkNhanvienl = nhanvienBUS.GetByID(1);
@@ -101,30 +104,69 @@ namespace GUI.View
 
         private void Luu_Click(object sender, RoutedEventArgs e)
         {
+            int checkdoan = 0; //0: KHONG THEO DOAN - 1: DOAN MOI - 2:DOAN DA TON TAI
             PttkDoan pttkDoan = new PttkDoan();
             if (OutlinedComboBoxEnabledCheckBox.IsChecked == true)
             {
-                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Name);
-            } 
-            else if (FilledComboBoxEnabledCheckBox.IsChecked == true) { }
-            {
-                pttkDoan = new PttkDoan
+                checkdoan = 2;
+                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Text);
+                if(pttkDoan == null)
                 {
-                    Name = TenDoanMoi.Text,
-                    Amount = Convert.ToDecimal(SoluongThanhVien.Text)
-                };
+                    MessageBox.Show("Đoàn không tồn tại");
+                    return;
+                }
             }
-            PttkKhachhang pttkKhachhang = new PttkKhachhang
+            else if (FilledComboBoxEnabledCheckBox.IsChecked == true)
             {
-                IdentifiedCard = txbCCCD.Text,
-                Name = txbHoTen.Text,
-                NumberPhone = txbSDT.Text,
-                Address = txbDiaChi.Text,
-                Birthday = dtpNgayKT.DisplayDate,
-                Sex = cbGioiTinh.Text
-            };
-            DatphongBUS datphongBUS = new DatphongBUS();
-      
+            
+                checkdoan = 1;
+                try
+                {
+                    pttkDoan = new PttkDoan
+                    {
+                        Name = TenDoanMoi.Text,
+                        Amount = Convert.ToDecimal(SoluongThanhVien.Text),
+                    };
+                } 
+                catch
+                {
+                    MessageBox.Show("Thông tin sai hoặc không đầy đủ.");
+                    return;
+                }
+            }
+            try
+            {
+                PttkKhachhang pttkKhachhang = new PttkKhachhang
+                {
+                    IdentifiedCard = txbCCCD.Text,
+                    Name = txbHoTen.Text,
+                    NumberPhone = txbSDT.Text,
+                    Address = txbDiaChi.Text,
+                    Birthday = dtpNgayKT.DisplayDate,
+                    Sex = cbGioiTinh.Text
+                };
+                PttkDatphong pttkDatphong = new PttkDatphong
+                {
+                    CreatedDay = DateTime.Now,
+                    ArrivalDay = Convert.ToDateTime(ngaytoiDP.Text),
+                    LeavingDay = Convert.ToDateTime(ngaydiDP.Text),
+                    EmployeeId = _PttkNhanvien.Id
+                };
+                DatphongBUS datphongBUS = new DatphongBUS();
+                if (datphongBUS.Add(pttkDatphong, pttkDoan, pttkKhachhang, checkdoan))
+                {
+                    MessageBox.Show("Đặt phòng thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Đặt phòng thất bại");
+                }
+            }
+           catch
+            {
+                MessageBox.Show("Thông tin sai hoặc không đầy đủ!");
+                return;
+            }
         }
     }
 }

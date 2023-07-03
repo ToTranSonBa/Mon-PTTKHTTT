@@ -102,7 +102,7 @@ namespace GUI.View
                         contentDisplayMain.Content = new RoomView(_employee);
                         break;
                     case 2:
-                        contentDisplayMain.Content = new ReservationView();
+                        contentDisplayMain.Content = new ReservationView(_employee);
                         break;
                     case 3:
                         // hoadon

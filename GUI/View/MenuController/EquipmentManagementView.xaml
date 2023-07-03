@@ -67,7 +67,7 @@
         </Border>-->
 
 
-        <Border Grid.Row="1" Width="950" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+        <Border Grid.Row="1" Width="1000" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
             <DataGrid AutoGenerateColumns="False" 
                 CanUserAddRows="False" x:Name="equipmentListView"
                 HeadersVisibility="All">
@@ -77,6 +77,17 @@
                     <DataGridTextColumn Width="200" Header="Tên Phòng" Binding="{Binding Room.RoomNumber}"/>
                     <DataGridTextColumn Width="200" Header="Số lượng" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Width="200" Header="Trạng thái" Binding="{Binding Tinhtrang}"/>
+                    
+                    <DataGridTemplateColumn  Header="Cập nhật">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="btn_Update">
+                                    <materialDesign:PackIcon Kind="Pen" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn >
+                    
                     <DataGridTemplateColumn  Header="Xoá">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

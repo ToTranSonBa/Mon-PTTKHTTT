@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DTO.Models;
 
 public partial class PttkPhong
 {
+    [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
     public decimal Id { get; set; }
 
     public string? RoomNumber { get; set; }

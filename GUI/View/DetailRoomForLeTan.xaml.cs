@@ -88,9 +88,6 @@ namespace GUI.View
                 MessageBox.Show("cập nhật thất bại");
 
             }
-
-            RoomManagementView roomManagementView = new RoomManagementView();
-            roomManagementView.loadRoomManagementView();
             this.Close();
         }
     }

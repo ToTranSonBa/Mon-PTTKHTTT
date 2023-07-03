@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BUS;
 using DTO;
+using DTO.Models;
 
 namespace GUI.View.MenuController
 {
@@ -28,17 +29,24 @@ namespace GUI.View.MenuController
         {
             _kindRoomBLL = new LoaiphongBUS();
             InitializeComponent();
+            loadLoaiPhong();
+        }
+
+        public void loadLoaiPhong()
+        {
             equipmentKindListView.ItemsSource = _kindRoomBLL.GetAll();
         }
+
+
         #region Button Event
-        private void click_Detail(object sender, RoutedEventArgs e)
+
+        private void click_Update(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void click_Delete(object sender, RoutedEventArgs e)
-        {
-
+            PttkLoaiphong updateLoaiPhong = new PttkLoaiphong();
+            updateLoaiPhong = (PttkLoaiphong)equipmentKindListView.SelectedItem;
+            UpdateKindRoom_Window updateKindRoom_Window =   new UpdateKindRoom_Window(updateLoaiPhong);
+            updateKindRoom_Window.ShowDialog();
+            loadLoaiPhong();
         }
         #endregion
 

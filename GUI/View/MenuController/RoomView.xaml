@@ -14,7 +14,7 @@
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Background="Gray">
+        <Grid Grid.Row="0" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -48,7 +48,7 @@
                 <ColumnDefinition Width="170"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Background="Gray">
+            <StackPanel Grid.Column="0" Background="LightGray">
                 <TextBlock Text="Trạng thái" Foreground="#00A3FF" FontSize="20"
                            HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 5 0 0"/>
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left" x:Name="spTrangThai"
@@ -106,11 +106,7 @@
                                                     <RowDefinition    Height="*" />
                                                     <RowDefinition   Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Image Grid.Row="0" Height="100" Width="100">
-                                                    <Image.Source>
-                                                        <BitmapImage UriSource="{Binding imagesSource}" />
-                                                    </Image.Source>
-                                                </Image>
+                                                <Image Grid.Row="0" Height="100" Width="100"></Image>
                                                 <StackPanel Grid.Row="1"  Margin="8,24,8,4">
                                                     <TextBlock  Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding RoomNumber}" />
                                                     <Viewbox  Height="16" Margin="0,4,0,8"  HorizontalAlignment="Left">

@@ -20,8 +20,11 @@
         <Grid>
             <!--title-->
             <Grid Grid.Row="0" Margin="0,0,0,6">
-                <TextBlock Text="CẬP NHẬT TÌNH TRẠNG THIẾT BỊ" FontSize="30" Foreground="#00A3FF" FontWeight="Bold" 
-                           HorizontalAlignment="Center" VerticalAlignment="Top" x:Name="titleRoom" Margin="0,24,0,0"/>
+                <TextBlock Text="CẬP NHẬT THIẾT BỊ TRONG PHÒNG" FontSize="20" Foreground="#00A3FF" FontWeight="Bold" 
+                           HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="titlePage" Margin="160,24,0,0"/>
+                <TextBlock Text="{Binding Room.RoomNumber}" FontSize="20" Foreground="#00A3FF" FontWeight="Bold" 
+                           HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="titleRoom" Margin="0,24,190,0" Width="89"/>
+
             </Grid>
 
             <!--Infomation-->
@@ -53,22 +56,7 @@
             </Grid>
 
 
-            <!--<Grid >
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="38,0,0,0">
-                    <TextBlock FontWeight="Bold" FontSize="15" Foreground="#00A3FF" Text="Cập nhật tình trạng" Height="30" Width="165" />
-                    <ComboBox
-                                        Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                                        Text="" x:Name="cbTinhTrang"
-                                        Height="38" Padding="10"
-                                        Width="277">
 
-                        <ComboBoxItem Content="{Binding Tinhtrang}" Visibility="Collapsed" IsSelected="True"/>
-                        <ComboBoxItem Content="Tốt" />
-                        <ComboBoxItem Content="Cần bảo trì" />
-                        <ComboBoxItem  Content="Hỏng" />
-                    </ComboBox>
-                </StackPanel>
-            </Grid>-->
 
 
 

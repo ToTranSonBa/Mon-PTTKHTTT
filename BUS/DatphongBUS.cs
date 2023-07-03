@@ -103,5 +103,11 @@ namespace BUS
                 return false;
             }
         }
+
+        public List<PttkDatphong> getAllPaidRoom()
+        {
+            DatphongDAL dp = new DatphongDAL();
+            return dp.getAllPaidRoom();
+        }
     }
 }

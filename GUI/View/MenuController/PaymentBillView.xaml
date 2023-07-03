@@ -24,27 +24,26 @@
         </Grid>
 
         <!--DataGrid-->
-        <Border Grid.Row="1" Width="1000" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="2" CornerRadius="10">
-            <ListView x:Name="equipmentListView">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="120" DisplayMemberBinding="{Binding Id}" Header="Số phiếu"/>
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding InvoiceDate}" Header="Ngày lập" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding PersonnelName}" Header="Nhân viên lập" />
-                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding TotalAmount}" Header="Tổng tiền" />
-                        <GridViewColumn Width="180" DisplayMemberBinding="{Binding InvoiceDetailNumber}" Header="Số phiếu chi tiết" />
-                        <GridViewColumn Width="120" Header="Chi tiết">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="More" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+        <Border Grid.Row="1" Width="1000" VerticalAlignment="Center" Height="550" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
+            <DataGrid x:Name="GridListBill" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="ID" IsReadOnly="True" Width="120" Binding="{Binding PttkDatphong.Id}" Header="Số phiếu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding PttkDatphong.NgayThanhToan}" Header="Ngày lập" />
+                    <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding PttkDatphong.Employee.Name}" Header="Nhân viên lập" />
+                    <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding TotalPrice}" Header="Tổng tiền" />
+                    <DataGridTextColumn IsReadOnly="True" Width="180" Binding="{Binding BillNum}" Header="Số phiếu chi tiết" />
+                    <DataGridTemplateColumn Width="120" Header="Chi tiết">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
+                                    <materialDesign:PackIcon Kind="More" Foreground="Black"/>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                 </DataGrid.Columns>
+            </DataGrid>
         </Border>
     </Grid>
 </UserControl>

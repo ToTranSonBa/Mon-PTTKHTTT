@@ -85,6 +85,9 @@ public partial class ModelContext : DbContext
             entity.Property(e => e.DoanID)
                 .HasColumnType("NUMBER(38)")
                 .HasColumnName("DOAN_ID");
+            entity.Property(e => e.NgayThanhToan)
+                .HasColumnType("DATE")
+                .HasColumnName("NGAYTHANHTOAN");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.PttkDatphongs)
                 .HasForeignKey(d => d.CustomerId)

@@ -11,6 +11,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DTO.Models;
 using BUS;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Linq;
 
 namespace GUI.View.MenuController
 {
@@ -19,6 +21,11 @@ namespace GUI.View.MenuController
     /// </summary>
     public partial class RoomView : UserControl
     {
+        class pttkphongImage {
+            public PttkPhong phong { get; set; }
+            public string imagesSource { get; set; }
+        }
+
         private PhongBUS PhongBUS { get; set; } = new PhongBUS();
         private PttkNhanvien _nhanvien { get; set; }
         public RoomView(PttkNhanvien nhanvien)
@@ -26,8 +33,24 @@ namespace GUI.View.MenuController
             _nhanvien = nhanvien;
             InitializeComponent();
             listRoomSingle.PreviewMouseLeftButtonUp += Card_MouseDoubleClick;
-            listRoomSingle.ItemsSource = PhongBUS.GetAll();
+            
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            string guiPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(baseDir))));
 
+            string finalImagePath = System.IO.Path.Combine(guiPath, "Res", "Phongdon.jpg");
+
+            ImageBrush enabledBackground = new ImageBrush(new BitmapImage(new Uri(finalImagePath)));
+            var listPhong = new List<pttkphongImage>();
+            foreach(var item in PhongBUS.GetAll())
+            {
+                listPhong.Add(new pttkphongImage
+                {
+                    phong = item,
+                    imagesSource = finalImagePath
+                });
+            }
+
+            listRoomSingle.ItemsSource = listPhong;
         }
         private void PresetTimePicker_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
         {
@@ -39,7 +62,8 @@ namespace GUI.View.MenuController
         }
         private void Card_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            PttkPhong roomDetail = (PttkPhong)listRoomSingle.SelectedItem;
+            var obj = listRoomSingle.SelectedItem as pttkphongImage;
+            var roomDetail = obj.phong;
             if (roomDetail != null)
             {
                 var roomDetailsWindow = new RoomDetailWindow(roomDetail, _nhanvien);

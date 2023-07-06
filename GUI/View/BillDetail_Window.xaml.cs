@@ -29,11 +29,11 @@ namespace GUI.View
         private List<PttkDatphongDichvu> _litsDpDV { get; set; }
 
         DichvuBUS dichvuBUS = new DichvuBUS();
+        NhanvienBUS _nhanVienBUS = new NhanvienBUS();
+        DatphongBUS _datphongBUS = new DatphongBUS();
 
         private int totalPrice { get; set; }
 
-        //NhanvienBUS _nhanVienBUS = new NhanvienBUS();
-        //DatphongBUS _datphongBUS = new DatphongBUS();
         public DateTime CurrentDate { get; set; }
         public BillDetail_Window(PttkNhanvien nhanvien, PttkKhachhang khachhang, PttkDatphong datphong, List<PttkDatphongDichvu> litsDpDV)
         {
@@ -128,6 +128,17 @@ namespace GUI.View
         private void btnLogOut_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void click_BtnXong(object sender, RoutedEventArgs e)
+        {
+            _datphong.EmployeeId = _nhanvien.Id;
+            _datphong.NgayThanhToan = DateTime.Now;
+            bool check = _datphongBUS.UpdateThanhtoan(_datphong);
+            if (check == true)
+            {
+                this.Close();
+            }
         }
     }
 

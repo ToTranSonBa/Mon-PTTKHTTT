@@ -38,17 +38,19 @@ namespace GUI.View
 
         public RoomDetailWindow(PttkPhong room, PttkNhanvien nhanvien)
         {
-
+            string txbchanged = "";
             InitializeComponent();
             _nhanvien = nhanvien;
             _room = room;
             _phongDatphong = phongDatPhong.getOneByRoomID(_room.Id);
-            if (_phongDatphong != null)
+            if (_phongDatphong.Id != 0)
             {
                 _datPhong = datPhong.getOneByID(_phongDatphong.OrderId);
-                if (_datPhong != null)
+                if (_datPhong.Id != 0)
                 {
                     _khachHang = khachHang.GetByID(_datPhong.CustomerId);
+                    txbNguoithue.Text = _khachHang.Name;
+                    txbchanged = _khachHang.Name;
                 }
                 _datPhongDichvu = new List<PttkDatphongDichvu>();
                 _datPhongDichvu = datphongDichvu.GetAllbyOrderID(_datPhong.Id);
@@ -60,13 +62,20 @@ namespace GUI.View
                 }
 
                 ViewSuDungDV.ItemsSource = _datPhongDichvu;
-                txbNguoithue.Text = _khachHang.Name;
-                //txbNgaythue.Text = _phongDatphong.ArrivalDay.ToString();
-                //txbNgayroi.Text = _phongDatphong.LeavingDay.ToString();
+                
+                txbNgaythue.Text = _datPhong.ArrivalDay.ToString();
+                txbNgayroi.Text = _datPhong.LeavingDay.ToString();
             }
             titleRoom.Text = _room.RoomNumber;
             txbTinhTrangPhong.Text = _room.RentStatus;
             txbTinhTrangDonDep.Text = _room.HygieneStatus;
+            
+            if (txbchanged == null || txbchanged == "" || txbchanged == " ")
+            {
+                BtnNhanphong.IsEnabled = false;
+                BtnThemdichvu.IsEnabled = false;
+                BtnTraphong.IsEnabled = false;
+            }
         }
     
 
@@ -108,6 +117,17 @@ namespace GUI.View
         {
             BillDetail_Window billDetail_wd = new BillDetail_Window(_nhanvien, _khachHang, _datPhong, _datPhongDichvu);
             billDetail_wd.Show();
+        }
+
+        private void txbNguoiThueChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            string txbchanged = txbNguoithue.Text;
+            if (txbchanged == null || txbchanged == "")
+            {
+                BtnNhanphong.IsEnabled = false;
+                BtnThemdichvu.IsEnabled = false;
+                BtnTraphong.IsEnabled = false;
+            }
         }
     }
 }

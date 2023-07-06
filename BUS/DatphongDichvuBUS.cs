@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using DTO.Models;
 using DAL;
+using System.Threading;
 
 namespace BUS
 {
@@ -56,6 +57,7 @@ namespace BUS
         {
             try
             {
+                int check = 0;
                 List<PttkDatphongDichvu> _listcheckDpDv = new List<PttkDatphongDichvu>();
                 DatphongDichvuBUS datphongDichvuBUS = new DatphongDichvuBUS();
 
@@ -63,26 +65,44 @@ namespace BUS
 
                 foreach(var dichvu in dichvus)
                 {
-                    foreach(var datphongdichvu in _listcheckDpDv)
+                    check = 0;
+                    if (_listcheckDpDv.Count > 0)
                     {
-                        if(dichvu.Id == datphongdichvu.ServiceId)
+                        foreach (var datphongdichvu in _listcheckDpDv)
                         {
-                            if (datphongdichvu.Quantity == null)
+                            if (dichvu.Id == datphongdichvu.ServiceId)
                             {
-                                datphongdichvu.Quantity = 1;
-                            }
-                            else
-                            {
-                                datphongdichvu.Quantity += 1;
-                            }
-                            datphongdichvu.TotalPrice = datphongdichvu.Quantity * dichvu.Price;
-                            datphongDichvuBUS.Update(datphongdichvu);
+                                if (datphongdichvu.Quantity == null)
+                                {
+                                    datphongdichvu.Quantity = 1;
+                                }
+                                else
+                                {
+                                    datphongdichvu.Quantity += 1;
+                                }
+                                datphongdichvu.TotalPrice = datphongdichvu.Quantity * dichvu.Price;
+                                datphongDichvuBUS.Update(datphongdichvu);
+                                check = 1;
+                            }  
                         }
-                        else
+                        if (check == 0)
                         {
-                            datphongdichvu.Quantity = 1;
-                            datphongDichvuBUS.Add(datphongdichvu);
-                        }    
+                            PttkDatphongDichvu datphongdichvuADD = new PttkDatphongDichvu();
+                            datphongdichvuADD.OrderId = ID;
+                            datphongdichvuADD.ServiceId = dichvu.Id;
+                            datphongdichvuADD.Quantity = 1;
+                            datphongdichvuADD.TotalPrice = dichvu.Price;
+                            datphongDichvuBUS.Add(datphongdichvuADD);
+                        }
+                    } 
+                    else
+                    {
+                        PttkDatphongDichvu datphongdichvu = new PttkDatphongDichvu();
+                        datphongdichvu.OrderId = ID;
+                        datphongdichvu.ServiceId = dichvu.Id;
+                        datphongdichvu.Quantity = 1;
+                        datphongdichvu.TotalPrice = dichvu.Price;
+                        datphongDichvuBUS.Add(datphongdichvu);
                     }    
                 }
                 return true;

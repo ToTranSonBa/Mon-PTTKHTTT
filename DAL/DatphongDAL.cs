@@ -27,7 +27,7 @@ namespace DAL
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.Where(dp => dp.NgayThanhToan == null).ToList();
+                return _context.PttkDatphongs.Where(dp => dp.NgayThanhToan != null).ToList();
             }
             catch
             {
@@ -40,7 +40,7 @@ namespace DAL
             ModelContext _context = new ModelContext();
             try
             {
-                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID);
+                return _context.PttkDatphongs.SingleOrDefault(dp => dp.Id == ID ); //&& dp.NgayThanhToan == null
             }
             catch
             {
@@ -85,6 +85,27 @@ namespace DAL
                 ModelContext _context = new ModelContext();
                 _context.Update<PttkDatphong>(datphong);
                 _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateThanhtoan(PttkDatphong datphong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                var existingDatphong = _context.PttkDatphongs.Find(datphong.Id);
+                if (existingDatphong != null)
+                {
+                    existingDatphong.NgayThanhToan = datphong.NgayThanhToan; // Cập nhật thuộc tính 1
+                    existingDatphong.EmployeeId = datphong.EmployeeId; // Cập nhật thuộc tính 2
+                    _context.SaveChanges();
+                    return true;
+                }
                 return true;
             }
             catch

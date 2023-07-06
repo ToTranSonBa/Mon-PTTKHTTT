@@ -24,10 +24,14 @@ namespace GUI.View.MenuController
         class pttkphongImage {
             public PttkPhong phong { get; set; }
             public string imagesSource { get; set; }
+            public string kindsroom { get; set; }
         }
 
+        PttkLoaiphong loaiphong { get; set; }  
+        private LoaiphongBUS  loaiphongBUS= new LoaiphongBUS();
         private PhongBUS PhongBUS { get; set; } = new PhongBUS();
         private PttkNhanvien _nhanvien { get; set; }
+
         public RoomView(PttkNhanvien nhanvien)
         {
             _nhanvien = nhanvien;
@@ -43,14 +47,17 @@ namespace GUI.View.MenuController
             var listPhong = new List<pttkphongImage>();
             foreach(var item in PhongBUS.GetAll())
             {
+
                 listPhong.Add(new pttkphongImage
                 {
                     phong = item,
-                    imagesSource = finalImagePath
-                });
+                    imagesSource = finalImagePath,
+                    kindsroom = loaiphongBUS.GetByID(item.Kind).Name.ToString()
+                }) ;
             }
 
             listRoomSingle.ItemsSource = listPhong;
+
         }
         private void PresetTimePicker_SelectedTimeChanged(object sender, RoutedPropertyChangedEventArgs<DateTime?> e)
         {

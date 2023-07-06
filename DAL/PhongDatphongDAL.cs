@@ -22,6 +22,32 @@ namespace DAL
             }
         }
 
+        public PttkPhongDatphong GetOneByOrderID(decimal? ID)
+        {
+            ModelContext _context = new ModelContext(); 
+            try
+            {
+                return _context.PttkPhongDatphongs.SingleOrDefault(dp => dp.OrderId == ID);
+            }
+            catch
+            {
+                return new PttkPhongDatphong();
+            }
+        }
+
+        public List<PttkPhongDatphong> GetByRoomID(decimal? ID)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                return _context.PttkPhongDatphongs.Where(item => item.RoomId == ID).ToList();
+            }
+            catch
+            {
+                return new List<PttkPhongDatphong>();
+            }
+        }
+
         public PttkPhongDatphong? getOneByRoomID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
@@ -38,7 +64,7 @@ namespace DAL
             }
         }
 
-        public PttkPhongDatphong? GetByID(decimal ID)
+        public PttkPhongDatphong GetByID(decimal? ID)
         {
             ModelContext _context = new ModelContext();
             try

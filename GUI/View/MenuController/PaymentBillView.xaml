@@ -32,7 +32,7 @@
                     <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding PttkDatphong.Employee.Name}" Header="Nhân viên lập" />
                     <DataGridTextColumn IsReadOnly="True" Width="200" Binding="{Binding TotalPrice}" Header="Tổng tiền" />
                     <DataGridTextColumn IsReadOnly="True" Width="180" Binding="{Binding BillNum}" Header="Số phiếu chi tiết" />
-                    <DataGridTemplateColumn Width="120" Header="Chi tiết">
+                    <DataGridTemplateColumn x:Name="BtnChiTiet" Width="120" Header="Chi tiết">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">

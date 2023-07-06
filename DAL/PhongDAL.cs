@@ -82,5 +82,26 @@ namespace DAL
                 return false;
             }
         }
+
+        public bool UpdateRentStaHygieneSta(PttkPhong phong)
+        {
+            try
+            {
+                ModelContext _context = new ModelContext();
+                var existingDatphong = _context.PttkPhongs.Find(phong.Id);
+                if (existingDatphong != null)
+                {
+                    existingDatphong.RentStatus = "Trống"; // Cập nhật thuộc tính 1
+                    existingDatphong.HygieneStatus = "Chưa dọn dẹp"; // Cập nhật thuộc tính 2
+                    _context.SaveChanges();
+                    return true;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

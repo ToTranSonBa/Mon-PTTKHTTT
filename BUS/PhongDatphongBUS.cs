@@ -18,14 +18,55 @@ namespace BUS
 
         public PttkPhongDatphong getOneByRoomID(decimal? ID)
         {
-            PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
-            return phongDatphong.getOneByRoomID(ID);
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                List<PttkPhongDatphong> pttkPhongDatphongs;
+                PhongDatphongDAL phongDatphongDAL = new PhongDatphongDAL();
+                DatphongBUS datphongBUS = new DatphongBUS();
+                DatphongDAL datphongDAL;
+                PttkPhongDatphong pttkPhongDatphong = new PttkPhongDatphong();
+
+                pttkPhongDatphongs = phongDatphongDAL.GetByRoomID(ID);
+
+                if (pttkPhongDatphongs != null)
+                {
+                    foreach (var item in pttkPhongDatphongs)
+                    {
+                        PttkDatphong pttkDatphong = new PttkDatphong();
+                        pttkDatphong = datphongBUS.getOneByID(item.OrderId);
+
+                        if (pttkDatphong.NgayThanhToan == null && pttkDatphong.LeavingDay >= dateTime && pttkDatphong.ArrivalDay <= dateTime)
+                        {
+                            return item;
+                        }
+                    }
+                    return new PttkPhongDatphong();
+                }
+                else
+                {
+                    return new PttkPhongDatphong();
+                }
+
+            }
+            catch {
+                return new PttkPhongDatphong();
+            }
         }
+
+       
         public List<PttkPhongDatphong> GetByOrderID(decimal? ID)
         {
             PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
             return phongDatphong.GetByOrderID(ID);
         }
+
+        public PttkPhongDatphong GetOneByOrderID(decimal? ID)
+        {
+            PhongDatphongDAL phongDatphongDAL = new PhongDatphongDAL();
+            return phongDatphongDAL.GetOneByOrderID(ID);
+        }    
+
         public bool CheckPhongDatphong(decimal phong, decimal datphong)
         {
             PhongDatphongDAL phongDatphong = new PhongDatphongDAL();

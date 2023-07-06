@@ -27,6 +27,30 @@ namespace BUS
 
         }
 
+        public bool UpdateThanhtoan(PttkDatphong pttkDatphong)
+        {
+            PhongDAL phongDAL = new PhongDAL();
+            PhongBUS phongBUS = new PhongBUS();
+            DatphongDAL datphongDAL = new DatphongDAL();
+            PhongDatphongBUS phongDatphongBUS = new PhongDatphongBUS();
+
+            PttkPhongDatphong phongDatphong = new PttkPhongDatphong();
+            PttkPhong phong = new PttkPhong();
+            try
+            {
+                phongDatphong = phongDatphongBUS.GetOneByOrderID(pttkDatphong.Id);
+                phong = phongBUS.GetById(phongDatphong.RoomId);
+                datphongDAL.UpdateThanhtoan(pttkDatphong);
+                phongDAL.UpdateRentStaHygieneSta(phong);
+                return true;
+            }
+            catch
+            {
+
+                return false;
+            }
+        }
+
         public bool Update(PttkDatphong pttkDatphong, PttkDoan pttkDoan, int checkdoan)
         {
             try

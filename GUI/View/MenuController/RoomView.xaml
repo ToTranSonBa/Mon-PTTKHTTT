@@ -82,7 +82,6 @@
             <ScrollViewer Grid.Column="1">
                 <StackPanel Height="650">
                     <StackPanel>
-                        <Label>Phòng đơn</Label>
                         <WrapPanel>
                             <ListView x:Name="listRoomSingle">
                                 <!--Vô hiệu hóa cuộn-->
@@ -99,35 +98,47 @@
                                 </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <materialDesign:Card  Width="220">
+                                        <materialDesign:Card x:Name="materialCardRoom"  Width="220">
                                             <Grid>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition  Height="140" />
                                                     <RowDefinition    Height="*" />
                                                     <RowDefinition   Height="Auto" />
                                                 </Grid.RowDefinitions>
-                                                <Image  Grid.Row="0" Height="100" Width="100">
+                                                <Image  Grid.Row="0">
                                                     <Image.Source>
                                                         <BitmapImage UriSource="{Binding imagesSource}" />
                                                     </Image.Source>
                                                 </Image>
-                                                <StackPanel Grid.Row="1"  Margin="8,24,8,4">
-                                                    <TextBlock  Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding phong.RoomNumber}" />
-                                                    <Viewbox  Height="16" Margin="0,4,0,8"  HorizontalAlignment="Left">
-                                                        <materialDesign:RatingBar  Margin="0"     Foreground="Gold"  Orientation="Horizontal" Value="3" />
-                                                    </Viewbox>
-                                                    <Grid>
+                                                <Grid Grid.Row="1"  Margin="8,24,8,4">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                        <RowDefinition></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid Grid.Row="0">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition></ColumnDefinition>
                                                             <ColumnDefinition></ColumnDefinition>
                                                         </Grid.ColumnDefinitions>
-                                                        <TextBlock Grid.Column="0"  VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
+                                                        <TextBlock Grid.Column="1" Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding kindsroom}" />
+                                                        <TextBlock Grid.Column="0" Margin="0" Style="{StaticResource MaterialDesignSubtitle1TextBlock}" Text="{Binding phong.RoomNumber}" />
+                                                    </Grid>
+                                                    <Viewbox Grid.Row="1" Height="16" Margin="0,4,0,8"  HorizontalAlignment="Left">
+                                                        <materialDesign:RatingBar  Margin="0"     Foreground="Gold"  Orientation="Horizontal" Value="3" />
+                                                    </Viewbox>
+                                                    <Grid Grid.Row="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock x:Name="txbRentStatus" Grid.Column="0"  VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
                                                                  Text="{Binding phong.RentStatus}"  TextWrapping="Wrap" />
                                                         <TextBlock Grid.Column="1"  VerticalAlignment="Center"    Style="{StaticResource MaterialDesignBody1TextBlock}"
                                                                  Text="{Binding phong.HygieneStatus}"  TextWrapping="NoWrap" />
                                                     </Grid>
 
-                                                </StackPanel>
+                                                </Grid>
                                                 <Separator  Grid.Row="2" Margin="8,0,8,0"  Style="{StaticResource MaterialDesignDarkSeparator}" />
                                             </Grid>
                                         </materialDesign:Card>

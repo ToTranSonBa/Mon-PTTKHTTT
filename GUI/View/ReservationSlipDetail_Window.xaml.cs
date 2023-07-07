@@ -34,16 +34,15 @@ namespace GUI.View
             {
                 _reservationModel.Customer = khachhangBUS.GetByID(_reservationModel.CustomerId);
             }
-            KhachhangDoanBUS khachhangDoanBUS = new KhachhangDoanBUS();
             DoanBUS doanBUS = new DoanBUS();
             var khachhangdoan = doanBUS.GetByID(_reservationModel.DoanID);
-            OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(i => i.Name);
+            DsDoan.ItemsSource = doanBUS.GetAll().Select(i => i.Name);
             if (khachhangdoan != null)
             {
                 OutlinedComboBoxEnabledCheckBox.IsChecked = true;
-                
-                OutlinedComboBox.Text = khachhangdoan.Name.ToString();
-                DoanTruongTextBox.Text = doanBUS.GetLeaderByID(khachhangdoan.Id).Name;
+
+                DsDoan.Text = khachhangdoan.Name.ToString();
+                DoanTruongTextBox.Text = doanBUS.GetLeaderByID(khachhangdoan).Name;
             }
             ngaytoiDP.Text = _reservationModel.ArrivalDay.ToString();
             ngaydiDP.Text = _reservationModel.LeavingDay.ToString();
@@ -106,9 +105,9 @@ namespace GUI.View
             ChooseDoan.Visibility = Visibility.Visible;
         }
 
-        private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DsDOAN_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tendoan = OutlinedComboBox.SelectedValue as string;
+            var tendoan = DsDoan.SelectedValue as string;
             var doanBUS = new DoanBUS();
             var doan = doanBUS.GetByName(tendoan);
             var khachhangBUS = new KhachhangBUS();
@@ -138,7 +137,7 @@ namespace GUI.View
             if (OutlinedComboBoxEnabledCheckBox.IsChecked == true)
             {
                 checkdoan = 2;
-                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Text);
+                pttkDoan = doanBUS.GetByName(DsDoan.Text);
                 if (pttkDoan == null)
                 {
                     MessageBox.Show("Đoàn không tồn tại");

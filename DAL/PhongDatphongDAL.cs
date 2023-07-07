@@ -38,19 +38,6 @@ namespace DAL
             }
         }
 
-        public PttkPhongDatphong? GetByID(decimal ID)
-        {
-            ModelContext _context = new ModelContext();
-            try
-            {
-                return _context.PttkPhongDatphongs.SingleOrDefault(dp => dp.Id == ID);
-            }
-            catch
-            {
-                return new PttkPhongDatphong();
-            }
-        }
-
         public bool Add(PttkPhongDatphong phongDatPhong)
         {
             try
@@ -81,20 +68,6 @@ namespace DAL
             }
         }
 
-        public bool Update(PttkPhongDatphong phongDatPhong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkPhongDatphong>(phongDatPhong);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         public List<PttkPhongDatphong> GetByOrderID(decimal? ID)
         {

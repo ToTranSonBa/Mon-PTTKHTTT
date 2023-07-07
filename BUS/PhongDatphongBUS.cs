@@ -26,18 +26,6 @@ namespace BUS
             PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
             return phongDatphong.GetByOrderID(ID);
         }
-        public bool CheckPhongDatphong(decimal phong, decimal datphong)
-        {
-            PhongDatphongDAL phongDatphong = new PhongDatphongDAL();
-            if (phongDatphong.GetByPhongIDAndDatphongID(phong, datphong) != null )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public bool AddByPhongIDAndDatphongID(PttkPhong phong, decimal datphong)
         {
             try

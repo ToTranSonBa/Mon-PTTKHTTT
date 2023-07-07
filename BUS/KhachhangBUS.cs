@@ -51,19 +51,6 @@ namespace BUS
             }
         }
 
-        public bool Remove(PttkKhachhang khachHang)
-        {
-            try
-            {
-                KhachhangDAL _context = new KhachhangDAL();
-                _context.Remove(khachHang);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         public bool Update(PttkKhachhang khachHang)
         {

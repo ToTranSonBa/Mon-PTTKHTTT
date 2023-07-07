@@ -26,8 +26,6 @@ namespace GUI.View
         private List<PttkPhong> ChoosePhongs { get; set; }
         private PhongBUS PhongBUS = new PhongBUS();
         private LoaiphongBUS LoaiphongBUS = new LoaiphongBUS();
-
-        private DatphongBUS DatphongBUS = new DatphongBUS();
         private PhongDatphongBUS PhongDatphongBUS = new PhongDatphongBUS();
         private readonly PttkDatphong _pttkDatphong;
         public RoomDivision_Window(PttkDatphong pttkDatphong)
@@ -54,6 +52,10 @@ namespace GUI.View
                 item.KindNavigation = LoaiphongBUS.GetByID(item.Kind);
             }
             ChoosePhongs = PhongDatphongBUS.GetAllByOrderID(_pttkDatphong.Id);
+            foreach (var item in ChoosePhongs)
+            {
+                item.KindNavigation = LoaiphongBUS.GetByID(item.Kind);
+            }
             phongs = dsphong.Except(ChoosePhongs).ToList();
             lvDanhSachPhong.ItemsSource = phongs.Where(p => p != null);
             lvDanhSachPhongDaChon.ItemsSource = ChoosePhongs.Where(p => p != null);

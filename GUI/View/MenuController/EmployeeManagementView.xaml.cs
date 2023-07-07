@@ -52,10 +52,10 @@ namespace GUI.View.MenuController
             PttkNhanvien n_emp = new();
             n_emp = (PttkNhanvien)employeeListView.SelectedItem;
             n_emp.FireDay = DateTime.Now;
-            TaikhoanBUS taikhoanBUS= new TaikhoanBUS();
+            TaikhoanBUS taikhoanBUS = new TaikhoanBUS();
             PttkTaikhoan pttkTaikhoan = new();
             pttkTaikhoan = taikhoanBUS.GetByIDemploy(n_emp.Id);
- 
+
             NhanvienBUS nhanvienBUS = new NhanvienBUS();
             bool flag = nhanvienBUS.Update(n_emp);
             taikhoanBUS.Remove(pttkTaikhoan);
@@ -70,7 +70,7 @@ namespace GUI.View.MenuController
         }
         private void Search_Click(object sender, RoutedEventArgs e)
         {
-                       
+
         }
         private void click_Add(object sender, RoutedEventArgs e)
         {

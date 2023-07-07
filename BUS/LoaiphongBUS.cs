@@ -50,19 +50,5 @@ namespace BUS
                 return false;
             }
         }
-
-        public bool Remove(PttkLoaiphong loaiphong)
-        {
-            try
-            {
-                LoaiphongDAL _context = new LoaiphongDAL();
-                _context.Remove(loaiphong);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

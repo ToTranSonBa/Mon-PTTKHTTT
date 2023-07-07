@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                <Button Name="DatPhongBtn" Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
                     Width="200" Click="DbClick_BtnDatPhong"
                     ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
                     _Đặt Phòng
@@ -54,7 +54,7 @@
                     <DataGridTemplateColumn Width="120" Header="Chi tiết">
                         <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
+                                    <Button Width="25" x:Name="ChiTietPhieuDatPhong" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
                                         <materialDesign:PackIcon Kind="More" Foreground="Black"/>
                                     </Button>
                                 </DataTemplate>

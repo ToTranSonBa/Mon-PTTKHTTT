@@ -17,15 +17,9 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button Margin="0 3 0 3" Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                    Width="200" Click="addCustomerBtn"
-                    ToolTip="Resource name: MaterialDesignRaisedLightDarkButton">
-                    _Thêm khách hàng
-                </Button>
-            </StackPanel>
 
-            <StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+            <!--<StackPanel Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Border Margin="0 3 0 3"  BorderBrush="Black" BorderThickness="2" CornerRadius="10" Width="300">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -40,7 +34,7 @@
                         </Button>
                     </Grid>
                 </Border>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
 
         <!--DataGrid-->
@@ -50,27 +44,11 @@
                     <GridView>
                         <GridViewColumn Width="90" DisplayMemberBinding="{Binding Id}" Header="STT"/>
                         <GridViewColumn Width="160" DisplayMemberBinding="{Binding Name}" Header="Tên khách hàng"/>
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding Sex}" Header="CCCD" />
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding NumberPhone}" Header="CCCD" />
                         <GridViewColumn Width="160" DisplayMemberBinding="{Binding IdentifiedCard}" Header="CCCD" />
                         <GridViewColumn Width="160" DisplayMemberBinding="{Binding Birthday}" Header="Ngày sinh" />
                         <GridViewColumn Width="200" DisplayMemberBinding="{Binding Address}" Header="Địa chỉ" />
-                        <GridViewColumn Width="100" Header="Xoá">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Delete" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="Delete" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="120" Header="Chi tiết">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Width="25" Height="25" BorderThickness="0" Click="click_Detail" Padding="0" Background="Transparent">
-                                        <materialDesign:PackIcon Kind="Edit" Foreground="Black"/>
-                                    </Button>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

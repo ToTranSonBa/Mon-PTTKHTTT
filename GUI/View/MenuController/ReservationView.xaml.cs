@@ -37,7 +37,7 @@ namespace GUI.View.MenuController
           
             //PttkDatphong pttkDatphong = new PttkDatphong();
             //pttkDatphong.Employee.Name
-            reservations = loaiphongBUS.GetAll();
+            reservations = loaiphongBUS.GetAll().Where(DP => DP.NgayThanhToan == null).ToList();
 
             foreach(var item in reservations)
             {

@@ -52,21 +52,6 @@ namespace DAL
             }
         }
 
-        public bool Remove(PttkNhanvien nhanVien)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkNhanviens.Remove(nhanVien);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         public bool Update(PttkNhanvien nhanVien)
         {
             try

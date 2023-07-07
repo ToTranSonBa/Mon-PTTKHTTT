@@ -24,17 +24,14 @@ namespace GUI.View
     public partial class Reservation_Window : Window
     {
         public DoanBUS doanBUS = new DoanBUS();
-        public PttkNhanvien _PttkNhanvienl;
         public PttkDatphong _PttkDatphong;
         private PttkNhanvien _PttkNhanvien;
         public Reservation_Window(PttkDatphong pttkDatphong, PttkNhanvien emp)
         {
             _PttkNhanvien = emp;
             _PttkDatphong = pttkDatphong;
-            NhanvienBUS nhanvienBUS = new NhanvienBUS();
-            _PttkNhanvienl = nhanvienBUS.GetByID(1);
             InitializeComponent();
-            OutlinedComboBox.ItemsSource = doanBUS.GetAll().Select(d => d.Name);
+            DSDoanCB.ItemsSource = doanBUS.GetAll().Select(d => d.Name);
         }
         private void click_BtnExit(object sender, RoutedEventArgs e)
         {
@@ -93,9 +90,9 @@ namespace GUI.View
             ChooseDoan.Visibility = Visibility.Visible;
         }
 
-        private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DsDOAN_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tendoan = OutlinedComboBox.SelectedValue as string;
+            var tendoan = DSDoanCB.SelectedValue as string;
             var doan = doanBUS.GetByName(tendoan);
             var khachhangBUS = new KhachhangBUS();
             var doantruong = khachhangBUS.GetByID(doan.Leader);
@@ -106,17 +103,17 @@ namespace GUI.View
         {
             int checkdoan = 0; //0: KHONG THEO DOAN - 1: DOAN MOI - 2:DOAN DA TON TAI
             PttkDoan pttkDoan = new PttkDoan();
-            if (OutlinedComboBoxEnabledCheckBox.IsChecked == true)
+            if (CheckboxcChonDoan.IsChecked == true)
             {
                 checkdoan = 2;
-                pttkDoan = doanBUS.GetByName(OutlinedComboBox.Text);
+                pttkDoan = doanBUS.GetByName(DSDoanCB.Text);
                 if(pttkDoan == null)
                 {
                     MessageBox.Show("Đoàn không tồn tại");
                     return;
                 }
             }
-            else if (FilledComboBoxEnabledCheckBox.IsChecked == true)
+            else if (checkboxthemdoan.IsChecked == true)
             {
             
                 checkdoan = 1;

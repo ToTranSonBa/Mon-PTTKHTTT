@@ -63,20 +63,6 @@ namespace DAL
             }
         }
 
-        public bool Remove(PttkDatphong datphong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDatphongs.Remove(datphong);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
 
         public bool Update(PttkDatphong datphong)
         {

@@ -61,42 +61,12 @@ namespace BUS
                 return false;
             }
         }
-
-        public bool Remove(PttkDoan doan)
+        public PttkKhachhang? GetLeaderByID(PttkDoan? id)
         {
             try
             {
-                DoanDAL _context = new DoanDAL();
-                _context.Remove(doan);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Update(PttkDoan doan)
-        {
-            try
-            {
-                DoanDAL _context = new DoanDAL();
-                _context.Update(doan);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public PttkKhachhang? GetLeaderByID(decimal? id)
-        {
-            try
-            {
-                DoanBUS doanBUS = new DoanBUS();
-                PttkDoan pttkDoan = doanBUS.GetByID(id);
                 KhachhangBUS khachhangBUS = new KhachhangBUS();
-                return khachhangBUS.GetByID(pttkDoan.Leader);
+                return khachhangBUS.GetByID(id.Leader);
             }
             catch
             {

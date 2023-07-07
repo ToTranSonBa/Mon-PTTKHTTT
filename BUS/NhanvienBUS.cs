@@ -54,18 +54,6 @@ namespace BUS
             }
         }
 
-        public bool Remove(PttkNhanvien nhanVien)
-        {
-            try
-            {
-                NhanvienDAL _context = new NhanvienDAL();
-                return _context.Remove(nhanVien);
-            }
-            catch
-            {
-                return false;
-            }
-        }
         public bool Update(PttkNhanvien nhanVien)
         {
             try

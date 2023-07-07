@@ -36,36 +36,6 @@ namespace DAL
             }
         }
 
-        public bool Add(PttkLoaiphong loaiPhong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkLoaiphongs.Add(loaiPhong);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Remove(PttkLoaiphong loaiPhong)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkLoaiphongs.Remove(loaiPhong);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         public bool Update(PttkLoaiphong loaiPhong)
         {
             try

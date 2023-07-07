@@ -62,36 +62,6 @@ namespace DAL
                 return false;
             }
         }
-
-        public bool Remove(PttkDoan doan)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.PttkDoans.Remove(doan);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool Update(PttkDoan doan)
-        {
-            try
-            {
-                ModelContext _context = new ModelContext();
-                _context.Update<PttkDoan>(doan);
-                _context.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
         
     }
 }
